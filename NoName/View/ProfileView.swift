@@ -9,10 +9,10 @@ import SwiftUI
 import HealthKit
 
 struct ProfileView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
-    @EnvironmentObject var manager: HealthManager
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var manager: StepRepository
     var body: some View {
-        if let user = viewModel.currentUser {
+        if let user = authViewModel.currentUser {
             List {
                 Section {
                     HStack {
@@ -35,22 +35,22 @@ struct ProfileView: View {
                         
                     }
                 }
-                Section("General") {
+                Section("Steps") {
                     HStack {
-                        SettingsRowView(
-                            imageName: "gear",
-                            title: "Version",
-                            tintColor: Color(.systemGray)
-                        )
+                        Text(manager.stepCount)
                         Spacer()
-                        Text("1.0.0")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+                        Button(action: {
+                            Task {
+                                await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
+                            }
+                        }) {
+                            Image(systemName: "arrow.clockwise")
+                        }
                     }
                 }
                 Section("Account") {
                     Button {
-                        viewModel.signOut()
+                        authViewModel.signOut()
                     } label: {
                         SettingsRowView(
                             imageName: "arrow.left.circle.fill",
@@ -68,21 +68,11 @@ struct ProfileView: View {
                         )
                     }
                 }
-                Section("Steps") {
-                    HStack {
-                        Text(manager.stepCount)
-                        Spacer()
-                        Button {
-                            manager.fetchTodaySteps()
-                        } label: {
-                            Image(systemName: "arrow.clockwise")
-                        }
-                    }
-                }
-        
             }
             .onAppear {
-                manager.fetchTodaySteps()
+                Task {
+                    await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
+                }
             }
         }
     }

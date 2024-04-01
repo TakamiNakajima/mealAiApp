@@ -11,7 +11,7 @@ import Firebase
 @main
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var manager = HealthManager()
+    @StateObject var manager = StepRepository()
     
     init() {
         FirebaseApp.configure()
