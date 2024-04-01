@@ -14,7 +14,7 @@ struct RegistrationView: View {
     @State private var confirmPassword = ""
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
-
+    
     var body: some View {
         VStack {
             // image
@@ -104,7 +104,7 @@ struct RegistrationView: View {
                 }
                 .font(.system(size: 14))
             }
-
+            
         }
     }
 }

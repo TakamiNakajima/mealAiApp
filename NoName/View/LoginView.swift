@@ -11,7 +11,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -73,9 +73,9 @@ struct LoginView: View {
                             .fontWeight(.bold)
                     }
                     .font(.system(size: 14))
-                
+                    
                 }
-
+                
                 
             }
         }

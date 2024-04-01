@@ -46,8 +46,8 @@
 		4D54DF572BAFBB2300101545 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4D54DF562BAFBB2300101545 /* FirebaseStorage */; };
 		4D54DF592BAFBB2300101545 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4D54DF582BAFBB2300101545 /* FirebaseStorageCombine-Community */; };
 		4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */; };
-		4D56C6192BB8E92B002ABB9F /* HealthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6182BB8E92B002ABB9F /* HealthRepository.swift */; };
-		4D56C6202BBAD56B002ABB9F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C61F2BBAD56B002ABB9F /* ProfileViewModel.swift */; };
+		4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6182BB8E92B002ABB9F /* StepRepository.swift */; };
+		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,10 +64,10 @@
 		4D54DF1F2BAFA9BD00101545 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D54DF212BAFBA3C00101545 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		4D56C6182BB8E92B002ABB9F /* HealthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthRepository.swift; sourceTree = "<group>"; };
+		4D56C6182BB8E92B002ABB9F /* StepRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRepository.swift; sourceTree = "<group>"; };
 		4D56C61A2BB8EB4D002ABB9F /* NoName.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoName.entitlements; sourceTree = "<group>"; };
 		4D56C61B2BB8EB9D002ABB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		4D56C61F2BBAD56B002ABB9F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +127,7 @@
 		4D54DEFC2BADCA4700101545 /* NoName */ = {
 			isa = PBXGroup;
 			children = (
+				4D56C6212BBAE61C002ABB9F /* utility */,
 				4D54DEFD2BADCA4700101545 /* NoNameApp.swift */,
 				4D56C61D2BBAD471002ABB9F /* View */,
 				4D56C61C2BBAD437002ABB9F /* ViewModel */,
@@ -160,7 +161,7 @@
 		4D56C6172BB8E8F3002ABB9F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				4D56C6182BB8E92B002ABB9F /* HealthRepository.swift */,
+				4D56C6182BB8E92B002ABB9F /* StepRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -169,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */,
-				4D56C61F2BBAD56B002ABB9F /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -193,6 +193,14 @@
 				4D54DF152BADCD4300101545 /* InputView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		4D56C6212BBAE61C002ABB9F /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				4D56C6222BBAE637002ABB9F /* Collection.swift */,
+			);
+			path = utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,9 +312,9 @@
 				4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */,
 				4D54DF202BAFA9BD00101545 /* User.swift in Sources */,
 				4D54DF1A2BAFA3BE00101545 /* ProfileView.swift in Sources */,
+				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationView.swift in Sources */,
-				4D56C6202BBAD56B002ABB9F /* ProfileViewModel.swift in Sources */,
-				4D56C6192BB8E92B002ABB9F /* HealthRepository.swift in Sources */,
+				4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */,
 				4D54DF1C2BAFA6A600101545 /* SettingsRowView.swift in Sources */,
 				4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */,
 			);
