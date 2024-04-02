@@ -10,25 +10,10 @@ import HealthKit
 import Firebase
 import FirebaseFirestoreSwift
 
-extension Date {
-    static var startDay: Date {
-        Calendar.current.startOfDay(for: Date())
-    }
-}
-
-extension Double {
-    func formattedString() -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
-        return numberFormatter.string(from: NSNumber(value:  self))!
-    }
-}
-
 class StepRepository: ObservableObject {
     let healthStore = HKHealthStore()
-    @Published var stepCount: String = "--"
     
+    // 歩数を取得するための初期処理を行う
     init() {
         let steps = HKQuantityType(.stepCount)
         let healthTypes: Set = [steps]
@@ -41,43 +26,42 @@ class StepRepository: ObservableObject {
         }
     }
     
-    // ヘルスケアから歩数を取得してDBに保存する
-    func fetchTodaySteps(uid: String) async {
-        let steps = HKQuantityType(.stepCount)
-        let predicate = HKQuery.predicateForSamples(withStart: .startDay, end: Date())
+    // 歩数を取得する
+    func fetchSteps(uid: String) async throws -> Int {
+        let steps = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: Date()), end: Date())
+        var stepCount: Int = 0
+        let semaphore = DispatchSemaphore(value: 0)
+        
         let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
             guard let result = result, let quantity = result.sumQuantity(), error == nil else {
                 print("error fetching todays step data")
+                semaphore.signal()
                 return
             }
-            let stepCount = quantity.doubleValue(for: .count())
-            DispatchQueue.main.async {
-                self.stepCount = stepCount.formattedString()
-            }
+            stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
+            semaphore.signal()
         }
-        if stepCount != "--" {
-            do {
-                try await saveSteps(uid: uid, steps: self.stepCount)
-            } catch {
-                print("歩数保存失敗")
-            }
-        }
+        // HKStatisticsQuery を非同期的に実行
         healthStore.execute(query)
+        
+        // 完了ハンドラーの処理が完了するまで待機
+        semaphore.wait()
+        return stepCount
     }
     
-    // 歩数をDBに保存する
-    func saveSteps(uid: String, steps: String) async throws {
-        let today = Date()
+    // 歩数を保存する
+    func saveSteps(uid: String, steps: Int) async throws {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: today)
+        let dateString = dateFormatter.string(from: Date())
         let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(Collection.steps)
+        
         do {
             try await stepCollectionRef.document(dateString).setData([
                 "steps": steps,
                 "timeStamp": FieldValue.serverTimestamp()
             ], mergeFields:  ["steps", "timeStamp"])
-            print("save steps success")
         } catch {
             print("save steps error \(error)")
             throw error

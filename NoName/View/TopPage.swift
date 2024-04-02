@@ -8,8 +8,9 @@
 import SwiftUI
 import HealthKit
 
-struct ProfileView: View {
+struct TopPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var profileViewModel: TopPageViewModel
     @EnvironmentObject var manager: StepRepository
     var body: some View {
         if let user = authViewModel.currentUser {
@@ -32,52 +33,38 @@ struct ProfileView: View {
                                 .font(.footnote)
                                 .foregroundColor(.gray)
                         }
-                        
-                    }
-                }
-                Section("Steps") {
-                    HStack {
-                        Text(manager.stepCount)
-                        Spacer()
-                        Button(action: {
-                            Task {
-                                await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
-                            }
-                        }) {
-                            Image(systemName: "arrow.clockwise")
-                        }
                     }
                 }
                 Section("Account") {
                     Button {
                         authViewModel.signOut()
                     } label: {
-                        SettingsRowView(
+                        SettingsRow(
                             imageName: "arrow.left.circle.fill",
                             title: "Sign Out",
                             tintColor: Color(.red)
                         )
                     }
-                    Button {
-                        print("Delete account..")
-                    } label: {
-                        SettingsRowView(
-                            imageName: "xmark.circle.fill",
-                            title: "Delete Account",
-                            tintColor: Color(.red)
-                        )
-                    }
                 }
-            }
-            .onAppear {
-                Task {
-                    await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
+                Section("Steps") {
+                    HStack {
+                        Text(profileViewModel.steps)
+                        Spacer()
+                        Button(action: {
+                            Task {
+                                try await profileViewModel.fetchAndSaveSteps(uid: authViewModel.currentUser!.id)
+                            }
+                        }) {
+                            Image(systemName: "arrow.clockwise")
+                        }
+                    }
                 }
             }
         }
     }
+
 }
 
 #Preview {
-    ProfileView()
+    TopPage()
 }

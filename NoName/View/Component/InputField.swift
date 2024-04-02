@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct InputView: View {
+struct InputField: View {
     @Binding var text: String
     let title: String
     let placeholder: String
@@ -33,7 +33,7 @@ struct InputView: View {
 }
 
 #Preview {
-    InputView(
+    InputField(
         text: .constant(""),
         title: "Email Address",
         placeholder: "name@example.com"

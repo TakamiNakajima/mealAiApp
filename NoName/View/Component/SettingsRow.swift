@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingsRowView: View {
+struct SettingsRow: View {
     let imageName: String
     let title: String
     let tintColor: Color
@@ -26,5 +26,5 @@ struct SettingsRowView: View {
 }
 
 #Preview {
-    SettingsRowView(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
+    SettingsRow(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
 }

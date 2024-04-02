@@ -10,8 +10,9 @@ import Firebase
 
 @main
 struct NoNameApp: App {
+    @StateObject var stepRepository = StepRepository()
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var manager = StepRepository()
+    @StateObject var profileViewModel = TopPageViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -20,8 +21,9 @@ struct NoNameApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(stepRepository)
                 .environmentObject(authViewModel)
-                .environmentObject(manager)
+                .environmentObject(profileViewModel)
         }
     }
 }
