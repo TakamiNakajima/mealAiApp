@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RegistrationView: View {
+struct RegistrationPage: View {
     @State private var email = ""
     @State private var fullname = ""
     @State private var password = ""
@@ -24,20 +24,20 @@ struct RegistrationView: View {
                 .frame(width: 100, height: 120)
                 .padding(.vertical, 32)
             VStack(spacing: 24) {
-                InputView(
+                InputField(
                     text: $email,
                     title: "Email Adress",
                     placeholder: "name@example.com"
                 )
                 .autocapitalization(.none)
                 
-                InputView(
+                InputField(
                     text: $fullname,
                     title: "fullname",
                     placeholder: "Enter your name"
                 )
                 
-                InputView(
+                InputField(
                     text: $password,
                     title: "Password",
                     placeholder: "Enter your password",
@@ -45,7 +45,7 @@ struct RegistrationView: View {
                 )
                 
                 ZStack(alignment: .trailing) {
-                    InputView(
+                    InputField(
                         text: $confirmPassword,
                         title: "Confirm Password",
                         placeholder: "Confirm your password",
@@ -109,7 +109,7 @@ struct RegistrationView: View {
     }
 }
 
-extension RegistrationView: AuthentiationFormProtocol {
+extension RegistrationPage: AuthentiationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty
         && email.contains("@")
@@ -121,5 +121,5 @@ extension RegistrationView: AuthentiationFormProtocol {
 }
 
 #Preview {
-    RegistrationView()
+    RegistrationPage()
 }
