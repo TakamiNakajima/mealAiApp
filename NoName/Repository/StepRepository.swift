@@ -26,39 +26,30 @@ class StepRepository: ObservableObject {
         }
     }
     
-    // 歩数を取得する
+    // デバイスから歩数を取得する
     func fetchSteps(uid: String) async throws -> Int {
         let steps = HKQuantityType.quantityType(forIdentifier: .stepCount)!
         let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: Date()), end: Date())
-        var stepCount: Int = 0
-        let semaphore = DispatchSemaphore(value: 0)
         
-        let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
-            guard let result = result, let quantity = result.sumQuantity(), error == nil else {
-                print("error fetching todays step data")
-                semaphore.signal()
-                return
+        return try await withCheckedThrowingContinuation { continuation in
+            let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
+                guard let result = result, let quantity = result.sumQuantity(), error == nil else {
+                    print("error fetching todays step data")
+                    return
+                }
+                let stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
+                continuation.resume(returning: stepCount)
             }
-            stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
-            semaphore.signal()
+            healthStore.execute(query)
         }
-        // HKStatisticsQuery を非同期的に実行
-        healthStore.execute(query)
-        
-        // 完了ハンドラーの処理が完了するまで待機
-        semaphore.wait()
-        return stepCount
     }
     
     // 歩数を保存する
     func saveSteps(uid: String, steps: Int) async throws {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let dateString = dateFormatter.string(from: Date())
         let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(Collection.steps)
         
         do {
-            try await stepCollectionRef.document(dateString).setData([
+            try await stepCollectionRef.document(Date().dateString()).setData([
                 "steps": steps,
                 "timeStamp": FieldValue.serverTimestamp()
             ], mergeFields:  ["steps", "timeStamp"])
@@ -67,4 +58,30 @@ class StepRepository: ObservableObject {
             throw error
         }
     }
+    
+    // サーバから歩数を取得する
+    func loadingSteps(uid: String) async throws -> Step? {
+        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(Collection.steps).document(Date().dateString())
+        
+        do {
+            let documentSnapshot = try await stepCollectionRef.getDocument()
+            if documentSnapshot.exists {
+                if let data = documentSnapshot.data() {
+                    if let stepData: Step = Step.fromJson(data) {
+                        return stepData
+                    } else {
+                        print("Failed to convert Firestore data to Step type.")
+                    }
+                } else {
+                    print("can't found data")
+                }
+            } else {
+                print("can't found document")
+            }
+        } catch {
+            print("Error: \(error.localizedDescription)")
+        }
+        return nil
+    }
 }
+
