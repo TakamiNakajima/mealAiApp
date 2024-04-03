@@ -10,7 +10,7 @@ import HealthKit
 
 struct TopPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var profileViewModel: TopPageViewModel
+    @EnvironmentObject var topPageViewModel: TopPageViewModel
     @EnvironmentObject var manager: StepRepository
     var body: some View {
         if let user = authViewModel.currentUser {
@@ -35,7 +35,7 @@ struct TopPage: View {
                         }
                     }
                 }
-                Section("Account") {
+                Section("アカウント") {
                     Button {
                         authViewModel.signOut()
                     } label: {
@@ -46,23 +46,29 @@ struct TopPage: View {
                         )
                     }
                 }
-                Section("Steps") {
+                Section("今日の歩数  (\(topPageViewModel.stepData.timeStamp.displayDateString())更新)") {
                     HStack {
-                        Text(profileViewModel.steps)
+                        Text(topPageViewModel.stepData.step.formattedString())
+                            .font(.system(size: 16))
                         Spacer()
                         Button(action: {
                             Task {
-                                try await profileViewModel.fetchAndSaveSteps(uid: authViewModel.currentUser!.id)
+                                try await topPageViewModel.fetchAndSaveSteps(uid: authViewModel.currentUser!.id)
                             }
                         }) {
                             Image(systemName: "arrow.clockwise")
                         }
+                        .disabled(!topPageViewModel.isButtonEnabled)
+                    }
+                }
+                .onAppear {
+                    Task {
+                        try await topPageViewModel.fetchAndSaveSteps(uid: authViewModel.currentUser!.id)
                     }
                 }
             }
         }
     }
-
 }
 
 #Preview {
