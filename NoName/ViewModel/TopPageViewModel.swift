@@ -12,18 +12,11 @@ import FirebaseFirestoreSwift
 @MainActor
 class TopPageViewModel: ObservableObject {
     let stepRepository = StepRepository()
-    @Published var isButtonEnabled = true
     @Published var stepData: Step = Step(step: 0, timeStamp: Date())
     
     // 歩数の更新を行う
     func fetchAndSaveSteps(uid: String) async throws {
         var stepsInt: Int = 0
-        
-        // 更新ボタンを非活性
-        self.isButtonEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-            self.isButtonEnabled = true
-        }
         
         // 端末から取得
         do {

@@ -10,6 +10,7 @@ import SwiftUI
 struct RegistrationPage: View {
     @State private var email = ""
     @State private var fullname = ""
+    @State private var accountName = ""
     @State private var password = ""
     @State private var confirmPassword = ""
     @Environment(\.dismiss) var dismiss
@@ -34,7 +35,13 @@ struct RegistrationPage: View {
                 InputField(
                     text: $fullname,
                     title: "fullname",
-                    placeholder: "Enter your name"
+                    placeholder: "Enter your full name"
+                )
+                
+                InputField(
+                    text: $accountName,
+                    title: "accountName",
+                    placeholder: "Enter your accountName"
                 )
                 
                 InputField(
@@ -74,7 +81,8 @@ struct RegistrationPage: View {
                     try await viewModel.createUser(
                         withEmail: email,
                         password: password,
-                        fullname: fullname
+                        fullname: fullname, 
+                        accountName: accountName
                     )
                 }
             } label: {

@@ -12,7 +12,8 @@ import Firebase
 struct NoNameApp: App {
     @StateObject var stepRepository = StepRepository()
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var profileViewModel = TopPageViewModel()
+    @StateObject var topPageViewModel = TopPageViewModel()
+    @StateObject var userSearchViewModel = SearchUserViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -23,7 +24,8 @@ struct NoNameApp: App {
             ContentView()
                 .environmentObject(stepRepository)
                 .environmentObject(authViewModel)
-                .environmentObject(profileViewModel)
+                .environmentObject(topPageViewModel)
+                .environmentObject(userSearchViewModel)
         }
     }
 }
