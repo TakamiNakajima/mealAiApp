@@ -4,7 +4,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class SearchUserViewModel: ObservableObject {
-    @Published var foundUser: User?
+    @Published var foundUser: UserData?
     
     // ユーザ検索
     func searchUser(accountCode: String) async throws {
@@ -15,7 +15,7 @@ class SearchUserViewModel: ObservableObject {
                 return
             }
             
-            let user = User.fromJson(json: querySnapshot.documents[0].data())
+            let user = UserData.fromJson(json: querySnapshot.documents[0].data(), todayStep: nil)
             print("user: \(user!.fullname)")
             DispatchQueue.main.async {
                 self.foundUser = user

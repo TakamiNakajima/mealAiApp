@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct User: Identifiable, Codable {
+struct UserData: Identifiable, Codable {
     let id: String
     let fullname: String
     let email: String
     let accountName: String
+    let todayStep: Int?
     
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
@@ -22,7 +23,7 @@ struct User: Identifiable, Codable {
         return ""
     }
     
-    static func fromJson(json: [String: Any]) -> User? {
+    static func fromJson(json: [String: Any], todayStep: Int?) -> UserData? {
         guard
             let id = json["id"] as? String,
             let fullname = json["fullname"] as? String,
@@ -32,6 +33,6 @@ struct User: Identifiable, Codable {
             return nil
         }
         
-        return User(id: id, fullname: fullname, email: email, accountName: accountName)
+        return UserData(id: id, fullname: fullname, email: email, accountName: accountName, todayStep: todayStep)
     }
 }
