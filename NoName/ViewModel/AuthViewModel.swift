@@ -16,7 +16,7 @@ protocol AuthentiationFormProtocol {
 @MainActor
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
-    @Published var currentUser: User?
+    @Published var currentUser: UserData?
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -41,7 +41,7 @@ class AuthViewModel: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = User(id: result.user.uid, fullname: fullname, email: email, accountName: accountName)
+            let user = UserData(id: result.user.uid, fullname: fullname, email: email, accountName: accountName, todayStep: nil)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection(Collection.users).document(user.id).setData(encodedUser)
             await fetchUser()
@@ -70,7 +70,7 @@ class AuthViewModel: ObservableObject {
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
-        self.currentUser = try? snapshot.data(as: User.self)
+        self.currentUser = try? snapshot.data(as: UserData.self)
         print("DEBUG: Current user is \(String(describing: self.currentUser?.fullname))")
     }
 }
