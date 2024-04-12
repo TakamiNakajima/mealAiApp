@@ -41,7 +41,7 @@ class AuthViewModel: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
-            let user = UserData(id: result.user.uid, fullname: fullname, email: email, accountName: accountName, todayStep: nil)
+            let user = UserData(id: result.user.uid, fullname: fullname, email: email, accountName: accountName, dailyStepData: nil, weeklyStepData: nil)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection(Collection.users).document(user.id).setData(encodedUser)
             await fetchUser()
@@ -59,11 +59,6 @@ class AuthViewModel: ObservableObject {
         } catch {
             print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
         }
-    }
-    
-    // アカウント削除
-    func deleteAccount() {
-        print("deleteAccount")
     }
     
     // ユーザ情報取得

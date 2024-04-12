@@ -13,7 +13,7 @@ import FirebaseFirestoreSwift
 class StepRepository: ObservableObject {
     let healthStore = HKHealthStore()
     
-    // 歩数を取得するための初期処理を行う
+    // 初期処理
     init() {
         let steps = HKQuantityType(.stepCount)
         let healthTypes: Set = [steps]
@@ -21,15 +21,16 @@ class StepRepository: ObservableObject {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
-                print("error fetching health data")
+                print("error StepRepository.init()")
+                throw error
             }
         }
     }
     
-    // デバイスから歩数を取得する
-    func fetchSteps(uid: String) async throws -> Int {
+    // ヘルスケアアプリから歩数を取得する
+    func fetchSteps(uid: String, startDate: Date, endDate: Date) async throws -> Int {
         let steps = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        let predicate = HKQuery.predicateForSamples(withStart: Calendar.current.startOfDay(for: Date()), end: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
@@ -44,44 +45,46 @@ class StepRepository: ObservableObject {
         }
     }
     
-    // 歩数を保存する
-    func saveSteps(uid: String, steps: Int) async throws {
-        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(Collection.steps)
+    // 歩数をサーバへ保存する
+    func saveSteps(uid: String, steps: Int, collection: String, date: Date?) async throws {
+        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(collection)
+        let saveData = StepData.toJson(step: steps, date: FieldValue.serverTimestamp())
+        let day = date ?? Date()
         
         do {
-            try await stepCollectionRef.document(Date().dateString()).setData([
-                "steps": steps,
-                "timeStamp": FieldValue.serverTimestamp()
-            ], mergeFields:  ["steps", "timeStamp"])
+            try await stepCollectionRef.document(day.dateString()).setData(saveData, mergeFields:  ["steps", "timeStamp"])
         } catch {
-            print("save steps error \(error)")
+            print("error StepRepository.saveSteps()")
             throw error
         }
     }
     
     // サーバから歩数を取得する
-    func loadingSteps(uid: String) async throws -> Step? {
-        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(Collection.steps).document(Date().dateString())
+    func loadingSteps(uid: String, collection: String, date: Date) async throws -> StepData? {
+        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(collection).document(date.dateString())
         
         do {
             let documentSnapshot = try await stepCollectionRef.getDocument()
-            if documentSnapshot.exists {
-                if let data = documentSnapshot.data() {
-                    if let stepData: Step = Step.fromJson(data) {
-                        return stepData
-                    } else {
-                        print("Failed to convert Firestore data to Step type.")
-                    }
-                } else {
-                    print("can't found data")
-                }
-            } else {
+            if !documentSnapshot.exists {
                 print("can't found document")
+                return nil
             }
+            
+            guard let data = documentSnapshot.data() else {
+                print("can't found documentSnapshot.data()")
+                return nil
+            }
+            
+            guard let stepData = StepData.fromJson(data: data) else {
+                print("Failed to convert StepData")
+                return nil
+            }
+            
+            return stepData
         } catch {
             print("Error: \(error.localizedDescription)")
+            return nil
         }
-        return nil
     }
 }
 

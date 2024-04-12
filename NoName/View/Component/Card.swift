@@ -57,7 +57,7 @@ struct Card: View {
                     Spacer()
 
                     VStack() {
-                        Text(user.todayStep?.formattedString() ?? "--")
+                        Text(user.weeklyStepData?.step.formattedString() ?? "--")
                             .font(.title3)
                             .foregroundColor(Color.customThemeColor)
                             .fontWeight(.bold)

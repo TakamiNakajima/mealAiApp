@@ -12,16 +12,18 @@ import FirebaseFirestoreSwift
 @MainActor
 class TopPageViewModel: ObservableObject {
     let stepRepository = StepRepository()
-    @Published var stepData: Step = Step(step: 0, timeStamp: Date())
+    let userRepository = UserRepository()
+    @Published var dailyStepData: StepData = StepData(step: 0, timeStamp: Date())
+    @Published var weeklyStepData: StepData = StepData(step: 0, timeStamp: Date())
     @Published var users: [UserData] = []
     
     // 歩数の更新を行う
-    func fetchAndSaveSteps(uid: String) async throws {
+    func updateSteps(uid: String, startDate: Date, endDate: Date, collection: String) async throws {
         var stepsInt: Int = 0
         
-        // 端末から取得
+        // ヘルスケアから取得
         do {
-            stepsInt = try await stepRepository.fetchSteps(uid: uid)
+            stepsInt = try await stepRepository.fetchSteps(uid: uid, startDate: startDate, endDate: endDate)
         } catch {
             print("DEBUG: Failed to fetch Steps \(error.localizedDescription)")
         }
@@ -29,7 +31,7 @@ class TopPageViewModel: ObservableObject {
         // サーバへ保存
         if stepsInt != 0 {
             do {
-                try await stepRepository.saveSteps(uid: uid, steps: stepsInt)
+                try await stepRepository.saveSteps(uid: uid, steps: stepsInt, collection: collection, date: startDate)
             } catch {
                 print("DEBUG: Failed to save Steps \(error.localizedDescription)")
             }
@@ -37,33 +39,30 @@ class TopPageViewModel: ObservableObject {
         
         // サーバから取得
         do {
-            self.stepData = try await stepRepository.loadingSteps(uid: uid) ?? Step(step: 0, timeStamp: Date())
+            if (collection == Collection.dailySteps) {
+                self.dailyStepData = try await stepRepository.loadingSteps(uid: uid, collection: collection, date: startDate) ?? StepData(step: 0, timeStamp: Date())
+            } else if (collection == Collection.weeklySteps){
+                self.weeklyStepData = try await stepRepository.loadingSteps(uid: uid, collection: collection, date: startDate) ?? StepData(step: 0, timeStamp: Date())
+            }
         } catch {
             print("error loadingSteps()")
         }
     }
     
-    
-    func fetchUsers() async throws {
-        let db = Firestore.firestore()
-        let snapshot = try await db.collection(Collection.users).getDocuments()
-        let documents = snapshot.documents
+    // 全ユーザを取得する
+    func fetchUsers(startDate: Date) async throws {
         
-        let usersList = snapshot.documents.compactMap { document in
-            let user = UserData.fromJson(json: document.data(), todayStep: nil)
-            return user
-        }
+        let users = try await userRepository.getUsers()
         
-        var usertemp: [UserData] = []
-        for user in usersList {
-            // userを使用した処理
-            let stepDocument = try await db.collection(Collection.users).document(user.id).collection(Collection.steps).document(Date().dateString()).getDocument()
-            let step = stepDocument.data()?["steps"] as? Int
-            usertemp.append(UserData(id: user.id, fullname: user.fullname, email: user.email, accountName: user.accountName, todayStep: step))
+        var userList: [UserData] = []
+        for user in users {
+            let dailyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.dailySteps, date: Date())
+            let weeklyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.weeklySteps, date: startDate)
+            userList.append(UserData(id: user.id, fullname: user.fullname, email: user.email, accountName: user.accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData))
         }
         
         DispatchQueue.main.async {
-            self.users = usertemp
+            self.users = userList
         }
     }
 }

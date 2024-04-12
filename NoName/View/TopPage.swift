@@ -13,7 +13,7 @@ struct TopPage: View {
     @EnvironmentObject var topPageViewModel: TopPageViewModel
     @EnvironmentObject var manager: StepRepository
     var body: some View {
-        if let user = authViewModel.currentUser {
+        if authViewModel.currentUser != nil {
             NavigationView {
                 ZStack {
                     // 背景色
@@ -41,22 +41,17 @@ struct TopPage: View {
                                 .foregroundColor(Color.customThemeColor)
                         }
                         
-                        Button {
-                            authViewModel.signOut()
-                        } label: {
-                            SettingsRow(
-                                imageName: "arrow.left.circle.fill",
-                                title: "Sign Out",
-                                tintColor: Color.customThemeColor
-                            )
-                        }
-                        
                         Spacer()
                     }
                     .onAppear {
+                        let monday = Calendar(identifier: .japanese).initialDayOfWeek()
                         Task {
-                            try await topPageViewModel.fetchAndSaveSteps(uid: authViewModel.currentUser!.id)
-                            try await topPageViewModel.fetchUsers()
+                            // 今日の歩数更新
+                            try await topPageViewModel.updateSteps(uid: authViewModel.currentUser!.id, startDate: Calendar.current.startOfDay(for: Date()), endDate: Date(), collection: Collection.dailySteps)
+                            // 今週の歩数更新
+                            try await topPageViewModel.updateSteps(uid:authViewModel.currentUser!.id, startDate: monday, endDate: Date(), collection: Collection.weeklySteps)
+                            // ユーザリスト取得
+                            try await topPageViewModel.fetchUsers(startDate: monday)
                         }
                     }
                 }

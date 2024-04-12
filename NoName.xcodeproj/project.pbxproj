@@ -11,6 +11,7 @@
 		4D37DBB72BC11DA30083433E /* SearchUserPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37DBB62BC11DA30083433E /* SearchUserPageViewModel.swift */; };
 		4D37DBB92BC1241F0083433E /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37DBB82BC1241F0083433E /* Field.swift */; };
 		4D37DBBD2BC56BB10083433E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D37DBBC2BC56BB10083433E /* Card.swift */; };
+		4D4E72072BC588F300B87ABF /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4E72062BC588F300B87ABF /* UserRepository.swift */; };
 		4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DEFD2BADCA4700101545 /* NoNameApp.swift */; };
 		4D54DF002BADCA4700101545 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DEFF2BADCA4700101545 /* ContentView.swift */; };
 		4D54DF022BADCA4900101545 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D54DF012BADCA4900101545 /* Assets.xcassets */; };
@@ -53,10 +54,11 @@
 		4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6182BB8E92B002ABB9F /* StepRepository.swift */; };
 		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
 		4D56C6252BBB75C8002ABB9F /* TopPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6242BBB75C8002ABB9F /* TopPageViewModel.swift */; };
-		4D56C6272BBCCB1E002ABB9F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6262BBCCB1E002ABB9F /* Step.swift */; };
+		4D56C6272BBCCB1E002ABB9F /* StepData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6262BBCCB1E002ABB9F /* StepData.swift */; };
 		4D56C62A2BBCDC15002ABB9F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6292BBCDC15002ABB9F /* Date.swift */; };
 		4D56C62C2BBCE400002ABB9F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62B2BBCE400002ABB9F /* Int.swift */; };
 		4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62D2BBEADBC002ABB9F /* Color.swift */; };
+		4DF388272BC94AE800EEC40F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF388262BC94AE800EEC40F /* Calendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,7 @@
 		4D37DBB62BC11DA30083433E /* SearchUserPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserPageViewModel.swift; sourceTree = "<group>"; };
 		4D37DBB82BC1241F0083433E /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		4D37DBBC2BC56BB10083433E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		4D4E72062BC588F300B87ABF /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		4D54DEFA2BADCA4700101545 /* NoName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D54DEFD2BADCA4700101545 /* NoNameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNameApp.swift; sourceTree = "<group>"; };
 		4D54DEFF2BADCA4700101545 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -82,10 +85,11 @@
 		4D56C61B2BB8EB9D002ABB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		4D56C6242BBB75C8002ABB9F /* TopPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPageViewModel.swift; sourceTree = "<group>"; };
-		4D56C6262BBCCB1E002ABB9F /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		4D56C6262BBCCB1E002ABB9F /* StepData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepData.swift; sourceTree = "<group>"; };
 		4D56C6292BBCDC15002ABB9F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4D56C62B2BBCE400002ABB9F /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		4D56C62D2BBEADBC002ABB9F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4DF388262BC94AE800EEC40F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				4D54DF1F2BAFA9BD00101545 /* UserData.swift */,
-				4D56C6262BBCCB1E002ABB9F /* Step.swift */,
+				4D56C6262BBCCB1E002ABB9F /* StepData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				4D56C6182BB8E92B002ABB9F /* StepRepository.swift */,
+				4D4E72062BC588F300B87ABF /* UserRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				4D56C6292BBCDC15002ABB9F /* Date.swift */,
 				4D56C62B2BBCE400002ABB9F /* Int.swift */,
 				4D56C62D2BBEADBC002ABB9F /* Color.swift */,
+				4DF388262BC94AE800EEC40F /* Calendar.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -352,14 +358,16 @@
 				4D54DF1A2BAFA3BE00101545 /* TopPage.swift in Sources */,
 				4D56C6252BBB75C8002ABB9F /* TopPageViewModel.swift in Sources */,
 				4D37DBB92BC1241F0083433E /* Field.swift in Sources */,
+				4DF388272BC94AE800EEC40F /* Calendar.swift in Sources */,
 				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationPage.swift in Sources */,
 				4D56C62A2BBCDC15002ABB9F /* Date.swift in Sources */,
 				4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */,
 				4D37DBBD2BC56BB10083433E /* Card.swift in Sources */,
 				4D54DF1C2BAFA6A600101545 /* SettingsRow.swift in Sources */,
+				4D4E72072BC588F300B87ABF /* UserRepository.swift in Sources */,
 				4D56C62C2BBCE400002ABB9F /* Int.swift in Sources */,
-				4D56C6272BBCCB1E002ABB9F /* Step.swift in Sources */,
+				4D56C6272BBCCB1E002ABB9F /* StepData.swift in Sources */,
 				4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

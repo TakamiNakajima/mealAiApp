@@ -1,6 +1,6 @@
 
-// FireStoreのCollection
 class Collection {
     static let users = "users"
-    static let steps = "steps"
+    static let dailySteps = "dailySteps"
+    static let weeklySteps = "weeklySteps"
 }

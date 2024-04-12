@@ -12,7 +12,8 @@ struct UserData: Identifiable, Codable {
     let fullname: String
     let email: String
     let accountName: String
-    let todayStep: Int?
+    let dailyStepData: StepData?
+    let weeklyStepData: StepData?
     
     var initials: String {
         let formatter = PersonNameComponentsFormatter()
@@ -23,7 +24,7 @@ struct UserData: Identifiable, Codable {
         return ""
     }
     
-    static func fromJson(json: [String: Any], todayStep: Int?) -> UserData? {
+    static func fromJson(json: [String: Any], dailyStepData: StepData?, weeklyStepData: StepData?) -> UserData? {
         guard
             let id = json["id"] as? String,
             let fullname = json["fullname"] as? String,
@@ -33,6 +34,6 @@ struct UserData: Identifiable, Codable {
             return nil
         }
         
-        return UserData(id: id, fullname: fullname, email: email, accountName: accountName, todayStep: todayStep)
+        return UserData(id: id, fullname: fullname, email: email, accountName: accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData)
     }
 }
