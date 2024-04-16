@@ -58,6 +58,8 @@
 		4D56C62A2BBCDC15002ABB9F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6292BBCDC15002ABB9F /* Date.swift */; };
 		4D56C62C2BBCE400002ABB9F /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62B2BBCE400002ABB9F /* Int.swift */; };
 		4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62D2BBEADBC002ABB9F /* Color.swift */; };
+		4D629B4E2BCEB164001FAB74 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */; };
+		4D629B502BCEB280001FAB74 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */; };
 		4DF388272BC94AE800EEC40F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF388262BC94AE800EEC40F /* Calendar.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,8 @@
 		4D56C6292BBCDC15002ABB9F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4D56C62B2BBCE400002ABB9F /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
 		4D56C62D2BBEADBC002ABB9F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
+		4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		4DF388262BC94AE800EEC40F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,6 +191,7 @@
 			children = (
 				4D56C6182BB8E92B002ABB9F /* StepRepository.swift */,
 				4D4E72062BC588F300B87ABF /* UserRepository.swift */,
+				4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 			children = (
 				4D56C6222BBAE637002ABB9F /* Collection.swift */,
 				4D37DBB82BC1241F0083433E /* Field.swift */,
+				4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -350,11 +356,13 @@
 				4D54DF142BADCBA400101545 /* LoginPage.swift in Sources */,
 				4D54DF162BADCD4300101545 /* InputField.swift in Sources */,
 				4D37DBB72BC11DA30083433E /* SearchUserPageViewModel.swift in Sources */,
+				4D629B4E2BCEB164001FAB74 /* ScreenSize.swift in Sources */,
 				4D54DF002BADCA4700101545 /* ContentView.swift in Sources */,
 				4D37DBB52BC11D800083433E /* SearchUserPage.swift in Sources */,
 				4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */,
 				4D54DF202BAFA9BD00101545 /* UserData.swift in Sources */,
 				4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */,
+				4D629B502BCEB280001FAB74 /* AuthRepository.swift in Sources */,
 				4D54DF1A2BAFA3BE00101545 /* TopPage.swift in Sources */,
 				4D56C6252BBB75C8002ABB9F /* TopPageViewModel.swift in Sources */,
 				4D37DBB92BC1241F0083433E /* Field.swift in Sources */,

@@ -11,7 +11,9 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class StepRepository: ObservableObject {
-    let healthStore = HKHealthStore()
+    private let healthStore = HKHealthStore()
+    private let quantityType = HKSampleType.quantityType(forIdentifier: .stepCount)!
+    private let userCollectionRef: CollectionReference = Firestore.firestore().collection(Collection.users)
     
     // 初期処理
     init() {
@@ -21,68 +23,58 @@ class StepRepository: ObservableObject {
             do {
                 try await healthStore.requestAuthorization(toShare: [], read: healthTypes)
             } catch {
-                print("error StepRepository.init()")
+                print("error in StepRepository.init()")
                 throw error
             }
         }
     }
     
-    // ヘルスケアアプリから歩数を取得する
+    // ヘルスケアから歩数を取得する
     func fetchSteps(uid: String, startDate: Date, endDate: Date) async throws -> Int {
-        let steps = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
-                guard let result = result, let quantity = result.sumQuantity(), error == nil else {
-                    print("error fetching todays step data")
-                    return
-                }
-                let stepCount = Int(quantity.doubleValue(for: HKUnit.count()))
-                continuation.resume(returning: stepCount)
-            }
-            healthStore.execute(query)
+        let periodPredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let predicate = HKSamplePredicate.quantitySample(type: quantityType, predicate: periodPredicate)
+        let descriptor = HKStatisticsQueryDescriptor(predicate: predicate, options: .cumulativeSum)
+        do {
+            let sum = try await descriptor.result(for: healthStore)?
+                .sumQuantity()?
+                .doubleValue(for: .count()) ?? 0
+            return Int(sum)
+        } catch {
+            print("error in StepRepository.fetchSteps()")
+            throw error
         }
     }
     
-    // 歩数をサーバへ保存する
-    func saveSteps(uid: String, steps: Int, collection: String, date: Date?) async throws {
-        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(collection)
+    // ヘルスケアの歩数をサーバへ保存する
+    func saveSteps(uid: String, steps: Int, collection: String, documentName: String) async throws {
+        let stepDocumentRef = userCollectionRef.document(uid).collection(collection).document(documentName)
         let saveData = StepData.toJson(step: steps, date: FieldValue.serverTimestamp())
-        let day = date ?? Date()
         
         do {
-            try await stepCollectionRef.document(day.dateString()).setData(saveData, mergeFields:  ["steps", "timeStamp"])
+            try await stepDocumentRef.setData(saveData, mergeFields:  ["steps", "timeStamp"])
         } catch {
-            print("error StepRepository.saveSteps()")
+            print("error in StepRepository.saveSteps()")
             throw error
         }
     }
     
     // サーバから歩数を取得する
-    func loadingSteps(uid: String, collection: String, date: Date) async throws -> StepData? {
-        let stepCollectionRef = Firestore.firestore().collection(Collection.users).document(uid).collection(collection).document(date.dateString())
+    func loadingSteps(uid: String, collection: String, documentName: String) async throws -> StepData? {
+        let stepDocumentRef = userCollectionRef.document(uid).collection(collection).document(documentName)
         
         do {
-            let documentSnapshot = try await stepCollectionRef.getDocument()
-            if !documentSnapshot.exists {
-                print("can't found document")
-                return nil
-            }
+            let documentSnapshot = try await stepDocumentRef.getDocument()
             
             guard let data = documentSnapshot.data() else {
-                print("can't found documentSnapshot.data()")
+                print("error in StepRepository.loadingSteps(): can't found data")
                 return nil
             }
             
-            guard let stepData = StepData.fromJson(data: data) else {
-                print("Failed to convert StepData")
-                return nil
-            }
+            let stepData = StepData.fromJson(data: data)
             
             return stepData
         } catch {
-            print("Error: \(error.localizedDescription)")
+            print("error in StepRepository.loadingSteps(): \(error.localizedDescription)")
             return nil
         }
     }

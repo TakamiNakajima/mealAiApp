@@ -11,38 +11,44 @@ import FirebaseFirestoreSwift
 
 @MainActor
 class TopPageViewModel: ObservableObject {
-    let stepRepository = StepRepository()
-    let userRepository = UserRepository()
-    @Published var dailyStepData: StepData = StepData(step: 0, timeStamp: Date())
-    @Published var weeklyStepData: StepData = StepData(step: 0, timeStamp: Date())
+    private let stepRepository = StepRepository()
+    private let userRepository = UserRepository()
+    @Published var dailyStepData: StepData?
+    @Published var weeklyStepData: StepData?
     @Published var users: [UserData] = []
     
     // 歩数の更新を行う
     func updateSteps(uid: String, startDate: Date, endDate: Date, collection: String) async throws {
-        var stepsInt: Int = 0
+        var stepsInt: Int?
         
-        // ヘルスケアから取得
+        // ヘルスケアから歩数取得
         do {
             stepsInt = try await stepRepository.fetchSteps(uid: uid, startDate: startDate, endDate: endDate)
         } catch {
             print("DEBUG: Failed to fetch Steps \(error.localizedDescription)")
         }
         
-        // サーバへ保存
-        if stepsInt != 0 {
-            do {
-                try await stepRepository.saveSteps(uid: uid, steps: stepsInt, collection: collection, date: startDate)
-            } catch {
-                print("DEBUG: Failed to save Steps \(error.localizedDescription)")
-            }
+        // サーバへ歩数保存
+        do {
+            try await stepRepository.saveSteps(uid: uid, steps: stepsInt!, collection: collection, documentName: startDate.dateString())
+        } catch {
+            print("DEBUG: Failed to save Steps \(error.localizedDescription)")
         }
         
-        // サーバから取得
+        // サーバから歩数取得
         do {
+            let fetchdata = try await stepRepository.loadingSteps(uid: uid, collection: collection, documentName: startDate.dateString())
             if (collection == Collection.dailySteps) {
-                self.dailyStepData = try await stepRepository.loadingSteps(uid: uid, collection: collection, date: startDate) ?? StepData(step: 0, timeStamp: Date())
-            } else if (collection == Collection.weeklySteps){
-                self.weeklyStepData = try await stepRepository.loadingSteps(uid: uid, collection: collection, date: startDate) ?? StepData(step: 0, timeStamp: Date())
+                DispatchQueue.main.async {
+                    self.dailyStepData = fetchdata
+                    print("Today's Steps：\(String(describing: self.dailyStepData))")
+
+                }
+            } else if (collection == Collection.weeklySteps) {
+                DispatchQueue.main.async {
+                    self.weeklyStepData = fetchdata
+                    print("Weekly Steps：\(String(describing: self.weeklyStepData))")
+                }
             }
         } catch {
             print("error loadingSteps()")
@@ -50,15 +56,18 @@ class TopPageViewModel: ObservableObject {
     }
     
     // 全ユーザを取得する
-    func fetchUsers(startDate: Date) async throws {
-        
-        let users = try await userRepository.getUsers()
-        
+    func fetchAllUsers(startDate: Date) async throws {
+        let users = try await userRepository.getAllUsers()
         var userList: [UserData] = []
+        
         for user in users {
-            let dailyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.dailySteps, date: Date())
-            let weeklyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.weeklySteps, date: startDate)
+            let dailyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.dailySteps, documentName: Date().dateString())
+            let weeklyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.weeklySteps, documentName: startDate.dateString())
             userList.append(UserData(id: user.id, fullname: user.fullname, email: user.email, accountName: user.accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData))
+        }
+                
+        userList.sort { (userData1, userData2) -> Bool in
+            return userData1.weeklyStepData!.step > userData2.weeklyStepData!.step
         }
         
         DispatchQueue.main.async {

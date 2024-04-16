@@ -10,8 +10,6 @@ import Firebase
 
 @main
 struct NoNameApp: App {
-    @StateObject var stepRepository = StepRepository()
-    @StateObject var userRepository = UserRepository()
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var topPageViewModel = TopPageViewModel()
     @StateObject var userSearchViewModel = SearchUserViewModel()
@@ -23,8 +21,6 @@ struct NoNameApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(stepRepository)
-                .environmentObject(userRepository)
                 .environmentObject(authViewModel)
                 .environmentObject(topPageViewModel)
                 .environmentObject(userSearchViewModel)

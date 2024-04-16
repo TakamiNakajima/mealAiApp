@@ -81,7 +81,7 @@ struct RegistrationPage: View {
                     try await viewModel.createUser(
                         withEmail: email,
                         password: password,
-                        fullname: fullname, 
+                        fullname: fullname,
                         accountName: accountName
                     )
                 }
