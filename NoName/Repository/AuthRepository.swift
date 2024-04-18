@@ -10,37 +10,20 @@ class AuthRepository: ObservableObject {
     
     // ログイン
     func signIn(withEmail email: String, password: String) async throws -> AuthDataResult {
-        do {
-            let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            return result
-        } catch {
-            print("error in AuthRepository.signIn()")
-            throw error
-        }
+        return try await Auth.auth().signIn(withEmail: email, password: password)
     }
     
     // ログアウト
     func signOut() async throws {
-        do {
-            try Auth.auth().signOut()
-        } catch {
-            print("error in AuthRepository.signOut()")
-            throw error
-        }
+        try Auth.auth().signOut()
     }
     
     // 新規登録
     func createUser(withEmail email: String, password: String) async throws -> AuthDataResult {
-        do {
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            return result
-        } catch {
-            print("error in AuthRepository.createUser()")
-            throw error
-        }
+        return try await Auth.auth().createUser(withEmail: email, password: password)
     }
     
-    // ログインユーザを取得
+    // ログインユーザ情報
     func currentUser() -> User? {
         return Auth.auth().currentUser
     }

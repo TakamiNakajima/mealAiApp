@@ -34,15 +34,9 @@ class StepRepository: ObservableObject {
         let periodPredicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
         let predicate = HKSamplePredicate.quantitySample(type: quantityType, predicate: periodPredicate)
         let descriptor = HKStatisticsQueryDescriptor(predicate: predicate, options: .cumulativeSum)
-        do {
-            let sum = try await descriptor.result(for: healthStore)?
-                .sumQuantity()?
-                .doubleValue(for: .count()) ?? 0
-            return Int(sum)
-        } catch {
-            print("error in StepRepository.fetchSteps()")
-            throw error
-        }
+        let sum = try await descriptor.result(for: healthStore)?.sumQuantity()?.doubleValue(for: .count()) ?? 0
+        
+        return Int(sum)
     }
     
     // ヘルスケアの歩数をサーバへ保存する
@@ -50,33 +44,21 @@ class StepRepository: ObservableObject {
         let stepDocumentRef = userCollectionRef.document(uid).collection(collection).document(documentName)
         let saveData = StepData.toJson(step: steps, date: FieldValue.serverTimestamp())
         
-        do {
-            try await stepDocumentRef.setData(saveData, mergeFields:  ["steps", "timeStamp"])
-        } catch {
-            print("error in StepRepository.saveSteps()")
-            throw error
-        }
+        try await stepDocumentRef.setData(saveData, mergeFields:  ["steps", "timeStamp"])
     }
     
     // サーバから歩数を取得する
     func loadingSteps(uid: String, collection: String, documentName: String) async throws -> StepData? {
         let stepDocumentRef = userCollectionRef.document(uid).collection(collection).document(documentName)
         
-        do {
-            let documentSnapshot = try await stepDocumentRef.getDocument()
-            
-            guard let data = documentSnapshot.data() else {
-                print("error in StepRepository.loadingSteps(): can't found data")
-                return nil
-            }
-            
-            let stepData = StepData.fromJson(data: data)
-            
-            return stepData
-        } catch {
-            print("error in StepRepository.loadingSteps(): \(error.localizedDescription)")
+        let documentSnapshot = try await stepDocumentRef.getDocument()
+        guard let data = documentSnapshot.data() else {
+            print("can't found Step data")
             return nil
         }
+        let stepData = StepData.fromJson(data: data)
+        
+        return stepData
     }
 }
 

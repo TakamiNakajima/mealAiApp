@@ -11,87 +11,75 @@ struct Card: View {
     var ranking: Int
     
     var body: some View {
-        let isFirst = (self.ranking == 1)
         HStack {
-            VStack(alignment: .center) {
-                
-                Spacer()
-                    .frame(height: 4)
-                
-                Text(String(ranking))
-                    .font((isFirst) ? .largeTitle : .title)
-                    .fontWeight(.bold)
-                    .foregroundColor((isFirst) ? Color.customAccentColor : Color.customThemeColor)
-                
-            }
-            .padding(.horizontal, 8)
-            
-            Spacer()
-                .frame(width: 16)
-            
             VStack {
                 Spacer()
                 HStack {
                     
-                    VStack {
-                        // 画像
-                        Circle()
-                            .frame(width: (isFirst) ? 44 : 40, height: (isFirst) ? 44 : 40)
-                            .foregroundColor(Color.customSubColor)
-                    }
+                    // 画像
+                    Circle()
+                        .frame(width: 44, height: 44)
+                        .foregroundColor(Color.customSubColor)
                     
                     Spacer()
                         .frame(width: 8)
                     
                     VStack(alignment: .leading) {
-                        
                         Text(user.fullname)
-                            .font(.system(size: (isFirst) ? 14 : 12))
+                            .font(.system(size: 14))
                             .fontWeight(.bold)
-                            .foregroundColor((isFirst) ? .white : Color.customThemeColor)
+                            .foregroundColor(Color.customThemeColor)
                         
                         Text(("@\(user.accountName)"))
-                            .font(.system(size: (isFirst) ? 11 : 9))
+                            .font(.system(size: 11))
                             .fontWeight(.light)
-                            .foregroundColor((isFirst) ? .white : Color.customThemeColor)
+                            .foregroundColor(Color.customThemeColor)
                     }
                     
                     Spacer()
                     
                     VStack() {
-                        HStack(alignment: .bottom, spacing: 1) {
-                            
+                        HStack(alignment: .bottom) {
+                            Spacer()
                             Text(user.weeklyStepData?.step.formatString() ?? "--")
-                                .font(.system(size: (isFirst) ? 22 : 20))
-                                .foregroundColor((isFirst) ? .white : Color.customThemeColor)
+                                .font(.system(size: 22))
+                                .foregroundColor(Color.customThemeColor)
                                 .fontWeight(.bold)
-                            
-                            VStack {
-                                Text("Stps")
-                                    .font(.system(size: (isFirst) ? 10 : 9))
-                                    .foregroundColor((isFirst) ? .white : Color.customThemeColor)
-                                    .fontWeight(.regular)
-                                
-                                Spacer()
-                                    .frame(height: 2)
-                                
-                            }
                         }
-                        if (user.weeklyStepData != nil) {
-                            Text("(\(user.weeklyStepData!.timeStamp.displayDateString())時点)")
-                                .font(.system(size: (isFirst) ? 10 : 9))
-                                .foregroundColor((isFirst) ? .white : Color.customThemeColor)
+                        HStack {
+                            Spacer()
+                            if (user.weeklyStepData != nil) {
+                                Text("(\(user.weeklyStepData!.timeStamp.displayDateString()))")
+                                    .font(.system(size: 9))
+                                    .fontWeight(.regular)
+                                    .foregroundColor(Color.customThemeColor)
+                            }
                         }
                     }
                 }
-                .padding(12)
-                .background((isFirst) ? Color.customAccentColor : .white)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 16)
+                .background(rankColor(rank: ranking))
                 .cornerRadius(16)
                 .clipped()
                 .shadow(color: .gray.opacity(0.7), radius: 5)
             }
-            .frame(height: 72)
+            .frame(height: 80)
         }
-        .padding(.horizontal, (isFirst) ? 24 : 36)
+        .padding(.horizontal, 24)
+    }
+    
+    func rankColor(rank: Int) -> LinearGradient {
+        switch rank {
+        case 1:
+            return LinearGradient(gradient: Gradient(colors: [Color.customFirstColorDark, Color.customFirstColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        case 2:
+            return LinearGradient(gradient: Gradient(colors: [Color.customSecondColorDark, Color.customSecondColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        case 3:
+            return LinearGradient(gradient: Gradient(colors: [Color.customThirdColorDark, Color.customThirdColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        default:
+            return LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+        
     }
 }

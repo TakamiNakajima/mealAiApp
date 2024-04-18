@@ -13,9 +13,8 @@ import FirebaseFirestoreSwift
 class TopPageViewModel: ObservableObject {
     private let stepRepository = StepRepository()
     private let userRepository = UserRepository()
-    @Published var dailyStepData: StepData?
-    @Published var weeklyStepData: StepData?
     @Published var users: [UserData] = []
+    @Published var remaining: TimeInterval = 60
     
     // 歩数の更新を行う
     func updateSteps(uid: String, startDate: Date, endDate: Date, collection: String) async throws {
@@ -34,40 +33,67 @@ class TopPageViewModel: ObservableObject {
         } catch {
             print("DEBUG: Failed to save Steps \(error.localizedDescription)")
         }
-        
-        // サーバから歩数取得
-        do {
-            let fetchdata = try await stepRepository.loadingSteps(uid: uid, collection: collection, documentName: startDate.dateString())
-            if (collection == Collection.dailySteps) {
-                DispatchQueue.main.async {
-                    self.dailyStepData = fetchdata
-                    print("Today's Steps：\(String(describing: self.dailyStepData))")
-
-                }
-            } else if (collection == Collection.weeklySteps) {
-                DispatchQueue.main.async {
-                    self.weeklyStepData = fetchdata
-                    print("Weekly Steps：\(String(describing: self.weeklyStepData))")
-                }
-            }
-        } catch {
-            print("error loadingSteps()")
-        }
     }
     
+    func countdownTimer() {
+        if let remainingTime = remainingTimeUntilNextSunday21() {
+            self.remaining = remainingTime
+            // 1秒ごとにカウントダウンを更新するタイマーを開始
+            let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                DispatchQueue.main.async {
+                    self.remaining -= 1
+                }
+            }
+            // タイマーをメインループに追加して実行
+            RunLoop.main.add(timer, forMode: .common)
+        }
+    }
+
     // 全ユーザを取得する
     func fetchAllUsers(startDate: Date) async throws {
-        let users = try await userRepository.getAllUsers()
-        var userList: [UserData] = []
         
-        for user in users {
-            let dailyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.dailySteps, documentName: Date().dateString())
-            let weeklyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.weeklySteps, documentName: startDate.dateString())
-            userList.append(UserData(id: user.id, fullname: user.fullname, email: user.email, accountName: user.accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData))
+        let querySnapshot: QuerySnapshot
+        var users: [UserData] = []
+        do {
+            querySnapshot = try await userRepository.getAllUsers()
+        } catch {
+            print("error: ")
+            throw error
         }
-                
+        
+        users = querySnapshot.documents.compactMap { document in
+            return UserData.fromJson(json: document.data(), dailyStepData: nil, weeklyStepData: nil)
+        }
+        
+        if (users.isEmpty) {
+            print("users.isEmpty")
+            return
+        }
+
+        var userList: [UserData] = []
+        for user in users {
+            var dailyStepData: StepData? = StepData(step: 0, timeStamp: Date())
+            var weeklyStepData: StepData? = StepData(step: 0, timeStamp: Date())
+            do {
+                dailyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.dailySteps, documentName: Date().dateString()) ?? nil
+            } catch {
+                print("error in TopPageViewModel.fetchAllUsers(): dailyStepData")
+            }
+            
+            do {
+                weeklyStepData = try await stepRepository.loadingSteps(uid: user.id, collection: Collection.weeklySteps, documentName: startDate.dateString()) ?? nil
+            } catch {
+                print("error in TopPageViewModel.fetchAllUsers(): weeklyStepData")
+            }
+        
+            let userData = UserData(id: user.id, fullname: user.fullname, email: user.email, accountName: user.accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData)
+            userList.append(userData)
+        }
+        
         userList.sort { (userData1, userData2) -> Bool in
-            return userData1.weeklyStepData!.step > userData2.weeklyStepData!.step
+            let step1 = userData1.weeklyStepData?.step ?? 0
+            let step2 = userData2.weeklyStepData?.step ?? 0
+            return step1 > step2
         }
         
         DispatchQueue.main.async {

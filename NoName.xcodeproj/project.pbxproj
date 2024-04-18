@@ -60,7 +60,6 @@
 		4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62D2BBEADBC002ABB9F /* Color.swift */; };
 		4D629B4E2BCEB164001FAB74 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */; };
 		4D629B502BCEB280001FAB74 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */; };
-		4DF388272BC94AE800EEC40F /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF388262BC94AE800EEC40F /* Calendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +92,6 @@
 		4D56C62D2BBEADBC002ABB9F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
-		4DF388262BC94AE800EEC40F /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +243,6 @@
 				4D56C6292BBCDC15002ABB9F /* Date.swift */,
 				4D56C62B2BBCE400002ABB9F /* Int.swift */,
 				4D56C62D2BBEADBC002ABB9F /* Color.swift */,
-				4DF388262BC94AE800EEC40F /* Calendar.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -366,7 +363,6 @@
 				4D54DF1A2BAFA3BE00101545 /* TopPage.swift in Sources */,
 				4D56C6252BBB75C8002ABB9F /* TopPageViewModel.swift in Sources */,
 				4D37DBB92BC1241F0083433E /* Field.swift in Sources */,
-				4DF388272BC94AE800EEC40F /* Calendar.swift in Sources */,
 				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationPage.swift in Sources */,
 				4D56C62A2BBCDC15002ABB9F /* Date.swift in Sources */,
