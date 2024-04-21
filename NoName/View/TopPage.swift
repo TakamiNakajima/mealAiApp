@@ -9,71 +9,70 @@ struct TopPage: View {
     var body: some View {
         if authViewModel.currentUser != nil {
             NavigationView {
-                ZStack {
-                    Color.customSubColor
-                        .edgesIgnoringSafeArea(.all)
-                    ScrollView {
-                        VStack {
-                            Text(displayTime())
-                                .font(.system(size: 16))
-                                .fontWeight(.regular)
-                                .foregroundColor(Color.customThemeColor)
-                                .padding(.bottom, 8)
+                ScrollView {
+                    VStack {
+                        Text(displayTime())
+                            .font(.system(size: 16))
+                            .fontWeight(.regular)
+                            .foregroundColor(Color.customThemeColor)
+                            .padding(.bottom, 8)
+                        HStack {
                             HStack {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text("WIN $10!")
-                                            .font(.system(size: 20))
-                                            .fontWeight(.heavy)
-                                            .foregroundColor(Color.customThemeColor)
-                                        Spacer()
-                                            .frame(height: 8)
-                                        Text("Today's highest token balance wins!")
-                                            .font(.system(size: 14))
-                                            .fontWeight(.medium)
-                                            .foregroundColor(Color.customThemeColor)
-                                        Spacer()
-                                            .frame(height: 2)
-                                        Text("Today's highest!")
-                                            .font(.system(size: 14))
-                                            .fontWeight(.medium)
-                                            .foregroundColor(Color.customOrange)
-                                    }
-                                    .padding(16)
+                                VStack(alignment: .leading) {
+                                    Text("WIN $10!")
+                                        .font(.system(size: 20))
+                                        .fontWeight(.heavy)
+                                        .foregroundColor(Color.customThemeColor)
                                     Spacer()
+                                        .frame(height: 8)
+                                    Text("Today's highest token balance wins!")
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(Color.customThemeColor)
+                                    Spacer()
+                                        .frame(height: 2)
+                                    Text("Today's highest!")
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                        .foregroundColor(Color.customOrange)
                                 }
-                                .frame(height: 124)
-                                .padding(12)
-                                .background(LinearGradient(gradient: Gradient(colors: [Color.customFirstColorDark, Color.customFirstColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                                .cornerRadius(16)
-                                .clipped()
-                                .shadow(color: .gray.opacity(0.7), radius: 5)
-                                
-                            }
-                            .padding(.horizontal, 24)
-                            .padding(.bottom, 16)
-                            HStack {
-                                Text("Weekly Ranking")
-                                    .font(.system(size: 24))
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.customThemeColor)
+                                .padding(16)
                                 Spacer()
                             }
-                            .padding(.horizontal, 24)
-                            .padding(.top, 4)
-                            ForEach(topPageViewModel.users.indices, id: \.self) { index in
-                                Card(user: topPageViewModel.users[index], ranking: index + 1)
-                            }
-                            Button {
-                                Task {
-                                    try await authViewModel.signOut()
-                                }
-                            } label: {
-                                Text("ログアウト")
-                            }
-                            Spacer()
+                            .frame(height: 124)
+                            .padding(12)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.customFirstColorDark, Color.customFirstColorLight]), startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(16)
+                            .clipped()
+                            .shadow(color: .gray.opacity(0.7), radius: 5)
+                            
                         }
-                        
+                        .padding(.horizontal, 24)
+                        .padding(.bottom, 16)
+                        HStack(alignment: .bottom) {
+                            Text("Ranking")
+                                .font(.system(size: 24))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.customThemeColor)
+                            Spacer()
+                            Text("Weekly")
+                                .font(.system(size: 14))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.gray)
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.top, 4)
+                        ForEach(topPageViewModel.users.indices, id: \.self) { index in
+                            Card(user: topPageViewModel.users[index], ranking: index + 1)
+                        }
+                        Button {
+                            Task {
+                                try await authViewModel.signOut()
+                            }
+                        } label: {
+                            Text("ログアウト")
+                        }
+                        Spacer()
                     }
                 }
                 .toolbar {
