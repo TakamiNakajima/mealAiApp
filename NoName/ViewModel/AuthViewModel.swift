@@ -1,10 +1,3 @@
-//
-//  AuthViewModel.swift
-//  NoName
-//
-//  Created by 中島昂海 on 2024/03/24.
-//
-
 import Foundation
 import Firebase
 
@@ -21,12 +14,14 @@ class AuthViewModel: ObservableObject {
     
     init() {
         self.userSession = authRepository.currentUser()
-        Task {
-            do {
-                try await fetchUser(uid: self.userSession!.uid)
-            } catch {
-                print("error: AuthViewModel.init()")
-                throw error
+        if (self.userSession != nil) {
+            Task {
+                do {
+                    try await fetchUser(uid: self.userSession!.uid)
+                } catch {
+                    print("error: AuthViewModel.init()")
+                    throw error
+                }
             }
         }
     }
@@ -62,7 +57,8 @@ class AuthViewModel: ObservableObject {
         }
         
         self.userSession = result.user
-        let user = UserData(id: result.user.uid, fullname: fullname, email: email, accountName: accountName, dailyStepData: nil, weeklyStepData: nil)
+        let imageUrl = "https://firebasestorage.googleapis.com/v0/b/noname-383d9.appspot.com/o/profile.jpeg?alt=media&token=5bdce182-2047-4b35-b226-0fba5562cf5d"
+        let user = UserData(id: result.user.uid, fullname: fullname, email: email, imageUrl: imageUrl, accountName: accountName, dailyStepData: nil, weeklyStepData: nil)
         let encodedUser = try Firestore.Encoder().encode(user)
         
         do {

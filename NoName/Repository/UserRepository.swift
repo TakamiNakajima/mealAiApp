@@ -5,9 +5,6 @@ import FirebaseFirestoreSwift
 class UserRepository: ObservableObject {
     private let userCollectionRef: CollectionReference = Firestore.firestore().collection(Collection.users)
     
-    // 初期処理
-    init() {}
-    
     // ユーザ作成
     func setUser(uid: String, encodedUser: [String : Any]) async throws {
         try await userCollectionRef.document(uid).setData(encodedUser)

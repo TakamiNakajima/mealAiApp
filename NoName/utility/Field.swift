@@ -1,4 +1,4 @@
-// FireStoreのField
-class Field {
+
+struct Field {
     static let accountName = "accountName"
 }

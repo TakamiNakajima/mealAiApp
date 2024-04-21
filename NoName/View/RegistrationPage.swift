@@ -1,10 +1,3 @@
-//
-//  RegistrationView.swift
-//  NoName
-//
-//  Created by 中島昂海 on 2024/03/23.
-//
-
 import SwiftUI
 
 struct RegistrationPage: View {
@@ -19,7 +12,7 @@ struct RegistrationPage: View {
     var body: some View {
         VStack {
             // image
-            Image("firebase")
+            Image("profile")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 100, height: 120)

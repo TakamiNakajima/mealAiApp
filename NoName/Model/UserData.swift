@@ -11,6 +11,7 @@ struct UserData: Identifiable, Codable {
     let id: String
     let fullname: String
     let email: String
+    let imageUrl: String
     let accountName: String
     let dailyStepData: StepData?
     let weeklyStepData: StepData?
@@ -28,12 +29,13 @@ struct UserData: Identifiable, Codable {
         guard
             let id = json["id"] as? String,
             let fullname = json["fullname"] as? String,
+            let imageUrl = json["imageUrl"] as? String,
             let email = json["email"] as? String,
             let accountName = json["accountName"] as? String
         else {
             return nil
         }
         
-        return UserData(id: id, fullname: fullname, email: email, accountName: accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData)
+        return UserData(id: id, fullname: fullname, email: email, imageUrl: imageUrl, accountName: accountName, dailyStepData: dailyStepData, weeklyStepData: weeklyStepData)
     }
 }

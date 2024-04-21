@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  SearchUser
-//
-//  Created by Takami Nakajima on 2024/04/05.
-//
-
 import SwiftUI
 
 struct SearchUserPage: View {

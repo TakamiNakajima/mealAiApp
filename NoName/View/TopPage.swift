@@ -1,10 +1,3 @@
-//
-//  ProfileView.swift
-//  NoName
-//
-//  Created by 中島昂海 on 2024/03/24.
-//
-
 import SwiftUI
 import HealthKit
 
@@ -15,62 +8,72 @@ struct TopPage: View {
     
     var body: some View {
         if authViewModel.currentUser != nil {
-            NavigationStack {
+            NavigationView {
                 ZStack {
                     Color.customSubColor
                         .edgesIgnoringSafeArea(.all)
-                    VStack {
-                        Text(displayTime())
-                            .font(.system(size: 16))
-                            .fontWeight(.regular)
-                            .foregroundColor(Color.customThemeColor)
-                            .padding(.bottom, 8)
-                        HStack {
+                    ScrollView {
+                        VStack {
+                            Text(displayTime())
+                                .font(.system(size: 16))
+                                .fontWeight(.regular)
+                                .foregroundColor(Color.customThemeColor)
+                                .padding(.bottom, 8)
                             HStack {
-                                VStack(alignment: .leading) {
-                                    Text("WIN $10!")
-                                        .font(.system(size: 20))
-                                        .fontWeight(.heavy)
-                                        .foregroundColor(Color.customThemeColor)
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text("WIN $10!")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.heavy)
+                                            .foregroundColor(Color.customThemeColor)
+                                        Spacer()
+                                            .frame(height: 8)
+                                        Text("Today's highest token balance wins!")
+                                            .font(.system(size: 14))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(Color.customThemeColor)
+                                        Spacer()
+                                            .frame(height: 2)
+                                        Text("Today's highest!")
+                                            .font(.system(size: 14))
+                                            .fontWeight(.medium)
+                                            .foregroundColor(Color.customOrange)
+                                    }
+                                    .padding(16)
                                     Spacer()
-                                        .frame(height: 8)
-                                    Text("Today's highest token balance wins!")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.customThemeColor)
-                                    Spacer()
-                                        .frame(height: 2)
-                                    Text("Today's highest!")
-                                        .font(.system(size: 14))
-                                        .fontWeight(.medium)
-                                        .foregroundColor(Color.customOrange)
                                 }
-                                .padding(16)
+                                .frame(height: 124)
+                                .padding(12)
+                                .background(LinearGradient(gradient: Gradient(colors: [Color.customFirstColorDark, Color.customFirstColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                                .cornerRadius(16)
+                                .clipped()
+                                .shadow(color: .gray.opacity(0.7), radius: 5)
+                                
+                            }
+                            .padding(.horizontal, 24)
+                            .padding(.bottom, 16)
+                            HStack {
+                                Text("Weekly Ranking")
+                                    .font(.system(size: 24))
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.customThemeColor)
                                 Spacer()
                             }
-                            .frame(height: 124)
-                            .padding(12)
-                            .background(LinearGradient(gradient: Gradient(colors: [Color.customFirstColorDark, Color.customFirstColorLight]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .cornerRadius(16)
-                            .clipped()
-                            .shadow(color: .gray.opacity(0.7), radius: 5)
-                            
-                        }
-                        .padding(.horizontal, 24)
-                        .padding(.bottom, 16)
-                        HStack {
-                            Text("Ranking")
-                                .font(.system(size: 20))
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.customThemeColor)
+                            .padding(.horizontal, 24)
+                            .padding(.top, 4)
+                            ForEach(topPageViewModel.users.indices, id: \.self) { index in
+                                Card(user: topPageViewModel.users[index], ranking: index + 1)
+                            }
+                            Button {
+                                Task {
+                                    try await authViewModel.signOut()
+                                }
+                            } label: {
+                                Text("ログアウト")
+                            }
                             Spacer()
                         }
-                        .padding(.horizontal, 24)
-                        .padding(.top, 4)
-                        ForEach(topPageViewModel.users.indices, id: \.self) { index in
-                            Card(user: topPageViewModel.users[index], ranking: index + 1)
-                        }
-                        Spacer()
+                        
                     }
                 }
                 .toolbar {
@@ -94,10 +97,10 @@ struct TopPage: View {
     
     func displayTime() -> String {
         let remainingDays = Int(topPageViewModel.remaining / (3600 * 24))
-               let remainingHours = Int((topPageViewModel.remaining.truncatingRemainder(dividingBy: (3600 * 24))) / 3600)
-               let remainingMinutes = Int((topPageViewModel.remaining.truncatingRemainder(dividingBy: 3600)) / 60)
-               let remainingSeconds = Int(topPageViewModel.remaining.truncatingRemainder(dividingBy: 60))
-
+        let remainingHours = Int((topPageViewModel.remaining.truncatingRemainder(dividingBy: (3600 * 24))) / 3600)
+        let remainingMinutes = Int((topPageViewModel.remaining.truncatingRemainder(dividingBy: 3600)) / 60)
+        let remainingSeconds = Int(topPageViewModel.remaining.truncatingRemainder(dividingBy: 60))
+        
         return  "残り\(remainingDays)日 \(remainingHours)時間\(remainingMinutes)分\(remainingSeconds)秒"
     }
     

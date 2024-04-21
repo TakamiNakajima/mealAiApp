@@ -11,5 +11,5 @@ extension Color {
     static let customSecondColorLight = Color("secondColorLight")
     static let customThirdColorDark = Color("thirdColorDark")
     static let customThirdColorLight = Color("thirdColorLight")
-    static let customOrange = Color("orange")
+    static let customOrange = Color("orangeTextColor")
 }

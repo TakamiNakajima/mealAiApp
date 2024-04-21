@@ -2,12 +2,10 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseFirestoreSwift
+import FirebaseStorage
+
 
 class AuthRepository: ObservableObject {
-    
-    // 初期処理
-    init() {}
-    
     // ログイン
     func signIn(withEmail email: String, password: String) async throws -> AuthDataResult {
         return try await Auth.auth().signIn(withEmail: email, password: password)

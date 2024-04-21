@@ -1,11 +1,5 @@
-//
-//  Card.swift
-//  NoName
-//
-//  Created by 中島昂海 on 2024/04/09.
-//
-
 import SwiftUI
+
 struct Card: View {
     var user: UserData
     var ranking: Int
@@ -15,12 +9,16 @@ struct Card: View {
             VStack {
                 Spacer()
                 HStack {
-                    
                     // 画像
-                    Circle()
-                        .frame(width: 44, height: 44)
-                        .foregroundColor(Color.customSubColor)
-                    
+                    AsyncImage(url: URL(string: user.imageUrl)) { image in
+                        image
+                            .resizable()
+                            .clipShape(Circle())
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 44, height: 44)
+                    .foregroundColor(Color.customSubColor)
                     Spacer()
                         .frame(width: 8)
                     
