@@ -76,7 +76,7 @@ struct TopPage: View {
                     }
                 }
                 .toolbar {
-                    NavigationLink(destination: SearchUserPage()) {
+                    NavigationLink(destination: ProfileEditPage(user: authViewModel.currentUser!)) {
                         Image(systemName: "person.badge.plus")
                             .foregroundColor(Color.customThemeColor)
                     }

@@ -19,4 +19,9 @@ class UserRepository: ObservableObject {
     func getAllUsers() async throws -> QuerySnapshot {
         return try await userCollectionRef.getDocuments()
     }
+    
+    // ユーザーデータ更新
+    func updateUserData(uid: String, imageUrl: String) async throws {
+        try await userCollectionRef.document(uid).updateData(["imageUrl": imageUrl])
+    }
 }

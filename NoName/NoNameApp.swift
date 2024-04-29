@@ -6,6 +6,7 @@ struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var topPageViewModel = TopPageViewModel()
     @StateObject var userSearchViewModel = SearchUserViewModel()
+    @StateObject var profileEditPageViewModel = ProfileEditPageViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -17,6 +18,7 @@ struct NoNameApp: App {
                 .environmentObject(authViewModel)
                 .environmentObject(topPageViewModel)
                 .environmentObject(userSearchViewModel)
+                .environmentObject(profileEditPageViewModel)
         }
     }
 }

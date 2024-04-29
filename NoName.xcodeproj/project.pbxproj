@@ -59,6 +59,9 @@
 		4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C62D2BBEADBC002ABB9F /* Color.swift */; };
 		4D629B4E2BCEB164001FAB74 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */; };
 		4D629B502BCEB280001FAB74 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */; };
+		4D78417F2BDFADCB0099E64B /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D78417E2BDFADCB0099E64B /* StorageRepository.swift */; };
+		4D7841812BDFB02B0099E64B /* ProfileEditPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7841802BDFB02B0099E64B /* ProfileEditPageViewModel.swift */; };
+		4DE52F192BD6967000620846 /* ProfileEditPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE52F182BD6967000620846 /* ProfileEditPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		4D56C62D2BBEADBC002ABB9F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4D629B4D2BCEB164001FAB74 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		4D78417E2BDFADCB0099E64B /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
+		4D7841802BDFB02B0099E64B /* ProfileEditPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPageViewModel.swift; sourceTree = "<group>"; };
+		4DE52F182BD6967000620846 /* ProfileEditPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +194,7 @@
 				4D56C6182BB8E92B002ABB9F /* StepRepository.swift */,
 				4D4E72062BC588F300B87ABF /* UserRepository.swift */,
 				4D629B4F2BCEB280001FAB74 /* AuthRepository.swift */,
+				4D78417E2BDFADCB0099E64B /* StorageRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -198,6 +205,7 @@
 				4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */,
 				4D56C6242BBB75C8002ABB9F /* TopPageViewModel.swift */,
 				4D37DBB62BC11DA30083433E /* SearchUserPageViewModel.swift */,
+				4D7841802BDFB02B0099E64B /* ProfileEditPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 				4D54DF132BADCBA400101545 /* LoginPage.swift */,
 				4D54DF192BAFA3BE00101545 /* TopPage.swift */,
 				4D37DBB42BC11D800083433E /* SearchUserPage.swift */,
+				4DE52F182BD6967000620846 /* ProfileEditPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -353,6 +362,7 @@
 				4D629B4E2BCEB164001FAB74 /* ScreenSize.swift in Sources */,
 				4D54DF002BADCA4700101545 /* ContentView.swift in Sources */,
 				4D37DBB52BC11D800083433E /* SearchUserPage.swift in Sources */,
+				4D7841812BDFB02B0099E64B /* ProfileEditPageViewModel.swift in Sources */,
 				4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */,
 				4D54DF202BAFA9BD00101545 /* UserData.swift in Sources */,
 				4D56C62E2BBEADBC002ABB9F /* Color.swift in Sources */,
@@ -360,7 +370,9 @@
 				4D54DF1A2BAFA3BE00101545 /* TopPage.swift in Sources */,
 				4D56C6252BBB75C8002ABB9F /* TopPageViewModel.swift in Sources */,
 				4D37DBB92BC1241F0083433E /* Field.swift in Sources */,
+				4DE52F192BD6967000620846 /* ProfileEditPage.swift in Sources */,
 				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
+				4D78417F2BDFADCB0099E64B /* StorageRepository.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationPage.swift in Sources */,
 				4D56C62A2BBCDC15002ABB9F /* Date.swift in Sources */,
 				4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */,
