@@ -3,10 +3,10 @@ import Firebase
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
-
+// storageへアクセスする
 class StorageRepository: ObservableObject {
-    // 保存
-    func saveImage(storageRef: StorageReference, imageData: Data, metadata: StorageMetadata) async throws {
-        try await storageRef.putData(imageData, metadata: metadata)
+    // 画像保存
+    func saveImage(storageRef: StorageReference, imageData: Data, metadata: StorageMetadata) {
+        storageRef.putData(imageData, metadata: metadata)
     }
 }

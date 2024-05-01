@@ -1,7 +1,7 @@
 import SwiftUI
 import HealthKit
 
-struct TopPage: View {
+struct TopView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var topPageViewModel: TopPageViewModel
     @Environment(\.scenePhase) var scenePhase
@@ -76,7 +76,7 @@ struct TopPage: View {
                     }
                 }
                 .toolbar {
-                    NavigationLink(destination: ProfileEditPage(user: authViewModel.currentUser!)) {
+                    NavigationLink(destination: ProfileEditView(user: authViewModel.currentUser!)) {
                         Image(systemName: "person.badge.plus")
                             .foregroundColor(Color.customThemeColor)
                     }
@@ -119,5 +119,5 @@ struct TopPage: View {
 }
 
 #Preview {
-    TopPage()
+    TopView()
 }

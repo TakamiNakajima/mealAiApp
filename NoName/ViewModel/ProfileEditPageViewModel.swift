@@ -6,10 +6,11 @@ import FirebaseFirestoreSwift
 class ProfileEditPageViewModel: ObservableObject {
     let storageRepository = StorageRepository()
     let userRepository = UserRepository()
+    let storageURL = "gs://noname-383d9.appspot.com"
     
     // storageに画像を保存する
     func uploadImage(user: UserData, image: UIImage, storageRef: StorageReference) async throws -> URL {
-        let storageRef = Storage.storage().reference(forURL: "gs://noname-383d9.appspot.com").child(user.id).child("profileImage")
+        let storageRef = Storage.storage().reference(forURL: storageURL).child(user.id).child("profileImage")
 
         guard let imageData = image.jpegData(compressionQuality: 0.3) else {
             throw NSError(domain: "com.example.app", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to JPEG data."])
@@ -18,11 +19,10 @@ class ProfileEditPageViewModel: ObservableObject {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         
+        storageRepository.saveImage(storageRef: storageRef, imageData: imageData, metadata: metadata)
+        
         do {
-            try await storageRepository.saveImage(storageRef: storageRef, imageData: imageData, metadata: metadata)
             let downloadURL = try await storageRef.downloadURL()
-            print("uploadImage")
-            
             return downloadURL
         } catch {
             throw error

@@ -1,7 +1,7 @@
 import SwiftUI
 import FirebaseStorage
 
-struct ProfileEditPage: View {
+struct ProfileEditView: View {
     @State private var user: UserData
     @State private var selectImage = UIImage()
     @State private var isShowPhotoLibrary = false
@@ -21,7 +21,6 @@ struct ProfileEditPage: View {
                 .frame(width: 150, height: 150)
                 .clipShape(Circle())
                 .edgesIgnoringSafeArea(.all)
-            
             InputField(
                 text: $fullname,
                 title: "fullname",
@@ -36,18 +35,18 @@ struct ProfileEditPage: View {
                     .padding()
             })
             
-            Button(action: {
-                Task {
-                    let storageRef = Storage.storage().reference(forURL: "gs://noname-383d9.appspot.com").child(user.id).child("profileImage")
-                    let url = try await viewModel.uploadImage(user: user, image: selectImage, storageRef: storageRef)
-                    
-                    try await viewModel.updateProfileData(user: user, imageURL: url.absoluteString)
-                    print("success profile image")
-                }
-            }, label: {
-                Text("保存")
-                    .padding()
-            })
+            Button(
+                action: {
+                    Task {
+                        let storageRef = Storage.storage().reference(forURL: "gs://noname-383d9.appspot.com").child(user.id).child("profileImage")
+                        let url = try await viewModel.uploadImage(user: user, image: selectImage, storageRef: storageRef)
+                        
+                        try await viewModel.updateProfileData(user: user, imageURL: url.absoluteString)
+                    }
+                }, label: {
+                    Text("保存")
+                        .padding()
+                })
         }
         .sheet(isPresented: $isShowPhotoLibrary, content: {
             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$selectImage)
@@ -66,9 +65,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         return imagePicker
     }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
-        
-    }
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
     
     @Binding var selectedImage: UIImage
     @Environment(\.presentationMode) private var presentationMode

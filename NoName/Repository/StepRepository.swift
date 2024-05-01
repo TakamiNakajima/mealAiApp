@@ -3,12 +3,12 @@ import HealthKit
 import Firebase
 import FirebaseFirestoreSwift
 
+// Stepコレクションへアクセスする
 class StepRepository: ObservableObject {
     private let healthStore = HKHealthStore()
     private let quantityType = HKSampleType.quantityType(forIdentifier: .stepCount)!
     private let userCollectionRef: CollectionReference = Firestore.firestore().collection(Collection.users)
     
-    // 初期処理
     init() {
         let steps = HKQuantityType(.stepCount)
         let healthTypes: Set = [steps]
@@ -32,7 +32,7 @@ class StepRepository: ObservableObject {
         return Int(sum)
     }
     
-    // ヘルスケアの歩数をサーバへ保存する
+    // ヘルスケアの歩数を保存する
     func saveSteps(uid: String, steps: Int, collection: String, documentName: String) async throws {
         let stepDocumentRef = userCollectionRef.document(uid).collection(collection).document(documentName)
         let saveData = StepData.toJson(step: steps, date: FieldValue.serverTimestamp())

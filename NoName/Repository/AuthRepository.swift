@@ -4,7 +4,7 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
-
+// Authenticationへアクセスする
 class AuthRepository: ObservableObject {
     // ログイン
     func signIn(withEmail email: String, password: String) async throws -> AuthDataResult {

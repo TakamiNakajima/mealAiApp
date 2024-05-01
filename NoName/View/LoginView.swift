@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct LoginPage: View {
+struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @EnvironmentObject var viewModel: AuthViewModel
@@ -57,7 +57,7 @@ struct LoginPage: View {
                 // sign up button
                 
                 NavigationLink {
-                    RegistrationPage()
+                    RegistrationView()
                         .navigationBarBackButtonHidden(true)
                 } label: {
                     HStack(spacing: 3) {
@@ -75,7 +75,7 @@ struct LoginPage: View {
     }
 }
 
-extension LoginPage: AuthentiationFormProtocol {
+extension LoginView: AuthentiationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty
         && email.contains("@")
@@ -85,5 +85,5 @@ extension LoginPage: AuthentiationFormProtocol {
 }
 
 #Preview {
-    LoginPage()
+    LoginView()
 }

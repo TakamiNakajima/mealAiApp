@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct RegistrationPage: View {
+struct RegistrationView: View {
     @State private var email = ""
     @State private var fullname = ""
     @State private var accountName = ""
@@ -110,7 +110,7 @@ struct RegistrationPage: View {
     }
 }
 
-extension RegistrationPage: AuthentiationFormProtocol {
+extension RegistrationView: AuthentiationFormProtocol {
     var formIsValid: Bool {
         return !email.isEmpty
         && email.contains("@")
@@ -122,5 +122,5 @@ extension RegistrationPage: AuthentiationFormProtocol {
 }
 
 #Preview {
-    RegistrationPage()
+    RegistrationView()
 }

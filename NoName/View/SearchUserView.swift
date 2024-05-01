@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SearchUserPage: View {
+struct SearchUserView: View {
     @State var inputText: String = ""
     @EnvironmentObject var viewModel: SearchUserViewModel
     
