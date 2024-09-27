@@ -21,7 +21,7 @@ struct BaseView: View {
             }
             
             Spacer()
-
+            
             // ボトムナビゲーションバー
             BottomBar(selectedTab: $selectedTab)
         }
@@ -31,12 +31,31 @@ struct BaseView: View {
 struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var manager: StepRepository
+    @State private var selectedTab: Int = 0
+    @State private var canSwipe: Bool = true
+    
+    let list: [String] = ["ホーム", "体重", "食事", "運動", "その他"]
     
     var body: some View {
         VStack {
             Spacer()
-            Text("HomePage")
-                .multilineTextAlignment(.center)
+                .frame(height: 40)
+            TopTabView(list: list, selectedTab: $selectedTab)
+            TabView(selection: $selectedTab,
+                    content: {
+                Text("ホームタブ")
+                    .tag(0)
+                Text("体重タブ")
+                    .tag(1)
+                Text("食事タブ")
+                    .tag(2)
+                Text("運動タブ")
+                    .tag(3)
+                Text("その他タブ")
+                    .tag(4)
+            })
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .disabled(!canSwipe)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
