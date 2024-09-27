@@ -1,6 +1,5 @@
-
-struct Collection {
+// FireStoreのCollection名
+class Collection {
     static let users = "users"
-    static let dailySteps = "dailySteps"
-    static let weeklySteps = "weeklySteps"
+    static let steps = "steps"
 }

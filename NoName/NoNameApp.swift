@@ -1,12 +1,21 @@
 import SwiftUI
 import Firebase
 
+private struct SafeAreaInsetsEnvironmentKey: EnvironmentKey {
+    static let defaultValue: (top: CGFloat, bottom: CGFloat) = (0, 0)
+}
+
+extension EnvironmentValues {
+    var safeAreaInsets: (top: CGFloat, bottom: CGFloat) {
+        get { self[SafeAreaInsetsEnvironmentKey.self] }
+        set { self[SafeAreaInsetsEnvironmentKey.self] = newValue }
+    }
+}
+
 @main
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var topPageViewModel = TopPageViewModel()
-    @StateObject var userSearchViewModel = SearchUserViewModel()
-    @StateObject var profileEditPageViewModel = ProfileEditPageViewModel()
+    @StateObject var manager = StepRepository()
     
     init() {
         FirebaseApp.configure()
@@ -16,9 +25,7 @@ struct NoNameApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(authViewModel)
-                .environmentObject(topPageViewModel)
-                .environmentObject(userSearchViewModel)
-                .environmentObject(profileEditPageViewModel)
+                .environmentObject(manager)
         }
     }
 }

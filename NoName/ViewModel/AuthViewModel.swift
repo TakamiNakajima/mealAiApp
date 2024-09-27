@@ -1,5 +1,6 @@
 import Foundation
 import Firebase
+import FirebaseFirestoreSwift
 
 protocol AuthentiationFormProtocol {
     var formIsValid: Bool { get }
@@ -7,99 +8,62 @@ protocol AuthentiationFormProtocol {
 
 @MainActor
 class AuthViewModel: ObservableObject {
-    private let authRepository = AuthRepository()
-    private let userRepository = UserRepository()
     @Published var userSession: FirebaseAuth.User?
-    @Published var currentUser: UserData?
+    @Published var currentUser: User?
     
     init() {
-        self.userSession = authRepository.currentUser()
-        if (self.userSession != nil) {
-            Task {
-                do {
-                    try await fetchUser(uid: self.userSession!.uid)
-                } catch {
-                    print("error: AuthViewModel.init()")
-                    throw error
-                }
-            }
+        self.userSession = Auth.auth().currentUser
+        Task {
+            await fetchUser()
         }
     }
     
-    // ログイン
+    // ログイン処理
     func signIn(withEmail email: String, password: String) async throws {
-        let result: AuthDataResult
         do {
-            result = try await authRepository.signIn(withEmail: email, password: password)
+            let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            self.userSession = result.user
+            await fetchUser()
         } catch {
-            print("error: AuthViewModel.signIn()")
-            throw error
-        }
-        
-        self.userSession = result.user
-        
-        do {
-            try await fetchUser(uid: self.userSession!.uid)
-        } catch {
-            print("error: AuthViewModel.fetchUser()")
-            throw error
+            print("DEBUG: Failed to log in with error \(error.localizedDescription)")
         }
     }
     
-    // 新規登録
-    func createUser(withEmail email: String, password: String, fullname: String, accountName: String) async throws {
-        let result: AuthDataResult
+    // 新規登録処理
+    func createUser(withEmail email: String, password: String, fullname: String) async throws {
         do {
-            result = try await authRepository.createUser(withEmail: email, password: password)
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            self.userSession = result.user
+            let user = User(id: result.user.uid, fullname: fullname, email: email)
+            let encodedUser = try Firestore.Encoder().encode(user)
+            try await Firestore.firestore().collection(Collection.users).document(user.id).setData(encodedUser)
+            await fetchUser()
         } catch {
-            print("error: AuthViewModel.createUser()")
-            throw error
-        }
-        
-        self.userSession = result.user
-        let imageUrl = "https://firebasestorage.googleapis.com/v0/b/noname-383d9.appspot.com/o/profile.jpeg?alt=media&token=5bdce182-2047-4b35-b226-0fba5562cf5d"
-        let user = UserData(id: result.user.uid, fullname: fullname, email: email, imageUrl: imageUrl, accountName: accountName, dailyStepData: nil, weeklyStepData: nil)
-        let encodedUser = try Firestore.Encoder().encode(user)
-        
-        do {
-            try await userRepository.setUser(uid: user.id, encodedUser: encodedUser)
-        } catch {
-            print("error in AuthViewModel.setUser()")
-            throw error
-        }
-        
-        do {
-            try await fetchUser(uid: self.userSession!.uid)
-        } catch {
-            print("error in AuthViewModel.fetchUser()")
-            throw error
+            print("DEBUG: Failed to create user with error \(error.localizedDescription)")
         }
     }
     
-    // ログアウト
-    func signOut() async throws {
+    // ログアウト処理
+    func signOut() {
         do {
-            try await authRepository.signOut()
+            try Auth.auth().signOut()
+            self.userSession = nil
+            self.currentUser = nil
         } catch {
-            print("error in AuthViewModel.signOut()")
-            throw error
+            print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
         }
-        self.userSession = nil
-        self.currentUser = nil
     }
     
-    // ユーザ取得
-    func fetchUser(uid: String) async throws {
-        let snapshot: DocumentSnapshot
-        
-        do {
-            snapshot = try await userRepository.getUser(uid: uid)
-        } catch {
-            print("error: AuthViewModel.fetchUser()")
-            throw error
-        }
-        
-        self.currentUser = try snapshot.data(as: UserData.self)
+    // アカウント削除処理
+    func deleteAccount() {
+        print("deleteAccount")
+    }
+    
+    // ユーザ情報取得処理
+    func fetchUser() async {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        self.currentUser = try? snapshot.data(as: User.self)
         print("DEBUG: Current user is \(String(describing: self.currentUser?.fullname))")
     }
 }
