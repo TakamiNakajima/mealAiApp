@@ -34,64 +34,83 @@ struct HomePage: View {
     
     var body: some View {
         if let user = authViewModel.currentUser {
-            List {
-                Section {
-                    HStack {
-                        Text(user.initials)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .frame(width: 72, height: 72)
-                            .background(Color(.systemGray3))
-                            .clipShape(Circle())
-                        VStack(alignment: .leading, spacing: 4){
-                            Text(user.fullname)
-                                .font(.subheadline)
+            VStack(spacing: 0) {
+                
+                Text("ホーム")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .frame(height: 48)
+                    .padding(.horizontal)
+                    .background(.white)
+                    .foregroundColor(.black)
+                
+                Text("9月29日")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, minHeight: 28)
+                    .background(Color.blue)
+                    .multilineTextAlignment(.center)
+                
+                List {
+                    
+                    Section("カロリー") {
+                        HStack {
+                            Text(user.initials)
+                                .font(.title)
                                 .fontWeight(.semibold)
-                                .padding(.top, 4)
-                            Text(user.email)
-                                .font(.footnote)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                }
-                Section("Steps") {
-                    HStack {
-                        Text(manager.stepCount)
-                        Spacer()
-                        Button(action: {
-                            Task {
-                                await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
+                                .foregroundColor(.white)
+                                .frame(width: 72, height: 72)
+                                .background(Color(.systemGray3))
+                                .clipShape(Circle())
+                            VStack(alignment: .leading, spacing: 4){
+                                Text(user.fullname)
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .padding(.top, 4)
+                                Text(user.email)
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
                             }
-                        }) {
-                            Image(systemName: "arrow.clockwise")
+                        }
+                    }
+                    Section("運動") {
+                        HStack {
+                            Text(manager.stepCount)
+                            Spacer()
+                            Button(action: {
+                                Task {
+                                    await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
+                                }
+                            }) {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                        }
+                    }
+                    Section("食事") {
+                        Button {
+                            authViewModel.signOut()
+                        } label: {
+                            SettingsRowView(
+                                imageName: "arrow.left.circle.fill",
+                                title: "Sign Out",
+                                tintColor: Color(.red)
+                            )
+                        }
+                        Button {
+                            print("Delete account..")
+                        } label: {
+                            SettingsRowView(
+                                imageName: "xmark.circle.fill",
+                                title: "Delete Account",
+                                tintColor: Color(.red)
+                            )
                         }
                     }
                 }
-                Section("Account") {
-                    Button {
-                        authViewModel.signOut()
-                    } label: {
-                        SettingsRowView(
-                            imageName: "arrow.left.circle.fill",
-                            title: "Sign Out",
-                            tintColor: Color(.red)
-                        )
+                .onAppear {
+                    Task {
+                        await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
                     }
-                    Button {
-                        print("Delete account..")
-                    } label: {
-                        SettingsRowView(
-                            imageName: "xmark.circle.fill",
-                            title: "Delete Account",
-                            tintColor: Color(.red)
-                        )
-                    }
-                }
-            }
-            .onAppear {
-                Task {
-                    await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
                 }
             }
         }
@@ -148,7 +167,7 @@ struct SettingPage: View {
     @EnvironmentObject var manager: StepRepository
     @State private var selectedTab: Int = 0
     @State private var canSwipe: Bool = true
-        
+    
     var body: some View {
         VStack {
             Spacer()
