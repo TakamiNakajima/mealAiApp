@@ -30,7 +30,7 @@ struct BottomBar: View {
             Button {
                 selectedTab = .workout
             } label: {
-                BottomBarButtonView(image: "figure.indoor.cycle", text: "ワークアウト", isActive: selectedTab == .workout)
+                BottomBarButtonView(image: "movieclapper", text: "動画", isActive: selectedTab == .workout)
             }
             
             // 追加
@@ -43,7 +43,7 @@ struct BottomBar: View {
                             .frame(width: 60, height: 60)
                             .foregroundStyle(
                                 LinearGradient(
-                                    gradient: Gradient(colors: [.blue, .mint]),
+                                    gradient: Gradient(colors: [.mint, .blue]),
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
@@ -70,7 +70,7 @@ struct BottomBar: View {
             Button {
                 selectedTab = .message
             } label: {
-                BottomBarButtonView(image: "person", text: "メッセージ", isActive: selectedTab == .message)
+                BottomBarButtonView(image: "gearshape", text: "設定", isActive: selectedTab == .message)
             }
             
         }

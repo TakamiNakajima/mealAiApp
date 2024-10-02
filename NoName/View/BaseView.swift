@@ -11,13 +11,13 @@ struct BaseView: View {
             if (selectedTab == .home)  {
                 HomePage()
             } else if (selectedTab == .workout) {
-                WorkoutPage()
+                VideoPage()
             } else if (selectedTab == .add) {
                 AddPage()
             } else if (selectedTab == .notification) {
                 NotificationPage()
             } else if (selectedTab == .message) {
-                MessagePage()
+                SettingPage()
             }
             
             Spacer()
@@ -29,86 +29,6 @@ struct BaseView: View {
 }
 
 struct HomePage: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
-    @State private var selectedTab: Int = 0
-    @State private var canSwipe: Bool = true
-    
-    let list: [String] = ["ホーム", "体重", "食事", "運動", "その他"]
-    
-    var body: some View {
-        VStack {
-            Spacer()
-                .frame(height: 40)
-            TopTabView(list: list, selectedTab: $selectedTab)
-            TabView(selection: $selectedTab,
-                    content: {
-                Text("ホームタブ")
-                    .tag(0)
-                Text("体重タブ")
-                    .tag(1)
-                Text("食事タブ")
-                    .tag(2)
-                Text("運動タブ")
-                    .tag(3)
-                Text("その他タブ")
-                    .tag(4)
-            })
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .disabled(!canSwipe)
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-
-struct WorkoutPage: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            Text("WorkoutPage")
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct AddPage: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            Text("AddPage")
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct NotificationPage: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            Text("NotificationPage")
-                .multilineTextAlignment(.center)
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct MessagePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var manager: StepRepository
     
@@ -175,5 +95,67 @@ struct MessagePage: View {
                 }
             }
         }
+    }
+}
+
+struct VideoPage: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var manager: StepRepository
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("VideoPage")
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct AddPage: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var manager: StepRepository
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("AddPage")
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct NotificationPage: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var manager: StepRepository
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("NotificationPage")
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct SettingPage: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var manager: StepRepository
+    @State private var selectedTab: Int = 0
+    @State private var canSwipe: Bool = true
+        
+    var body: some View {
+        VStack {
+            Spacer()
+            Text("SettingPage")
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
