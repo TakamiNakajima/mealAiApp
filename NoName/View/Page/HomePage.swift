@@ -3,7 +3,8 @@ import SwiftUI
 
 struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
+    @EnvironmentObject var homePageViewModel: HomePageViewModel
+    @EnvironmentObject var stepRepository: StepRepository
     
     var body: some View {
         if let user = authViewModel.currentUser {
@@ -16,15 +17,21 @@ struct HomePage: View {
                         .fontWeight(.light)
                         .foregroundColor(Color.blue)
                     
-                    HStack {
-                        DashedCircleText(number: "23")
-                        DashedCircleText(number: "24")
-                        DashedCircleText(number: "25")
-                        DashedCircleText(number: "26")
-                        DashedCircleText(number: "27")
-                        DashedCircleText(number: "28")
-                        CircleText(number: "29")
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(homePageViewModel.thisMonthDays, id: \.self) { day in
+                                if day == homePageViewModel.selectedDate {
+                                    CircleText(number: day)
+                                } else {
+                                    DashedCircleText(number: day){
+                                        homePageViewModel.onTapCircle(day: day)
+                                    }
+                                }
+                            }
+                        }
+                        .padding()
                     }
+                    
                 }
                 
                 // 総カロリー表示
@@ -42,13 +49,8 @@ struct HomePage: View {
                     .padding(.horizontal, 24)
                     
                     HStack(spacing: 24) {
-                        HealthDataConteiner(title: "歩数", value: "\(manager.stepCount)", isStep: true)
-                            .onAppear {
-                                Task {
-                                    await manager.fetchTodaySteps(uid: authViewModel.currentUser!.id)
-                                }
-                            }
-                        HealthDataConteiner(title: "消費カロリー", value: "300", isStep: false)
+                        HealthDataConteiner(title: "歩数", value: "\(homePageViewModel.stepCount.formattedString())", isStep: true)
+                        HealthDataConteiner(title: "消費カロリー", value: "\(homePageViewModel.calories.formattedString())", isStep: false)
                     }
                 }
                 
@@ -76,7 +78,12 @@ struct HomePage: View {
                         MealDataConteiner(title: "間食")
                     }
                 }
-                
+            }
+            .onAppear {
+                Task {
+                    // 初期処理
+                    await homePageViewModel.initialize(uid: authViewModel.currentUser!.id)
+                }
             }
         }
     }
@@ -119,7 +126,7 @@ struct HealthDataConteiner: View {
                 
                 Spacer()
                 
-                HStack(alignment: VerticalAlignment.bottom, spacing: 0){
+                HStack(alignment: VerticalAlignment.bottom, spacing: 2){
                     Spacer()
                     
                     Text(value)

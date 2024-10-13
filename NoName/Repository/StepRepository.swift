@@ -20,7 +20,6 @@ extension Double {
 
 class StepRepository: ObservableObject {
     let healthStore = HKHealthStore()
-    @Published var stepCount: String = "--"
     
     init() {
         let steps = HKQuantityType(.stepCount)
@@ -34,32 +33,28 @@ class StepRepository: ObservableObject {
         }
     }
     
-    // ヘルスケアから歩数を取得してDBに保存する
-    func fetchTodaySteps(uid: String) async {
-        let steps = HKQuantityType(.stepCount)
-        let predicate = HKQuery.predicateForSamples(withStart: .startDay, end: Date())
-        let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
-            guard let result = result, let quantity = result.sumQuantity(), error == nil else {
-                print("error fetching todays step data")
-                return
+    // ヘルスケアから歩数を取得する
+    func fetchTodaySteps(uid: String) async -> Double {
+        let steps = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: Date(), options: .strictStartDate)
+
+        return await withCheckedContinuation { continuation in
+            let query = HKStatisticsQuery(quantityType: steps, quantitySamplePredicate: predicate) { _, result, error in
+                guard let result = result, let quantity = result.sumQuantity(), error == nil else {
+                    print("error fetching todays step data")
+                    continuation.resume(returning: 0.0)
+                    return
+                }
+                let stepCount = quantity.doubleValue(for: HKUnit.count())
+                continuation.resume(returning: stepCount)
             }
-            let stepCount = quantity.doubleValue(for: .count())
-            DispatchQueue.main.async {
-                self.stepCount = stepCount.formattedString()
-            }
+            healthStore.execute(query)
         }
-        if stepCount != "--" {
-            do {
-                try await saveSteps(uid: uid, steps: self.stepCount)
-            } catch {
-                print("歩数保存失敗")
-            }
-        }
-        healthStore.execute(query)
     }
     
     // 歩数をDBに保存する
-    func saveSteps(uid: String, steps: String) async throws {
+    func saveSteps(uid: String, steps: Double) async throws {
         let today = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

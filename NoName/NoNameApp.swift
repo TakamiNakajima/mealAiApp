@@ -15,6 +15,7 @@ extension EnvironmentValues {
 @main
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
+    @StateObject var homePageViewModel = HomePageViewModel()
     @StateObject var manager = StepRepository()
     
     init() {
@@ -25,6 +26,7 @@ struct NoNameApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(authViewModel)
+                .environmentObject(homePageViewModel)
                 .environmentObject(manager)
         }
     }

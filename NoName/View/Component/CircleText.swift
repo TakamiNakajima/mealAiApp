@@ -6,7 +6,7 @@ struct CircleText: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
-                .frame(width: 36, height: 36)
+                .frame(width: 38, height: 38)
                 .foregroundStyle(
                     LinearGradient(
                         gradient: Gradient(colors: [.mint, .blue]),

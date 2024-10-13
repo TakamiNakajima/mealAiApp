@@ -2,7 +2,8 @@ import SwiftUI
 
 struct DashedCircleText: View {
     let number: String
-
+    var onTap: () -> Void
+    
     var body: some View {
         Text(number)
             .font(.caption)
@@ -17,5 +18,8 @@ struct DashedCircleText: View {
                     .stroke(style: StrokeStyle(lineWidth: 1, dash: [5]))
                     .foregroundColor(.gray)
             )
+            .onTapGesture {
+                onTap()
+            }
     }
 }
