@@ -17,20 +17,32 @@ struct HomePage: View {
                         .fontWeight(.light)
                         .foregroundColor(Color.blue)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(homePageViewModel.thisMonthDays, id: \.self) { day in
-                                if day == homePageViewModel.selectedDate {
-                                    CircleText(number: day)
-                                } else {
-                                    DashedCircleText(number: day){
-                                        homePageViewModel.onTapCircle(day: day)
+                    ScrollViewReader { proxy in
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(homePageViewModel.thisMonthDays, id: \.self) { day in
+                                    if day == homePageViewModel.selectedDate {
+                                        CircleText(number: day)
+                                    } else {
+                                        DashedCircleText(number: day) {
+                                            homePageViewModel.onTapCircle(day: day)
+                                            withAnimation {
+                                                proxy.scrollTo(day, anchor: .center)
+                                            }
+                                        }
                                     }
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
+                        .onAppear {
+                            let todayDate = homePageViewModel.getTodayDate()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)  {
+                                proxy.scrollTo(todayDate, anchor: .center)
+                            }
+                        }
                     }
+                    
                     
                 }
                 

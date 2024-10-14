@@ -54,7 +54,7 @@ class HomePageViewModel: ObservableObject {
     }
     
     // 今日の日付を取得する
-    private func getTodayDate() -> String {
+    func getTodayDate() -> String {
         let calendar = Calendar.current
         let today = Date()
         
