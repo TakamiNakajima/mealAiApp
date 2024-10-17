@@ -5,10 +5,15 @@ struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var homePageViewModel: HomePageViewModel
     @EnvironmentObject var stepRepository: StepRepository
+    @State private var morningImage: UIImage? = nil
+    @State private var lunchImage: UIImage? = nil
+    @State private var dinnerImage: UIImage? = nil
+    @State private var breakImage: UIImage? = nil
+    @State private var isPickerPresented = false
     
     var body: some View {
         if let user = authViewModel.currentUser {
-            VStack(spacing: 24) {
+            VStack(spacing: 20) {
                 
                 // AppBar
                 VStack {
@@ -42,12 +47,21 @@ struct HomePage: View {
                             }
                         }
                     }
-                    
-                    
                 }
                 
                 // 総カロリー表示
-                CaloriesConteiner()
+                VStack(spacing: 8) {
+                    HStack {
+                        Text("総カロリー")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.gray)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 24)
+                    
+                    CaloriesConteiner()
+                }
                 
                 // 運動
                 VStack(spacing: 8) {
@@ -78,16 +92,16 @@ struct HomePage: View {
                     .padding(.horizontal, 24)
                     
                     HStack(spacing: 24) {
-                        MealDataConteiner(title: "朝")
-                        MealDataConteiner(title: "昼")
+                        MealImage(title: "朝", morningImage: $morningImage, isPickerPresented: $isPickerPresented)
+                        MealImage(title: "昼", morningImage: $lunchImage, isPickerPresented: $isPickerPresented)
                     }
                     
                     Spacer()
                         .frame(height: 2)
                     
                     HStack(spacing: 24) {
-                        MealDataConteiner(title: "夜")
-                        MealDataConteiner(title: "間食")
+                        MealImage(title: "夜", morningImage: $dinnerImage, isPickerPresented: $isPickerPresented)
+                        MealImage(title: "間食", morningImage: $breakImage, isPickerPresented: $isPickerPresented)
                     }
                 }
             }
@@ -97,89 +111,6 @@ struct HomePage: View {
                     await homePageViewModel.initialize(uid: authViewModel.currentUser!.id)
                 }
             }
-        }
-    }
-}
-
-struct CaloriesConteiner: View {
-    var body: some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(UIColor.systemGray6))
-                .frame(height: 120)
-        }
-        .padding(.horizontal, 24)
-    }
-}
-
-struct HealthDataConteiner: View {
-    var title: String
-    var value: String
-    var isStep: Bool
-    var body: some View {
-        ZStack {
-            
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(UIColor.systemGray6))
-                .frame(width: 160, height: 100)
-            
-            VStack {
-                HStack {
-                    Text(title)
-                        .font(.subheadline)
-                        .padding(5)
-                        .foregroundColor(.gray)
-                    
-                    Spacer()
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                
-                Spacer()
-                
-                HStack(alignment: VerticalAlignment.bottom, spacing: 2){
-                    Spacer()
-                    
-                    Text(value)
-                        .font(.title)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                    
-                    Text((isStep) ? "歩" : "kcal")
-                        .font(.headline)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                        .padding(.bottom, 2)
-                    
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                
-            }
-            .frame(width: 160, height: 100)
-            
-        }
-    }
-}
-
-struct MealDataConteiner: View {
-    var title: String
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
-                .frame(width: 160, height: 100)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [5]))
-                        .foregroundColor(.gray)
-                )
-            
-            Text(title)
-                .font(.subheadline)
-                .padding(5)
-                .foregroundColor(.gray)
         }
     }
 }

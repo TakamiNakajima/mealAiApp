@@ -52,6 +52,10 @@
 		4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6182BB8E92B002ABB9F /* StepRepository.swift */; };
 		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
 		4D73F9E52CBBC033002CBB7A /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */; };
+		4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */; };
+		4D73F9E92CC13AFA002CBB7A /* MealImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E82CC13AFA002CBB7A /* MealImage.swift */; };
+		4D73F9EB2CC13B20002CBB7A /* HealthDataConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */; };
+		4D73F9ED2CC13B6A002CBB7A /* CaloriesConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */; };
 		4DE08D5E2CAE5DCB00277825 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D5D2CAE5DCB00277825 /* HomePage.swift */; };
 		4DE08D612CAE5E3E00277825 /* VideoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D602CAE5E3E00277825 /* VideoPage.swift */; };
 		4DE08D632CAE5E5B00277825 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D622CAE5E5B00277825 /* AddPage.swift */; };
@@ -83,6 +87,10 @@
 		4D56C61B2BB8EB9D002ABB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
+		4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4D73F9E82CC13AFA002CBB7A /* MealImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImage.swift; sourceTree = "<group>"; };
+		4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataConteiner.swift; sourceTree = "<group>"; };
+		4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesConteiner.swift; sourceTree = "<group>"; };
 		4DE08D5D2CAE5DCB00277825 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		4DE08D602CAE5E3E00277825 /* VideoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPage.swift; sourceTree = "<group>"; };
 		4DE08D622CAE5E5B00277825 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
@@ -219,6 +227,9 @@
 				4D1876C32CA67352000180DC /* TopTabView.swift */,
 				4DE08D682CAE625200277825 /* DashedCircleText.swift */,
 				4DE08D6A2CAE667B00277825 /* CircleText.swift */,
+				4D73F9E82CC13AFA002CBB7A /* MealImage.swift */,
+				4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */,
+				4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -228,6 +239,7 @@
 			children = (
 				4D56C6222BBAE637002ABB9F /* Collection.swift */,
 				4D1876BD2CA6394F000180DC /* Constants.swift */,
+				4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */,
 			);
 			path = utility;
 			sourceTree = "<group>";
@@ -355,11 +367,15 @@
 				4D54DF002BADCA4700101545 /* ContentView.swift in Sources */,
 				4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */,
 				4D54DF202BAFA9BD00101545 /* User.swift in Sources */,
+				4D73F9E92CC13AFA002CBB7A /* MealImage.swift in Sources */,
+				4D73F9ED2CC13B6A002CBB7A /* CaloriesConteiner.swift in Sources */,
 				4D1876C22CA639D8000180DC /* BaseView.swift in Sources */,
 				4D1876C02CA6397E000180DC /* BottomNavBarView.swift in Sources */,
 				4D73F9E52CBBC033002CBB7A /* HomePageViewModel.swift in Sources */,
+				4D73F9EB2CC13B20002CBB7A /* HealthDataConteiner.swift in Sources */,
 				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
 				4DE08D692CAE625200277825 /* DashedCircleText.swift in Sources */,
+				4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationView.swift in Sources */,
 				4DE08D5E2CAE5DCB00277825 /* HomePage.swift in Sources */,
 				4D1876BE2CA6394F000180DC /* Constants.swift in Sources */,
