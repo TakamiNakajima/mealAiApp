@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @MainActor
 class HomePageViewModel: ObservableObject {
@@ -6,6 +7,7 @@ class HomePageViewModel: ObservableObject {
     @Published var calories: Double = 0.0
     @Published var thisMonthDays: [String] = []
     @Published var selectedDate: String = ""
+    @Published var isLoading: Bool = false
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
@@ -96,5 +98,37 @@ class HomePageViewModel: ObservableObject {
         }
         
         return dateStrings
+    }
+    
+    func saveMeal(type: Int, image: UIImage, userId: String) async {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        let storageRepository = StorageRepository()
+        var imageURL: String?
+        let mealId = UUID().uuidString
+        
+        do {
+            let downloadURL = try await storageRepository.uploadImageToFirebaseStorage(image: image, userId: userId, mealId: mealId)
+                print("Image uploaded successfully! Download URL: \(downloadURL)")
+            imageURL = downloadURL
+            } catch {
+                print("Error uploading image: \(error)")
+            }
+        
+        let currentDate = Date()
+        let meal = Meal(id: mealId, type: type, date: currentDate, imageURL: imageURL)
+        
+        do {
+            let mealRepository = MealRepository()
+            try await mealRepository.saveMeal(meal: meal, userId: userId)
+                print("save meal successfully!")
+            } catch {
+                print("Error uploading image: \(error)")
+            }
+        
+        DispatchQueue.main.async {
+            self.isLoading = false
+        }
     }
 }

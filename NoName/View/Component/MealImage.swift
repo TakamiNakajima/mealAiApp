@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct MealImage: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var homePageViewModel: HomePageViewModel
     var title: String
-    @Binding var morningImage: UIImage?
+    @Binding var image: UIImage?
     @Binding var isPickerPresented: Bool
     
     var body: some View {
-        if let image = morningImage {
+        if let image = image {
             Image(uiImage: image)
                 .resizable()
                 .frame(width: 160, height: 100)
@@ -31,9 +33,17 @@ struct MealImage: View {
                         .foregroundColor(.gray)
                 }
             }
-            .sheet(isPresented: $isPickerPresented) {
-                PhotoPicker(selectedImage: $morningImage)
-            }
+            .sheet(isPresented: $isPickerPresented, onDismiss: {
+                            // シートが閉じられたときの処理
+                            if let selectedImage = image {
+                                print("Image selected, calling saveMeal")
+                                Task {
+                                    await homePageViewModel.saveMeal(type: 1, image: selectedImage, userId: authViewModel.currentUser!.id)
+                                }
+                            }
+                        }) {
+                            PhotoPicker(selectedImage: $image)
+                        }
         }
     }
 }
