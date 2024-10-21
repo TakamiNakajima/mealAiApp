@@ -5,10 +5,6 @@ struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var homePageViewModel: HomePageViewModel
     @EnvironmentObject var stepRepository: StepRepository
-    @State private var morningImage: UIImage? = nil
-    @State private var lunchImage: UIImage? = nil
-    @State private var dinnerImage: UIImage? = nil
-    @State private var breakImage: UIImage? = nil
     @State private var isPickerPresented = false
     
     var body: some View {
@@ -93,16 +89,16 @@ struct HomePage: View {
                         .padding(.horizontal, 24)
                         
                         HStack(spacing: 24) {
-                            MealImage(title: "朝", image: $morningImage, isPickerPresented: $isPickerPresented)
-                            MealImage(title: "昼", image: $lunchImage, isPickerPresented: $isPickerPresented)
+                            MealImage(type: 0, imageUrl: homePageViewModel.morningMeal?.imageURL, isPickerPresented: $isPickerPresented)
+                            MealImage(type: 1, imageUrl: homePageViewModel.lunchMeal?.imageURL, isPickerPresented: $isPickerPresented)
                         }
                         
                         Spacer()
                             .frame(height: 2)
                         
                         HStack(spacing: 24) {
-                            MealImage(title: "夜", image: $dinnerImage, isPickerPresented: $isPickerPresented)
-                            MealImage(title: "間食", image: $breakImage, isPickerPresented: $isPickerPresented)
+                            MealImage(type: 2, imageUrl: homePageViewModel.dinnerMeal?.imageURL, isPickerPresented: $isPickerPresented)
+                            MealImage(type: 3, imageUrl: homePageViewModel.breakMeal?.imageURL, isPickerPresented: $isPickerPresented)
                         }
                     }
                 }

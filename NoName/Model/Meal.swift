@@ -1,4 +1,5 @@
 import Foundation
+import FirebaseFirestore
 
 struct Meal: Identifiable, Codable {
     var id: String
@@ -6,20 +7,16 @@ struct Meal: Identifiable, Codable {
     var date: Date
     var imageURL: String?
     
-    static func fromJson(_ jsonData: Data) -> Meal? {
-        let decoder = JSONDecoder()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        
-        do {
-            let meal = try decoder.decode(Meal.self, from: jsonData)
-            return meal
-        } catch {
-            print("Error decoding JSON: \(error)")
+    static func fromJson(_ jsonDict: [String: Any]) -> Meal? {
+        guard let id = jsonDict["mealId"] as? String,
+              let type = jsonDict["type"] as? Int,
+              let timestamp = jsonDict["date"] as? Timestamp,
+              let imageURL = jsonDict["imageUrl"] as? String else {
+            print("Error: Missing or invalid values in JSON")
             return nil
         }
+                
+        return Meal(id: id, type: type, date: timestamp.dateValue(), imageURL: imageURL)
     }
     
     func toJson() -> Data? {

@@ -24,4 +24,27 @@ class MealRepository: ObservableObject {
             throw error
         }
     }
+    
+    // 食事記録をDBから取得する
+    func fetchMeal(date: Date, type: Int, userId: String) async throws -> Meal? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        let mealCollectionRef = Firestore.firestore().collection(Collection.users).document(userId).collection("meals")
+        print("\(dateString)_\(type)")
+        let docData = try await mealCollectionRef.document("\(dateString)_\(type)").getDocument().data()
+        if let docData = docData {
+            print("docData \(docData)")
+            do {
+                if let mealData = Meal.fromJson(docData) {
+                    return mealData
+                } else {
+                    print("Failed to decode meal data.")
+                }
+            }
+        } else {
+            print("Document does not exist.")
+        }
+        return nil
+    }
 }

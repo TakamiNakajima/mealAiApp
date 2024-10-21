@@ -3,16 +3,36 @@ import SwiftUI
 struct MealImage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var homePageViewModel: HomePageViewModel
-    var title: String
-    @Binding var image: UIImage?
+    var type: Int
+    var imageUrl: String?
     @Binding var isPickerPresented: Bool
     
     var body: some View {
-        if let image = image {
-            Image(uiImage: image)
-                .resizable()
-                .frame(width: 160, height: 100)
-                .cornerRadius(12)
+        if let image = imageUrl {
+            AsyncImage(url: URL(string: imageUrl!)) { phase in
+                        switch phase {
+                        case .empty:
+                            // ローディング中の表示
+                            ProgressView()
+                                .frame(width: 160, height: 100)
+                        case .success(let image):
+                            // 正常に画像が読み込まれた場合
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 160, height: 100)
+                                .cornerRadius(10)
+                        case .failure:
+                            // エラーが発生した場合の表示
+                            Image(systemName: "photo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 160, height: 100)
+                                .foregroundColor(.gray)
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
         } else {
             Button(action: {
                 isPickerPresented = true
@@ -27,23 +47,35 @@ struct MealImage: View {
                                 .foregroundColor(.gray)
                         )
                     
-                    Text(title)
+                    Text(title(type: type))
                         .font(.subheadline)
                         .padding(5)
                         .foregroundColor(.gray)
                 }
             }
-            .sheet(isPresented: $isPickerPresented, onDismiss: {
-                            // シートが閉じられたときの処理
-                            if let selectedImage = image {
-                                print("Image selected, calling saveMeal")
-                                Task {
-                                    await homePageViewModel.saveMeal(type: 1, image: selectedImage, userId: authViewModel.currentUser!.id)
-                                }
-                            }
-                        }) {
-                            PhotoPicker(selectedImage: $image)
-                        }
+//            .sheet(isPresented: $isPickerPresented, onDismiss: {
+//                            // シートが閉じられたときの処理
+//                            if let selectedImage = imageUrl {
+//                                print("Image selected, calling saveMeal")
+//                                Task {
+//                                    await homePageViewModel.saveMeal(type: type, image: selectedImage, userId: authViewModel.currentUser!.id)
+//                                }
+//                            }
+//                        }) {
+//                            PhotoPicker(selectedImage: $image)
+//                        }
+        }
+    }
+    
+    private func title(type: Int) -> String {
+        if (type == 0) {
+            return "朝"
+        } else if (type == 1) {
+            return "昼"
+        } else if (type == 2) {
+            return "夜"
+        } else {
+            return "間食"
         }
     }
 }

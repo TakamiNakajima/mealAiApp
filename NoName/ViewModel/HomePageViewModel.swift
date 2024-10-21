@@ -8,6 +8,10 @@ class HomePageViewModel: ObservableObject {
     @Published var thisMonthDays: [String] = []
     @Published var selectedDate: String = ""
     @Published var isLoading: Bool = false
+    @Published var morningMeal: Meal? = nil
+    @Published var lunchMeal: Meal? = nil
+    @Published var dinnerMeal: Meal? = nil
+    @Published var breakMeal: Meal? = nil
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
@@ -21,6 +25,10 @@ class HomePageViewModel: ObservableObject {
             self.thisMonthDays = dateStringsInSeptenber
             self.calories = self.calculateCalories(steps: Int(self.stepCount), weight: 60.0)
         }
+        
+        // 食事記録取得
+        await fetchMeal(date: Date(), userId: uid)
+        
         if stepCount != 0.0 {
             do {
                 try await stepRepository.saveSteps(uid: uid, steps: self.stepCount)
@@ -42,7 +50,7 @@ class HomePageViewModel: ObservableObject {
         let mets = 3.5
         let speed = 4.8
         let strideLength = 0.75
-
+        
         // 距離を計算 (km)
         let distance = Double(steps) * strideLength / 1000
         
@@ -110,11 +118,11 @@ class HomePageViewModel: ObservableObject {
         
         do {
             let downloadURL = try await storageRepository.uploadImageToFirebaseStorage(image: image, userId: userId, mealId: mealId)
-                print("Image uploaded successfully! Download URL: \(downloadURL)")
+            print("Image uploaded successfully! Download URL: \(downloadURL)")
             imageURL = downloadURL
-            } catch {
-                print("Error uploading image: \(error)")
-            }
+        } catch {
+            print("Error uploading image: \(error)")
+        }
         
         let currentDate = Date()
         let meal = Meal(id: mealId, type: type, date: currentDate, imageURL: imageURL)
@@ -122,13 +130,39 @@ class HomePageViewModel: ObservableObject {
         do {
             let mealRepository = MealRepository()
             try await mealRepository.saveMeal(meal: meal, userId: userId)
-                print("save meal successfully!")
-            } catch {
-                print("Error uploading image: \(error)")
-            }
+            print("save meal successfully!")
+        } catch {
+            print("Error uploading image: \(error)")
+        }
         
         DispatchQueue.main.async {
             self.isLoading = false
+        }
+    }
+    
+    // 食事記録取得処理
+    func fetchMeal(date: Date, userId: String) async {
+        let mealRepository = MealRepository()
+        for i in 0...3 {
+            do {        
+                print("i: \(i)")
+                let meal = try await mealRepository.fetchMeal(date: date, type: i, userId: userId)
+                print("meal: \(meal)")
+                if (meal == nil) {return}
+                DispatchQueue.main.async {
+                    if (meal!.type == 0) {
+                        self.morningMeal = meal
+                    } else if (meal!.type == 1) {
+                        self.lunchMeal = meal
+                    } else if (meal!.type == 2) {
+                        self.dinnerMeal = meal
+                    } else if (meal!.type == 3) {
+                        self.breakMeal = meal
+                    }
+                }
+            } catch {
+                print("Error uploading image: \(error)")
+            }
         }
     }
 }
