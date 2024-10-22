@@ -16,7 +16,8 @@ extension EnvironmentValues {
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var homePageViewModel = HomePageViewModel()
-    @StateObject var manager = StepRepository()
+    @StateObject var addPageViewModel = AddPageViewModel()
+    @StateObject var stepRepository = StepRepository()
     
     init() {
         FirebaseApp.configure()
@@ -27,7 +28,8 @@ struct NoNameApp: App {
             ContentView()
                 .environmentObject(authViewModel)
                 .environmentObject(homePageViewModel)
-                .environmentObject(manager)
+                .environmentObject(addPageViewModel)
+                .environmentObject(stepRepository)
         }
     }
 }
