@@ -5,25 +5,25 @@ import UIKit
 class AddPageViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
-    func saveMeal(type: Int, image: UIImage, userId: String) async {
+    // 食事記録をDBに保存する
+    func saveMeal(type: Int, image: UIImage, userId: String, date: Date) async {
         DispatchQueue.main.async {
             self.isLoading = true
         }
+        
         let storageRepository = StorageRepository()
         var imageURL: String?
         let mealId = UUID().uuidString
         
         do {
-            let downloadURL = try await storageRepository.uploadImageToFirebaseStorage(image: image, userId: userId, mealId: mealId)
+            let downloadURL = try await storageRepository.uploadImage(image: image, userId: userId, mealId: mealId)
             print("Image uploaded successfully! Download URL: \(downloadURL)")
             imageURL = downloadURL
         } catch {
             print("Error uploading image: \(error)")
         }
         
-        let currentDate = Date()
-        let meal = Meal(id: mealId, type: type, date: currentDate, imageURL: imageURL)
-        
+        let meal = Meal(id: mealId, type: type, date: date, imageURL: imageURL)
         do {
             let mealRepository = MealRepository()
             try await mealRepository.saveMeal(meal: meal, userId: userId)

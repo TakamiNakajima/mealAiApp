@@ -47,7 +47,7 @@ struct MealImage: View {
                                 .foregroundColor(.gray)
                         )
                     
-                    Text(title(type: type))
+                    Text(Texts.title(type: type))
                         .font(.subheadline)
                         .padding(5)
                         .foregroundColor(.gray)
@@ -64,18 +64,6 @@ struct MealImage: View {
 //                        }) {
 //                            PhotoPicker(selectedImage: $image)
 //                        }
-        }
-    }
-    
-    private func title(type: Int) -> String {
-        if (type == 0) {
-            return "朝"
-        } else if (type == 1) {
-            return "昼"
-        } else if (type == 2) {
-            return "夜"
-        } else {
-            return "間食"
         }
     }
 }

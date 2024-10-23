@@ -117,7 +117,7 @@ class HomePageViewModel: ObservableObject {
         let mealId = UUID().uuidString
         
         do {
-            let downloadURL = try await storageRepository.uploadImageToFirebaseStorage(image: image, userId: userId, mealId: mealId)
+            let downloadURL = try await storageRepository.uploadImage(image: image, userId: userId, mealId: mealId)
             print("Image uploaded successfully! Download URL: \(downloadURL)")
             imageURL = downloadURL
         } catch {
