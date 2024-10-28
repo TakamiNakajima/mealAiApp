@@ -8,10 +8,11 @@ class HomePageViewModel: ObservableObject {
     @Published var thisMonthDays: [String] = []
     @Published var selectedDate: String = ""
     @Published var isLoading: Bool = false
-    @Published var morningMeal: Meal? = nil
-    @Published var lunchMeal: Meal? = nil
-    @Published var dinnerMeal: Meal? = nil
-    @Published var breakMeal: Meal? = nil
+    @Published var morningMeal: Meal?
+    @Published var lunchMeal: Meal?
+    @Published var dinnerMeal: Meal?
+    @Published var breakMeal: Meal?
+    @Published var totalKcal: Int?
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
@@ -125,7 +126,7 @@ class HomePageViewModel: ObservableObject {
         }
         
         let currentDate = Date()
-        let meal = Meal(id: mealId, type: type, date: currentDate, imageURL: imageURL)
+        let meal = Meal(id: mealId, type: type, date: currentDate, imageURL: imageURL, kcal: 500)
         
         do {
             let mealRepository = MealRepository()
@@ -143,12 +144,15 @@ class HomePageViewModel: ObservableObject {
     // 食事記録取得処理
     func fetchMeal(date: Date, userId: String) async {
         let mealRepository = MealRepository()
+        var totalkcal = 0
+        
         for i in 0...3 {
-            do {        
+            do {
                 print("i: \(i)")
                 let meal = try await mealRepository.fetchMeal(date: date, type: i, userId: userId)
                 print("meal: \(meal)")
                 if (meal == nil) {return}
+                totalkcal += meal!.kcal
                 DispatchQueue.main.async {
                     if (meal!.type == 0) {
                         self.morningMeal = meal
@@ -162,6 +166,10 @@ class HomePageViewModel: ObservableObject {
                 }
             } catch {
                 print("Error uploading image: \(error)")
+            }
+            
+            DispatchQueue.main.async {
+                self.totalKcal = totalkcal
             }
         }
     }

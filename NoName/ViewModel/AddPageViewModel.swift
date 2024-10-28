@@ -6,7 +6,7 @@ class AddPageViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     // 食事記録をDBに保存する
-    func saveMeal(type: Int, image: UIImage, userId: String, date: Date) async {
+    func saveMeal(type: Int, image: UIImage, userId: String, date: Date, kcal: Int) async {
         DispatchQueue.main.async {
             self.isLoading = true
         }
@@ -23,7 +23,7 @@ class AddPageViewModel: ObservableObject {
             print("Error uploading image: \(error)")
         }
         
-        let meal = Meal(id: mealId, type: type, date: date, imageURL: imageURL)
+        let meal = Meal(id: mealId, type: type, date: date, imageURL: imageURL, kcal: kcal)
         do {
             let mealRepository = MealRepository()
             try await mealRepository.saveMeal(meal: meal, userId: userId)

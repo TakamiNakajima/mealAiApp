@@ -57,7 +57,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        CaloriesConteiner()
+                        CaloriesConteiner(kcal: homePageViewModel.totalKcal ?? 0)
                     }
                     
                     // 運動

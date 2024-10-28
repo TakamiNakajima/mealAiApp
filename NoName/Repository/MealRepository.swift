@@ -15,9 +15,10 @@ class MealRepository: ObservableObject {
                 "mealId": meal.id,
                 "type": meal.type,
                 "date": meal.date,
+                "kcal": meal.kcal,
                 "imageUrl": meal.imageURL,
                 "timeStamp": FieldValue.serverTimestamp()
-            ], mergeFields:  ["mealId", "type", "date", "imageUrl", "timeStamp"])
+            ], mergeFields:  ["mealId", "type", "date", "kcal", "imageUrl", "timeStamp"])
             print("save meal success")
         } catch {
             print("save meal error \(error)")
