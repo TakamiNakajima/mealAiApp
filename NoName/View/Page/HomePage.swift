@@ -16,7 +16,7 @@ struct HomePage: View {
                     VStack {
                         Text("2024年9月")
                             .font(.headline)
-                            .fontWeight(.light)
+                            .fontWeight(.bold)
                             .foregroundColor(Color.blue)
                         
                         ScrollViewReader { proxy in
@@ -57,7 +57,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        CaloriesConteiner(kcal: homePageViewModel.totalKcal ?? 0)
+                        CaloriesConteiner(totalKcal: homePageViewModel.totalKcal ?? 0, goalKcal: homePageViewModel.goalKcal ?? 0)
                     }
                     
                     // 運動

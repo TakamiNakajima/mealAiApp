@@ -13,6 +13,7 @@ class HomePageViewModel: ObservableObject {
     @Published var dinnerMeal: Meal?
     @Published var breakMeal: Meal?
     @Published var totalKcal: Int?
+    @Published var goalKcal: Int? = 1500
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
