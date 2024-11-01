@@ -43,7 +43,7 @@ struct BottomBar: View {
                             .frame(width: 60, height: 60)
                             .foregroundStyle(
                                 LinearGradient(
-                                    gradient: Gradient(colors: [.mint, .blue]),
+                                    gradient: Gradient(colors: (selectedTab == .add) ? [.gray, .gray] : [.mint, .blue]),
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )

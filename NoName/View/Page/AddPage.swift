@@ -7,51 +7,51 @@ struct AddPage: View {
     @EnvironmentObject var addPageViewModel: AddPageViewModel
     @State private var isPickerPresented = false
     @State private var image: UIImage?
-    @State private var type: Int?
+    @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
-    @State private var inputNumber: Int = 0
+    @State private var inputKcal: Int?
     
     var body: some View {
         if let user = authViewModel.currentUser {
             ZStack {
-                VStack(spacing: 32) {
+                VStack(spacing: 16) {
                     
-                    Picker("Select a number", selection: $type) {
-                        ForEach(0..<4) { number in
-                            Text("\(Texts.title(type: number))").tag(Optional(number))
-                        }
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                    .frame(width: 100, height: 160)
+                    HStack() {
+                        ToggleButton(selectedType: $selectedType, value: 0)
+                        ToggleButton(selectedType: $selectedType, value: 1)
+                        ToggleButton(selectedType: $selectedType, value: 2)
+                        ToggleButton(selectedType: $selectedType, value: 3)
+                            }
+                            .padding()
                     
-                    MealImageLarge(type: $type, userId: authViewModel.currentUser!.id, isPickerPresented: $isPickerPresented, image: $image)
-                    
+                    Spacer()
+                        .frame(height: 80)
                     DatePicker("日付を選択", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
-                        .frame(width: 300, height: 100)
+                        .frame(width: 300, height: 60)
                         .environment(\.locale, Locale(identifier: "ja_JP"))
-                                        
-                    TextField("カロリー", value: $inputNumber, formatter: NumberFormatter())
+                    Spacer()
+                        .frame(height: 80)
+                    
+                    MealImageLarge(type: $selectedType, userId: authViewModel.currentUser!.id, isPickerPresented: $isPickerPresented, image: $image)
+                                              
+                    Text("カロリー")
+                    TextField("kcal", value: $inputKcal, formatter: NumberFormatter())
                         .keyboardType(.numberPad)
-                        .padding()
+                        .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
-                                        
-                    Button(action: {
+                             
+                    Spacer()
+                        .frame(height: 8)
+                    
+                    PrimaryButton(title: "保存", width: 120, height: 40) {
                         Task {
-                            if (image != nil) {
-                                await addPageViewModel.saveMeal(type: type ?? 0, image: image!, userId: authViewModel.currentUser!.id, date: selectedDate, kcal: inputNumber)
-                                
+                            if (image != nil && inputKcal != nil) {
+                                await addPageViewModel.saveMeal(type: selectedType, image: image!, userId: authViewModel.currentUser!.id, date: selectedDate, kcal: inputKcal!)
                             }
                         }
-                    }) {
-                        Text("保存")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(.blue)
-                            .cornerRadius(10)
                     }
                     
                     Spacer()
@@ -70,6 +70,25 @@ struct AddPage: View {
                     
                 }
             }
+        }
+    }
+}
+
+// トグルボタン
+struct ToggleButton: View {
+    @Binding var selectedType: Int
+    var value: Int
+
+    var body: some View {
+        Button(action: {
+            selectedType = value
+        }) {
+            Text(Texts.title(type: value))
+                .frame(width: 56, height: 32)
+                .font(.subheadline)
+                .background(selectedType == value ? Color.blue : Color.gray)
+                .foregroundColor(.white)
+                .cornerRadius(16)
         }
     }
 }

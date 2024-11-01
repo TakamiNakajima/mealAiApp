@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MealImageLarge: View {
-    @Binding var type: Int?
+    @Binding var type: Int
     var userId: String
     @Binding var isPickerPresented: Bool
     @Binding var image: UIImage?
@@ -28,7 +28,7 @@ struct MealImageLarge: View {
                                 .foregroundColor(.gray)
                         )
                     
-                    Text(Texts.title(type: type ?? 0))
+                    Text(Texts.title(type: type))
                         .font(.subheadline)
                         .padding(5)
                         .foregroundColor(.gray)
