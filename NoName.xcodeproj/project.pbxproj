@@ -54,6 +54,8 @@
 		4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */; };
 		4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6182BB8E92B002ABB9F /* StepRepository.swift */; };
 		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
+		4D6A94372CD45C46007C68C2 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A94362CD45C46007C68C2 /* SettingViewController.swift */; };
+		4D6A94392CD45C97007C68C2 /* SettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */; };
 		4D73F9E52CBBC033002CBB7A /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */; };
 		4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */; };
 		4D73F9E92CC13AFA002CBB7A /* MealImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E82CC13AFA002CBB7A /* MealImage.swift */; };
@@ -66,7 +68,6 @@
 		4DE08D612CAE5E3E00277825 /* VideoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D602CAE5E3E00277825 /* VideoPage.swift */; };
 		4DE08D632CAE5E5B00277825 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D622CAE5E5B00277825 /* AddPage.swift */; };
 		4DE08D652CAE5E8900277825 /* NotificationPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D642CAE5E8900277825 /* NotificationPage.swift */; };
-		4DE08D672CAE5EA800277825 /* SettingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D662CAE5EA800277825 /* SettingPage.swift */; };
 		4DE08D692CAE625200277825 /* DashedCircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D682CAE625200277825 /* DashedCircleText.swift */; };
 		4DE08D6B2CAE667B00277825 /* CircleText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D6A2CAE667B00277825 /* CircleText.swift */; };
 /* End PBXBuildFile section */
@@ -95,6 +96,8 @@
 		4D56C61A2BB8EB4D002ABB9F /* NoName.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoName.entitlements; sourceTree = "<group>"; };
 		4D56C61B2BB8EB9D002ABB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		4D6A94362CD45C46007C68C2 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingViewController.storyboard; sourceTree = "<group>"; };
 		4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 		4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4D73F9E82CC13AFA002CBB7A /* MealImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImage.swift; sourceTree = "<group>"; };
@@ -107,7 +110,6 @@
 		4DE08D602CAE5E3E00277825 /* VideoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPage.swift; sourceTree = "<group>"; };
 		4DE08D622CAE5E5B00277825 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
 		4DE08D642CAE5E8900277825 /* NotificationPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPage.swift; sourceTree = "<group>"; };
-		4DE08D662CAE5EA800277825 /* SettingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPage.swift; sourceTree = "<group>"; };
 		4DE08D682CAE625200277825 /* DashedCircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedCircleText.swift; sourceTree = "<group>"; };
 		4DE08D6A2CAE667B00277825 /* CircleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -217,6 +219,7 @@
 				4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */,
 				4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */,
 				4D2127D42CC7C7B400C5457E /* AddPageViewModel.swift */,
+				4D6A94362CD45C46007C68C2 /* SettingViewController.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -269,7 +272,7 @@
 				4DE08D602CAE5E3E00277825 /* VideoPage.swift */,
 				4DE08D622CAE5E5B00277825 /* AddPage.swift */,
 				4DE08D642CAE5E8900277825 /* NotificationPage.swift */,
-				4DE08D662CAE5EA800277825 /* SettingPage.swift */,
+				4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A94392CD45C97007C68C2 /* SettingViewController.storyboard in Resources */,
 				4D54DF052BADCA4900101545 /* Preview Assets.xcassets in Resources */,
 				4D54DF022BADCA4900101545 /* Assets.xcassets in Resources */,
 				4D54DF222BAFBA3C00101545 /* GoogleService-Info.plist in Resources */,
@@ -400,10 +404,10 @@
 				4DE08D692CAE625200277825 /* DashedCircleText.swift in Sources */,
 				4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationView.swift in Sources */,
+				4D6A94372CD45C46007C68C2 /* SettingViewController.swift in Sources */,
 				4DE08D5E2CAE5DCB00277825 /* HomePage.swift in Sources */,
 				4D1876BE2CA6394F000180DC /* Constants.swift in Sources */,
 				4DE08D632CAE5E5B00277825 /* AddPage.swift in Sources */,
-				4DE08D672CAE5EA800277825 /* SettingPage.swift in Sources */,
 				4D56C6192BB8E92B002ABB9F /* StepRepository.swift in Sources */,
 				4D2127D92CC91D7F00C5457E /* MealImageLarge.swift in Sources */,
 				4D37DBBD2BC56BB10083433E /* SettingRowView.swift in Sources */,

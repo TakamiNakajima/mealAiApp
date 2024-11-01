@@ -17,7 +17,7 @@ struct BaseView: View {
             } else if (selectedTab == .notification) {
                 NotificationPage()
             } else if (selectedTab == .message) {
-                SettingPage()
+                UIKitSettingView()
             }
             
             Spacer()
@@ -25,5 +25,16 @@ struct BaseView: View {
             // ボトムナビゲーションバー
             BottomBar(selectedTab: $selectedTab)
         }
+    }
+}
+
+// SettingPage(UIKit)
+struct UIKitSettingView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> SettingViewController {
+        return SettingViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: SettingViewController, context: Context) {
+        // 必要な更新ロジックがあればここに記述
     }
 }
