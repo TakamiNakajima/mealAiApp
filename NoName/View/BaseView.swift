@@ -9,11 +9,11 @@ struct BaseView: View {
     var body: some View {
         VStack {
             if (selectedTab == .home)  {
-                HomePage()
+                HomePage(selectedTab: $selectedTab)
             } else if (selectedTab == .workout) {
                 VideoPage()
             } else if (selectedTab == .add) {
-                AddPage()
+                AddPage(selectedTab: $selectedTab)
             } else if (selectedTab == .notification) {
                 NotificationPage()
             } else if (selectedTab == .message) {

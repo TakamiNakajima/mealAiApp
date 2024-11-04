@@ -6,9 +6,10 @@ struct HomePage: View {
     @EnvironmentObject var homePageViewModel: HomePageViewModel
     @EnvironmentObject var stepRepository: StepRepository
     @State private var isPickerPresented = false
-    
+    @Binding var selectedTab:BottomBarSelectedTab
+
     var body: some View {
-        if let user = authViewModel.currentUser {
+        if let _ = authViewModel.currentUser {
             ZStack {
                 VStack(spacing: 20) {
                     
@@ -89,16 +90,16 @@ struct HomePage: View {
                         .padding(.horizontal, 24)
                         
                         HStack(spacing: 24) {
-                            MealImage(type: 0, imageUrl: homePageViewModel.morningMeal?.imageURL, isPickerPresented: $isPickerPresented)
-                            MealImage(type: 1, imageUrl: homePageViewModel.lunchMeal?.imageURL, isPickerPresented: $isPickerPresented)
+                            MealImage(selectedTab: $selectedTab, type: 0, imageUrl: homePageViewModel.morningMeal?.imageURL)
+                            MealImage(selectedTab: $selectedTab, type: 1, imageUrl: homePageViewModel.lunchMeal?.imageURL)
                         }
                         
                         Spacer()
                             .frame(height: 2)
                         
                         HStack(spacing: 24) {
-                            MealImage(type: 2, imageUrl: homePageViewModel.dinnerMeal?.imageURL, isPickerPresented: $isPickerPresented)
-                            MealImage(type: 3, imageUrl: homePageViewModel.breakMeal?.imageURL, isPickerPresented: $isPickerPresented)
+                            MealImage(selectedTab: $selectedTab, type: 2, imageUrl: homePageViewModel.dinnerMeal?.imageURL)
+                            MealImage(selectedTab: $selectedTab, type: 3, imageUrl: homePageViewModel.breakMeal?.imageURL)
                         }
                     }
                 }

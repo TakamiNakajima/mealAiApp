@@ -9,10 +9,11 @@ struct AddPage: View {
     @State private var image: UIImage?
     @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
-    @State private var inputKcal: Int?
+    @State private var inputKcal: Int = 0
+    @Binding var selectedTab:BottomBarSelectedTab
     
     var body: some View {
-        if let user = authViewModel.currentUser {
+        if let _ = authViewModel.currentUser {
             ZStack {
                 VStack(spacing: 16) {
                     
@@ -42,14 +43,41 @@ struct AddPage: View {
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
+                        .submitLabel(.done)
+                        .onChange(of: inputKcal) { newValue in
+                            inputKcal = newValue
+                            print(inputKcal)
+                        }
+                        .onSubmit {
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                Button("完了") {
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }
+                            }
+                        }
                              
                     Spacer()
                         .frame(height: 8)
                     
-                    PrimaryButton(title: "保存", width: 120, height: 40) {
+                    PrimaryButton(title: "保存", width: 240, height: 48) {
                         Task {
-                            if (image != nil && inputKcal != nil) {
-                                await addPageViewModel.saveMeal(type: selectedType, image: image!, userId: authViewModel.currentUser!.id, date: selectedDate, kcal: inputKcal!)
+                            print("image \(image)")
+                            print("inputKcal \(inputKcal)")
+                            if (image != nil) {
+                                await addPageViewModel.saveMeal(
+                                    type: selectedType,
+                                    image: image!,
+                                    userId: authViewModel.currentUser!.id,
+                                    date: selectedDate,
+                                    kcal: inputKcal
+                                )
+                                selectedTab = BottomBarSelectedTab.home
+                            } else {
+                                print("画像がありません")
                             }
                         }
                     }
@@ -58,6 +86,10 @@ struct AddPage: View {
                     
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture {
+                    // キーボードを閉じる
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
                 
                 if addPageViewModel.isLoading {
                     ZStack {

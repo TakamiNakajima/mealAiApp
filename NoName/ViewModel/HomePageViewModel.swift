@@ -149,9 +149,7 @@ class HomePageViewModel: ObservableObject {
         
         for i in 0...3 {
             do {
-                print("i: \(i)")
                 let meal = try await mealRepository.fetchMeal(date: date, type: i, userId: userId)
-                print("meal: \(meal)")
                 if (meal == nil) {return}
                 totalkcal += meal!.kcal
                 DispatchQueue.main.async {

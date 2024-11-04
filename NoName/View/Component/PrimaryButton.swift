@@ -19,8 +19,7 @@ struct PrimaryButton: View {
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 ))
-        
-                .cornerRadius(20)
+                .cornerRadius(height / 2)
         }
     }
 }

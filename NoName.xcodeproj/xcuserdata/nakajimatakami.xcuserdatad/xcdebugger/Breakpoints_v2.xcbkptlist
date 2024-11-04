@@ -167,22 +167,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "04A2913F-5073-45B2-A0BC-C34F4AE539DB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NoName/View/Component/MealImage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "19E1B296-54D9-4A77-9A2A-B76B5428AFE4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -192,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
             endingLineNumber = "146"
-            landmarkName = "HomePageViewModel"
-            landmarkType = "3">
+            landmarkName = "fetchMeal(date:userId:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "19E1B296-54D9-4A77-9A2A-B76B5428AFE4 - b616b73db3f98d22"
@@ -231,7 +215,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6276532D-31F0-4E76-B548-FF3276100C50"
+            uuid = "EDD2907E-EDA4-4388-AEA7-35AF445635DF"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -242,84 +226,84 @@
             endingLineNumber = "153"
             landmarkName = "fetchMeal(date:userId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6276532D-31F0-4E76-B548-FF3276100C50 - 6aebd97fe1b73240"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for NoName.HomePageViewModel.fetchMeal(date: Foundation.Date, userId: Swift.String) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "976">
-               </Location>
-               <Location
-                  uuid = "6276532D-31F0-4E76-B548-FF3276100C50 - abafb4a912ed5a66"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for NoName.HomePageViewModel.fetchMeal(date: Foundation.Date, userId: Swift.String) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  uuid = "6276532D-31F0-4E76-B548-FF3276100C50 - ff7a34399d549e52"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for NoName.HomePageViewModel.fetchMeal(date: Foundation.Date, userId: Swift.String) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "132">
-               </Location>
-               <Location
-                  uuid = "6276532D-31F0-4E76-B548-FF3276100C50 - 4a32829aa0824825"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for NoName.HomePageViewModel.fetchMeal(date: Foundation.Date, userId: Swift.String) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "108">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EDD2907E-EDA4-4388-AEA7-35AF445635DF"
+            uuid = "9AFDC827-58A4-4830-9C68-B964736A4014"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "NoName/ViewModel/HomePageViewModel.swift"
+            filePath = "NoName/View/Page/AddPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "fetchMeal(date:userId:)"
-            landmarkType = "7">
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "9AFDC827-58A4-4830-9C68-B964736A4014 - 5f5cfc7c2ac1542e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.MealImageLarge, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1520">
+               </Location>
+               <Location
+                  uuid = "9AFDC827-58A4-4830-9C68-B964736A4014 - c140b85516355337"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.MealImageLarge, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "9AFDC827-58A4-4830-9C68-B964736A4014 - 59bbf14736795e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.MealImageLarge, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "9AFDC827-58A4-4830-9C68-B964736A4014 - 5f5cfc7c2ac1542e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.MealImageLarge, SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1284">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

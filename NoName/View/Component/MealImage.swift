@@ -3,12 +3,12 @@ import SwiftUI
 struct MealImage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var homePageViewModel: HomePageViewModel
+    @Binding var selectedTab:BottomBarSelectedTab
     var type: Int
     var imageUrl: String?
-    @Binding var isPickerPresented: Bool
     
     var body: some View {
-        if let image = imageUrl {
+        if let _ = imageUrl {
             AsyncImage(url: URL(string: imageUrl!)) { phase in
                         switch phase {
                         case .empty:
@@ -35,7 +35,7 @@ struct MealImage: View {
                     }
         } else {
             Button(action: {
-                isPickerPresented = true
+                selectedTab = BottomBarSelectedTab.add
             }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
@@ -53,17 +53,6 @@ struct MealImage: View {
                         .foregroundColor(.gray)
                 }
             }
-//            .sheet(isPresented: $isPickerPresented, onDismiss: {
-//                            // シートが閉じられたときの処理
-//                            if let selectedImage = imageUrl {
-//                                print("Image selected, calling saveMeal")
-//                                Task {
-//                                    await homePageViewModel.saveMeal(type: type, image: selectedImage, userId: authViewModel.currentUser!.id)
-//                                }
-//                            }
-//                        }) {
-//                            PhotoPicker(selectedImage: $image)
-//                        }
         }
     }
 }

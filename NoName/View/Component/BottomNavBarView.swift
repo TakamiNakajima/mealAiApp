@@ -7,6 +7,10 @@ enum BottomBarSelectedTab:Int{
     case add = 2
     case notification = 3
     case message = 4
+    
+    init?(from rawValue: Int) {
+        self.init(rawValue: rawValue)
+    }
 }
 
 // ボトムナビゲーションバー
