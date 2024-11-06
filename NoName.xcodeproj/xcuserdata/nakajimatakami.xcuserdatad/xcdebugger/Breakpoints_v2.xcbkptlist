@@ -176,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
             endingLineNumber = "103"
-            landmarkName = "fetchMeal(date:userId:)"
-            landmarkType = "7">
+            landmarkName = "HomePageViewModel"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "19E1B296-54D9-4A77-9A2A-B76B5428AFE4 - b616b73db3f98d22"

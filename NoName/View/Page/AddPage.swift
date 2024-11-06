@@ -25,7 +25,7 @@ struct AddPage: View {
                     .padding()
                     
                     Spacer()
-                        .frame(height: 80)
+                        .frame(height: 40)
                     DatePicker("日付を選択", selection: $selectedDate, displayedComponents: [.date, .hourAndMinute])
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
@@ -33,12 +33,12 @@ struct AddPage: View {
                         .environment(\.locale, Locale(identifier: "ja_JP"))
                     
                     Spacer()
-                        .frame(height: 80)
+                        .frame(height: 40)
                     
                     // タイトル
                     TextField("タイトル", value: $title, formatter: NumberFormatter())
                         .keyboardType(.numberPad)
-                        .frame(width: 100)
+                        .frame(width: 200, height: 80)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
                         .submitLabel(.done)
@@ -56,12 +56,6 @@ struct AddPage: View {
                                 }
                             }
                         }
-                    
-                    
-                    
-                    
-                    Spacer()
-                        .frame(height: 80)
                     
                     HStack {
                         TextField("円", value: $inputKcal, formatter: NumberFormatter())
@@ -88,32 +82,22 @@ struct AddPage: View {
                         Text("円")
                         
                     }
-                    
-                    Spacer()
-                        .frame(height: 40)
-                    
-                    
-                    MealImageLarge(type: $selectedType, userId: authViewModel.currentUser!.id, isPickerPresented: $isPickerPresented, image: $image)
-                    
-                    
+                                        
                     Spacer()
                         .frame(height: 8)
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
+                        if (image == nil) { return }
                         Task {
-                            if (image != nil) {
-                                await addPageViewModel.saveRecord(
-                                    type: selectedType,
-                                    title: title,
-                                    image: image!,
-                                    userId: authViewModel.currentUser!.id,
-                                    date: selectedDate,
-                                    price: inputKcal
-                                )
-                                selectedTab = BottomBarSelectedTab.home
-                            } else {
-                                print("画像がありません")
-                            }
+                            await addPageViewModel.saveRecord(
+                                type: selectedType,
+                                title: title,
+                                image: image!,
+                                userId: authViewModel.currentUser!.id,
+                                date: selectedDate,
+                                price: inputKcal
+                            )
+                            selectedTab = BottomBarSelectedTab.home
                         }
                     }
                     
