@@ -3,9 +3,9 @@ import SwiftUI
 // 現在選択中のボトムナビゲーションタブ
 enum BottomBarSelectedTab:Int{
     case home = 0
-    case workout = 1
+    case calendar = 1
     case add = 2
-    case notification = 3
+    case report = 3
     case message = 4
     
     init?(from rawValue: Int) {
@@ -30,11 +30,11 @@ struct BottomBar: View {
                 BottomBarButtonView(image: "house", text: "ホーム", isActive: selectedTab == .home)
             }
             
-            // ワークアウト
+            // カレンダー
             Button {
-                selectedTab = .workout
+                selectedTab = .calendar
             } label: {
-                BottomBarButtonView(image: "movieclapper", text: "動画", isActive: selectedTab == .workout)
+                BottomBarButtonView(image: "calendar", text: "カレンダー", isActive: selectedTab == .calendar)
             }
             
             // 追加
@@ -63,14 +63,14 @@ struct BottomBar: View {
                 }
             }
             
-            // お知らせ
+            // レポート
             Button {
-                selectedTab = .notification
+                selectedTab = .report
             } label: {
-                BottomBarButtonView(image: "bell", text: "お知らせ", isActive: selectedTab == .notification)
+                BottomBarButtonView(image: "list.clipboard", text: "レポート", isActive: selectedTab == .report)
             }
             
-            // メッセージ
+            // 設定
             Button {
                 selectedTab = .message
             } label: {

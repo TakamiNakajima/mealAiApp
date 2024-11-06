@@ -50,7 +50,7 @@ struct HomePage: View {
                     // 総カロリー表示
                     VStack(spacing: 8) {
                         HStack {
-                            Text("総カロリー")
+                            Text("トータル")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.gray)
@@ -61,27 +61,25 @@ struct HomePage: View {
                         CaloriesConteiner(totalKcal: homePageViewModel.totalKcal ?? 0, goalKcal: homePageViewModel.goalKcal ?? 0)
                     }
                     
-                    // 運動
+                    // 支出
                     VStack(spacing: 8) {
                         HStack {
-                            Text("運動")
+                            Text("支出")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.gray)
                             Spacer()
                         }
                         .padding(.horizontal, 24)
-                        
-                        HStack(spacing: 24) {
-                            HealthDataConteiner(title: "歩数", value: "\(homePageViewModel.stepCount.formattedString())", isStep: true)
-                            HealthDataConteiner(title: "消費カロリー", value: "\(homePageViewModel.calories.formattedString())", isStep: false)
-                        }
+                    
+                        RecordContainer(title: "コンビニ", value: "\(homePageViewModel.stepCount.formattedString())")
+
                     }
                     
-                    // 食事
+                    // 収入
                     VStack(spacing: 8) {
                         HStack {
-                            Text("食事")
+                            Text("収入")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.gray)
@@ -89,18 +87,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        HStack(spacing: 24) {
-                            MealImage(selectedTab: $selectedTab, type: 0, imageUrl: homePageViewModel.morningMeal?.imageURL)
-                            MealImage(selectedTab: $selectedTab, type: 1, imageUrl: homePageViewModel.lunchMeal?.imageURL)
-                        }
-                        
-                        Spacer()
-                            .frame(height: 2)
-                        
-                        HStack(spacing: 24) {
-                            MealImage(selectedTab: $selectedTab, type: 2, imageUrl: homePageViewModel.dinnerMeal?.imageURL)
-                            MealImage(selectedTab: $selectedTab, type: 3, imageUrl: homePageViewModel.breakMeal?.imageURL)
-                        }
+                        RecordContainer(title: "友人からの返金", value: "\(homePageViewModel.stepCount.formattedString())")
                     }
                 }
                 .onAppear {

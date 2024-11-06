@@ -10,6 +10,7 @@ struct AddPage: View {
     @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
     @State private var inputKcal: Int = 0
+    @State private var title: String = ""
     @Binding var selectedTab:BottomBarSelectedTab
     
     var body: some View {
@@ -20,10 +21,8 @@ struct AddPage: View {
                     HStack() {
                         ToggleButton(selectedType: $selectedType, value: 0)
                         ToggleButton(selectedType: $selectedType, value: 1)
-                        ToggleButton(selectedType: $selectedType, value: 2)
-                        ToggleButton(selectedType: $selectedType, value: 3)
-                            }
-                            .padding()
+                    }
+                    .padding()
                     
                     Spacer()
                         .frame(height: 80)
@@ -32,21 +31,19 @@ struct AddPage: View {
                         .labelsHidden()
                         .frame(width: 300, height: 60)
                         .environment(\.locale, Locale(identifier: "ja_JP"))
+                    
                     Spacer()
                         .frame(height: 80)
                     
-                    MealImageLarge(type: $selectedType, userId: authViewModel.currentUser!.id, isPickerPresented: $isPickerPresented, image: $image)
-                                              
-                    Text("カロリー")
-                    TextField("kcal", value: $inputKcal, formatter: NumberFormatter())
+                    // タイトル
+                    TextField("タイトル", value: $title, formatter: NumberFormatter())
                         .keyboardType(.numberPad)
                         .frame(width: 100)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
                         .submitLabel(.done)
-                        .onChange(of: inputKcal) { newValue in
-                            inputKcal = newValue
-                            print(inputKcal)
+                        .onChange(of: title) { newValue in
+                            title = newValue
                         }
                         .onSubmit {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -59,21 +56,59 @@ struct AddPage: View {
                                 }
                             }
                         }
-                             
+                    
+                    
+                    
+                    
+                    Spacer()
+                        .frame(height: 80)
+                    
+                    HStack {
+                        TextField("円", value: $inputKcal, formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                            .frame(width: 100)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .multilineTextAlignment(.center)
+                            .submitLabel(.done)
+                            .onChange(of: inputKcal) { newValue in
+                                inputKcal = newValue
+                            }
+                            .onSubmit {
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            }
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
+                                    Button("完了") {
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                }
+                            }
+                        
+                        Text("円")
+                        
+                    }
+                    
+                    Spacer()
+                        .frame(height: 40)
+                    
+                    
+                    MealImageLarge(type: $selectedType, userId: authViewModel.currentUser!.id, isPickerPresented: $isPickerPresented, image: $image)
+                    
+                    
                     Spacer()
                         .frame(height: 8)
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
                         Task {
-                            print("image \(image)")
-                            print("inputKcal \(inputKcal)")
                             if (image != nil) {
-                                await addPageViewModel.saveMeal(
+                                await addPageViewModel.saveRecord(
                                     type: selectedType,
+                                    title: title,
                                     image: image!,
                                     userId: authViewModel.currentUser!.id,
                                     date: selectedDate,
-                                    kcal: inputKcal
+                                    price: inputKcal
                                 )
                                 selectedTab = BottomBarSelectedTab.home
                             } else {
@@ -110,17 +145,26 @@ struct AddPage: View {
 struct ToggleButton: View {
     @Binding var selectedType: Int
     var value: Int
-
+    
     var body: some View {
         Button(action: {
             selectedType = value
         }) {
             Text(Texts.title(type: value))
-                .frame(width: 56, height: 32)
+                .frame(width: 80, height: 40)
                 .font(.subheadline)
-                .background(selectedType == value ? Color.blue : Color.gray)
+                .background(selectedType == value
+                            ? LinearGradient(
+                                gradient: Gradient(colors: [.mint, .blue]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ) : LinearGradient(
+                                gradient: Gradient(colors: [.gray, .gray]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ))
                 .foregroundColor(.white)
-                .cornerRadius(16)
+                .cornerRadius(24)
         }
     }
 }

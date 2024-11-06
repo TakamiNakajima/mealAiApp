@@ -60,11 +60,11 @@
 		4D73F9E52CBBC033002CBB7A /* HomePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */; };
 		4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */; };
 		4D73F9E92CC13AFA002CBB7A /* MealImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E82CC13AFA002CBB7A /* MealImage.swift */; };
-		4D73F9EB2CC13B20002CBB7A /* HealthDataConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */; };
+		4D73F9EB2CC13B20002CBB7A /* RecordContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9EA2CC13B20002CBB7A /* RecordContainer.swift */; };
 		4D73F9ED2CC13B6A002CBB7A /* CaloriesConteiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */; };
-		4D7D39A22CC22437001534E1 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D39A12CC22437001534E1 /* Meal.swift */; };
+		4D7D39A22CC22437001534E1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D39A12CC22437001534E1 /* Record.swift */; };
 		4DDEC62A2CC4E26C00E4EAFA /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */; };
-		4DDEC62C2CC4F06500E4EAFA /* MealRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC62B2CC4F06500E4EAFA /* MealRepository.swift */; };
+		4DDEC62C2CC4F06500E4EAFA /* RecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */; };
 		4DE08D5E2CAE5DCB00277825 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D5D2CAE5DCB00277825 /* HomePage.swift */; };
 		4DE08D612CAE5E3E00277825 /* VideoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D602CAE5E3E00277825 /* VideoPage.swift */; };
 		4DE08D632CAE5E5B00277825 /* AddPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D622CAE5E5B00277825 /* AddPage.swift */; };
@@ -103,11 +103,11 @@
 		4D73F9E42CBBC033002CBB7A /* HomePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewModel.swift; sourceTree = "<group>"; };
 		4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		4D73F9E82CC13AFA002CBB7A /* MealImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealImage.swift; sourceTree = "<group>"; };
-		4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataConteiner.swift; sourceTree = "<group>"; };
+		4D73F9EA2CC13B20002CBB7A /* RecordContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordContainer.swift; sourceTree = "<group>"; };
 		4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesConteiner.swift; sourceTree = "<group>"; };
-		4D7D39A12CC22437001534E1 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		4D7D39A12CC22437001534E1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
-		4DDEC62B2CC4F06500E4EAFA /* MealRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealRepository.swift; sourceTree = "<group>"; };
+		4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepository.swift; sourceTree = "<group>"; };
 		4DE08D5D2CAE5DCB00277825 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		4DE08D602CAE5E3E00277825 /* VideoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPage.swift; sourceTree = "<group>"; };
 		4DE08D622CAE5E5B00277825 /* AddPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPage.swift; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				4D54DF1F2BAFA9BD00101545 /* User.swift */,
-				4D7D39A12CC22437001534E1 /* Meal.swift */,
+				4D7D39A12CC22437001534E1 /* Record.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			children = (
 				4D56C6182BB8E92B002ABB9F /* StepRepository.swift */,
 				4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */,
-				4DDEC62B2CC4F06500E4EAFA /* MealRepository.swift */,
+				4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 				4DE08D682CAE625200277825 /* DashedCircleText.swift */,
 				4DE08D6A2CAE667B00277825 /* CircleText.swift */,
 				4D73F9E82CC13AFA002CBB7A /* MealImage.swift */,
-				4D73F9EA2CC13B20002CBB7A /* HealthDataConteiner.swift */,
+				4D73F9EA2CC13B20002CBB7A /* RecordContainer.swift */,
 				4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */,
 				4D2127D82CC91D7F00C5457E /* MealImageLarge.swift */,
 				4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */,
@@ -388,7 +388,7 @@
 				4D54DF162BADCD4300101545 /* InputView.swift in Sources */,
 				4DE08D6B2CAE667B00277825 /* CircleText.swift in Sources */,
 				4D1876C42CA67352000180DC /* TopTabView.swift in Sources */,
-				4D7D39A22CC22437001534E1 /* Meal.swift in Sources */,
+				4D7D39A22CC22437001534E1 /* Record.swift in Sources */,
 				4DE08D652CAE5E8900277825 /* NotificationPage.swift in Sources */,
 				4D54DF002BADCA4700101545 /* ContentView.swift in Sources */,
 				4D2127D52CC7C7B400C5457E /* AddPageViewModel.swift in Sources */,
@@ -402,8 +402,8 @@
 				4D1876C22CA639D8000180DC /* BaseView.swift in Sources */,
 				4D1876C02CA6397E000180DC /* BottomNavBarView.swift in Sources */,
 				4D73F9E52CBBC033002CBB7A /* HomePageViewModel.swift in Sources */,
-				4D73F9EB2CC13B20002CBB7A /* HealthDataConteiner.swift in Sources */,
-				4DDEC62C2CC4F06500E4EAFA /* MealRepository.swift in Sources */,
+				4D73F9EB2CC13B20002CBB7A /* RecordContainer.swift in Sources */,
+				4DDEC62C2CC4F06500E4EAFA /* RecordRepository.swift in Sources */,
 				4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */,
 				4DE08D692CAE625200277825 /* DashedCircleText.swift in Sources */,
 				4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */,

@@ -10,11 +10,11 @@ struct BaseView: View {
         VStack {
             if (selectedTab == .home)  {
                 HomePage(selectedTab: $selectedTab)
-            } else if (selectedTab == .workout) {
+            } else if (selectedTab == .calendar) {
                 VideoPage()
             } else if (selectedTab == .add) {
                 AddPage(selectedTab: $selectedTab)
-            } else if (selectedTab == .notification) {
+            } else if (selectedTab == .report) {
                 NotificationPage()
             } else if (selectedTab == .message) {
                 UIKitSettingView()

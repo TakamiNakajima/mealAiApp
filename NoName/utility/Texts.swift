@@ -1,16 +1,14 @@
 import Foundation
 
 class Texts {
-    // 食事タイプのタイトルを返す
+    // 記録タイプのタイトルを返す
     static func title(type: Int) -> String {
         if (type == 0) {
-            return "朝"
+            return "支出"
         } else if (type == 1) {
-            return "昼"
-        } else if (type == 2) {
-            return "夜"
+            return "収入"
         } else {
-            return "間食"
+            return ""
         }
     }
 }

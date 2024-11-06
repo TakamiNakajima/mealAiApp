@@ -1,17 +1,15 @@
 import SwiftUI
 
-struct HealthDataConteiner: View {
+struct RecordContainer: View {
     var title: String
     var value: String
-    var isStep: Bool
     var body: some View {
         ZStack {
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(UIColor.systemGray6))
-                .frame(width: 160, height: 100)
+                .frame(height: 50)
             
-            VStack {
                 HStack {
                     Text(title)
                         .font(.subheadline)
@@ -19,33 +17,21 @@ struct HealthDataConteiner: View {
                         .foregroundColor(.gray)
                     
                     Spacer()
-                }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                
-                Spacer()
-                
-                HStack(alignment: VerticalAlignment.bottom, spacing: 2){
-                    Spacer()
                     
                     Text(value)
-                        .font(.title)
+                        .font(.title2)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
                     
-                    Text((isStep) ? "歩" : "kcal")
+                    Text("円")
                         .font(.headline)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
-                        .padding(.bottom, 2)
-                    
+                        .padding(.top, 4)
                 }
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 12)
                 .padding(.vertical, 4)
-                
-            }
-            .frame(width: 160, height: 100)
-            
         }
+        .padding(.horizontal, 24)
     }
 }

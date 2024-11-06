@@ -10,43 +10,44 @@ struct CaloriesConteiner: View {
             
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(UIColor.systemGray6))
-                .frame(height: 120)
+                .frame(height: 100)
             
             VStack{
+                ProgressView(value: Double(totalKcal), total: Double(goalKcal))
+                    .scaleEffect(x: 1, y: 2, anchor: .center)
+                    .tint(.blue)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 24)
+                
                 HStack {
                     
-                    HStack(spacing: 2) {
+                    HStack(spacing: 0) {
                         Text("\(totalKcal)")
-                            .font(.title2)
+                            .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)
-                            .padding(.bottom, 4)
-                        Text("kcal")
-                            .font(.headline)
+                        Text("円")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)
                     }
                     
-                    HStack(spacing: 2) {
-                        Text("/ \(goalKcal)")
-                            .font(.title2)
+                    Spacer()
+                    
+                    HStack(spacing: 0) {
+                        Text("\(goalKcal)")
+                            .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)
-                            .padding(.bottom, 4)
-
-                        Text("kcal")
-                            .font(.headline)
+                        
+                        Text("円")
+                            .font(.subheadline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)
                     }
                 }
-                
-                ProgressView(value: Double(totalKcal), total: Double(goalKcal))
-                    .scaleEffect(x: 1, y: 2, anchor: .center)
-                    .tint(.blue)
-                    .padding()
+                .padding(.horizontal, 12)
             }
-            
         }
         .padding(.horizontal, 24)
     }
