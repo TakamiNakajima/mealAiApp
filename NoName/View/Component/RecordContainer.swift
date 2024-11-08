@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct RecordContainer: View {
-    var title: String
-    var value: String
+    var isPaymentRecord: Bool
+    var record: Record
     var body: some View {
         ZStack {
             
@@ -11,14 +11,14 @@ struct RecordContainer: View {
                 .frame(height: 50)
             
                 HStack {
-                    Text(title)
+                    Text(record.title)
                         .font(.subheadline)
                         .padding(5)
                         .foregroundColor(.gray)
                     
                     Spacer()
                     
-                    Text(value)
+                    Text(title(isPayment: isPaymentRecord, text: record.price))
                         .font(.title2)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                         .fontWeight(.bold)
@@ -33,5 +33,14 @@ struct RecordContainer: View {
                 .padding(.vertical, 4)
         }
         .padding(.horizontal, 24)
+    }
+    
+    func title(isPayment: Bool, text: Int) -> String {
+        if (isPayment) {
+            return "-\(text)"
+        } else {
+            return "+\(text)"
+
+        }
     }
 }

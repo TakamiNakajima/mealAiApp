@@ -5,7 +5,7 @@ struct Record: Identifiable, Codable {
     var id: String
     var title: String
     var type: Int
-    var date: Date
+    var date: String
     var imageURL: String?
     var price: Int
     
@@ -13,14 +13,13 @@ struct Record: Identifiable, Codable {
         guard let id = jsonDict["recordId"] as? String,
               let title = jsonDict["title"] as? String,
               let type = jsonDict["type"] as? Int,
-              let timestamp = jsonDict["date"] as? Timestamp,
-              let price = jsonDict["price"] as? Int,
-              let imageURL = jsonDict["imageUrl"] as? String else {
+              let date = jsonDict["date"] as? String,
+              let price = jsonDict["price"] as? Int else {
             print("Error: Missing or invalid values in JSON")
             return nil
         }
                 
-        return Record(id: id,title: title, type: type, date: timestamp.dateValue(), imageURL: imageURL, price: price)
+        return Record(id: id,title: title, type: type, date: date, price: price)
     }
     
     func toJson() -> Data? {

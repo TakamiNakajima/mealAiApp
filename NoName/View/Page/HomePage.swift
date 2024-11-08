@@ -7,7 +7,7 @@ struct HomePage: View {
     @EnvironmentObject var stepRepository: StepRepository
     @State private var isPickerPresented = false
     @Binding var selectedTab:BottomBarSelectedTab
-
+    
     var body: some View {
         if let _ = authViewModel.currentUser {
             ZStack {
@@ -28,7 +28,7 @@ struct HomePage: View {
                                             CircleText(number: day)
                                         } else {
                                             DashedCircleText(number: day) {
-                                                homePageViewModel.onTapCircle(day: day)
+                                                homePageViewModel.onTapCircle(day: day, uid: authViewModel.currentUser!.id)
                                                 withAnimation {
                                                     proxy.scrollTo(day, anchor: .center)
                                                 }
@@ -71,9 +71,11 @@ struct HomePage: View {
                             Spacer()
                         }
                         .padding(.horizontal, 24)
-                    
-                        RecordContainer(title: "コンビニ", value: "\(homePageViewModel.stepCount.formattedString())")
-
+                        
+                        ForEach(homePageViewModel.paymentRecordList, id: \.id) { record in
+                            RecordContainer(isPaymentRecord: true, record: record)
+                        }
+                        
                     }
                     
                     // 収入
@@ -87,7 +89,9 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        RecordContainer(title: "友人からの返金", value: "\(homePageViewModel.stepCount.formattedString())")
+                        ForEach(homePageViewModel.incomeRecordList, id: \.id) { record in
+                            RecordContainer(isPaymentRecord: false, record: record)
+                        }
                     }
                 }
                 .onAppear {
@@ -96,19 +100,19 @@ struct HomePage: View {
                         await homePageViewModel.initialize(uid: authViewModel.currentUser!.id)
                     }
                 }
-            
+                
                 if homePageViewModel.isLoading {
                     ZStack {
                         Color.white.opacity(0.6)
                             .ignoresSafeArea()
                         ProgressView("Loading...")
-                                            .progressViewStyle(CircularProgressViewStyle())
-                                            .padding()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .padding()
                     }
                     
                 }
             }
-        
+            
         }
     }
 }

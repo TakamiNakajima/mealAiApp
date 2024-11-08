@@ -8,10 +8,8 @@ class HomePageViewModel: ObservableObject {
     @Published var thisMonthDays: [String] = []
     @Published var selectedDate: String = ""
     @Published var isLoading: Bool = false
-    @Published var morningMeal: Record?
-    @Published var lunchMeal: Record?
-    @Published var dinnerMeal: Record?
-    @Published var breakMeal: Record?
+    @Published var paymentRecordList: [Record] = []
+    @Published var incomeRecordList: [Record] = []
     @Published var totalKcal: Int?
     @Published var goalKcal: Int? = 1500
     
@@ -26,13 +24,27 @@ class HomePageViewModel: ObservableObject {
         }
         
         // 食事記録取得
-        await fetchMeal(date: Date(), userId: uid)
+        await fetchRecords(date: Date(), userId: uid)
     }
     
     // 選択した日付を更新する
-    func onTapCircle(day: String) {
+    func onTapCircle(day: String, uid: String) {
         DispatchQueue.main.async {
             self.selectedDate = day
+            self.fetchRecordsForSelectedDate(uid: uid)
+        }
+    }
+    
+    // selectedDateに基づいて記録を再取得する処理
+    func fetchRecordsForSelectedDate(uid: String) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        // selectedDateの文字列をDate型に変換
+        if let date = dateFormatter.date(from: selectedDate) {
+            Task {
+                await fetchRecords(date: date, userId: uid)
+            }
         }
     }
     
@@ -99,34 +111,28 @@ class HomePageViewModel: ObservableObject {
         return dateStrings
     }
     
-    // 食事記録取得処理
-    func fetchMeal(date: Date, userId: String) async {
-        let mealRepository = RecordRepository()
-        var totalkcal = 0
+    // 記録取得処理
+    func fetchRecords(date: Date, userId: String) async {
+        let recordRepository = RecordRepository()
+        var records: [Record] = []
+        self.paymentRecordList = []
+        self.incomeRecordList = []
         
-        for i in 0...3 {
             do {
-                let meal = try await mealRepository.fetchRecord(date: date, type: i, userId: userId)
-                if (meal == nil) {return}
-                totalkcal += meal!.price
-                DispatchQueue.main.async {
-                    if (meal!.type == 0) {
-                        self.morningMeal = meal
-                    } else if (meal!.type == 1) {
-                        self.lunchMeal = meal
-                    } else if (meal!.type == 2) {
-                        self.dinnerMeal = meal
-                    } else if (meal!.type == 3) {
-                        self.breakMeal = meal
+                records = try await recordRepository.fetchRecords(date: date, userId: userId)
+                records.forEach { record in
+                    if (record.type == 0) {
+                        DispatchQueue.main.async {
+                            self.paymentRecordList.append(record)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.incomeRecordList.append(record)
+                        }
                     }
                 }
             } catch {
                 print("Error uploading image: \(error)")
             }
-            
-            DispatchQueue.main.async {
-                self.totalKcal = totalkcal
-            }
-        }
     }
 }

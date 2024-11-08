@@ -9,8 +9,8 @@ struct AddPage: View {
     @State private var image: UIImage?
     @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
-    @State private var inputKcal: Int = 0
-    @State private var title: String = ""
+    @State private var inputPrice: Int = 0
+    @State private var recordTitle: String = ""
     @Binding var selectedTab:BottomBarSelectedTab
     
     var body: some View {
@@ -36,36 +36,29 @@ struct AddPage: View {
                         .frame(height: 40)
                     
                     // タイトル
-                    TextField("タイトル", value: $title, formatter: NumberFormatter())
-                        .keyboardType(.numberPad)
+                    TextField("タイトル", text: $recordTitle)
                         .frame(width: 200, height: 80)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .multilineTextAlignment(.center)
                         .submitLabel(.done)
-                        .onChange(of: title) { newValue in
-                            title = newValue
+                        .onChange(of: recordTitle) { newValue in
+                            recordTitle = newValue
+                            print(newValue)
                         }
                         .onSubmit {
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                         }
-                        .toolbar {
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()
-                                Button("完了") {
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                }
-                            }
-                        }
                     
                     HStack {
-                        TextField("円", value: $inputKcal, formatter: NumberFormatter())
+                        TextField("円", value: $inputPrice, formatter: NumberFormatter())
                             .keyboardType(.numberPad)
                             .frame(width: 100)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .multilineTextAlignment(.center)
                             .submitLabel(.done)
-                            .onChange(of: inputKcal) { newValue in
-                                inputKcal = newValue
+                            .onChange(of: inputPrice) { newValue in
+                                inputPrice = newValue
+                                print(inputPrice)
                             }
                             .onSubmit {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -87,15 +80,17 @@ struct AddPage: View {
                         .frame(height: 8)
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
-                        if (image == nil) { return }
+                        print("title: \(recordTitle)")
                         Task {
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd"
+                            let dateString = dateFormatter.string(from: selectedDate)
                             await addPageViewModel.saveRecord(
                                 type: selectedType,
-                                title: title,
-                                image: image!,
+                                title: recordTitle,
                                 userId: authViewModel.currentUser!.id,
-                                date: selectedDate,
-                                price: inputKcal
+                                date: dateString,
+                                price: inputPrice
                             )
                             selectedTab = BottomBarSelectedTab.home
                         }
