@@ -3,67 +3,41 @@ import UIKit
 
 @MainActor
 class HomePageViewModel: ObservableObject {
-    @Published var stepCount: Double = 0.0
-    @Published var calories: Double = 0.0
     @Published var thisMonthDays: [String] = []
-    @Published var selectedDate: String = ""
+    @Published var selectedYear: Int = 0
+    @Published var selectedMonth: Int = 0
+    @Published var selectedDay: Int = 0
     @Published var isLoading: Bool = false
     @Published var paymentRecordList: [Record] = []
     @Published var incomeRecordList: [Record] = []
-    @Published var totalKcal: Int?
-    @Published var goalKcal: Int? = 1500
+    @Published var totalPayment: Int = 0
+    @Published var goalKcal: Int = 1500
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
-        let todayDate = getTodayDate()
-        let dateStringsInSeptenber = getDateStringsInMonth(year: 2024, month: 10)
+        let today = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: today)
+        
         DispatchQueue.main.async {
-            self.selectedDate = todayDate
-            self.thisMonthDays = dateStringsInSeptenber
-            self.calories = self.calculateCalories(steps: Int(self.stepCount), weight: 60.0)
+            self.selectedYear = components.year ?? 0
+            self.selectedMonth = components.month ?? 0
+            self.selectedDay = components.day ?? 0
         }
         
+        let dateStrings = getDateStringsInMonth(year: selectedYear, month: selectedMonth)
+        DispatchQueue.main.async {
+            self.thisMonthDays = dateStrings
+        }
         // 食事記録取得
-        await fetchRecords(date: Date(), userId: uid)
+        await fetchRecords(userId: uid, isInitialize: true)
     }
     
     // 選択した日付を更新する
-    func onTapCircle(day: String, uid: String) {
+    func onTapCircle(day: Int, uid: String) {
         DispatchQueue.main.async {
-            self.selectedDate = day
-            self.fetchRecordsForSelectedDate(uid: uid)
+            self.selectedDay = day
         }
-    }
-    
-    // selectedDateに基づいて記録を再取得する処理
-    func fetchRecordsForSelectedDate(uid: String) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        // selectedDateの文字列をDate型に変換
-        if let date = dateFormatter.date(from: selectedDate) {
-            Task {
-                await fetchRecords(date: date, userId: uid)
-            }
-        }
-    }
-    
-    // 歩数から消費カロリーを計算する
-    private func calculateCalories(steps: Int, weight: Double) -> Double {
-        let mets = 3.5
-        let speed = 4.8
-        let strideLength = 0.75
-        
-        // 距離を計算 (km)
-        let distance = Double(steps) * strideLength / 1000
-        
-        // 時間を計算 (時間)
-        let time = distance / speed
-        
-        // 消費カロリーを計算
-        let calories = mets * weight * time
-        
-        return calories
     }
     
     // 今日の日付を取得する
@@ -112,27 +86,58 @@ class HomePageViewModel: ObservableObject {
     }
     
     // 記録取得処理
-    func fetchRecords(date: Date, userId: String) async {
+    func fetchRecords(userId: String, isInitialize: Bool) async {
         let recordRepository = RecordRepository()
         var records: [Record] = []
+        var paymentRecords: [Record] = []
+        var incomeRecords: [Record] = []
         self.paymentRecordList = []
         self.incomeRecordList = []
+        let createDate = (isInitialize) ? Date() : createDateFromSelected()
+        if (createDate == nil) { return }
         
-            do {
-                records = try await recordRepository.fetchRecords(date: date, userId: userId)
-                records.forEach { record in
-                    if (record.type == 0) {
-                        DispatchQueue.main.async {
-                            self.paymentRecordList.append(record)
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.incomeRecordList.append(record)
-                        }
-                    }
+        do {
+            records = try await recordRepository.fetchRecords(date: createDate!, userId: userId)
+            records.forEach { record in
+                if (record.type == 0) {
+                    paymentRecords.append(record)
+                } else {
+                    incomeRecords.append(record)
                 }
-            } catch {
-                print("Error uploading image: \(error)")
             }
+            
+            DispatchQueue.main.async {
+                self.paymentRecordList = paymentRecords
+                self.incomeRecordList = incomeRecords
+            }
+            
+        } catch {
+            print("Error uploading image: \(error)")
+        }
+        
+        // 収支計算
+        var payment = 0
+        var income = 0
+        records.forEach { record in
+            if (record.type == 0) {
+                payment += record.price
+            } else {
+                income += record.price
+            }
+        }
+        
+        DispatchQueue.main.async {
+            self.totalPayment = income - payment
+        }
+    }
+    
+    func createDateFromSelected() -> Date? {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.year = selectedYear
+        components.month = selectedMonth
+        components.day = selectedDay
+        
+        return calendar.date(from: components)
     }
 }

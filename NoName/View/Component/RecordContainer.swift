@@ -18,16 +18,18 @@ struct RecordContainer: View {
                     
                     Spacer()
                     
-                    Text(title(isPayment: isPaymentRecord, text: record.price))
-                        .font(.title2)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                    
-                    Text("円")
-                        .font(.headline)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.bold)
-                        .padding(.top, 4)
+                    HStack(spacing: 2) {
+                        Text(title(isPayment: isPaymentRecord, text: record.price))
+                            .font(.headline)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .fontWeight(.bold)
+                        
+                        Text("円")
+                            .font(.subheadline)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .fontWeight(.bold)
+                            .padding(.top, 2)
+                    }
                 }
                 .padding(.horizontal, 12)
                 .padding(.vertical, 4)

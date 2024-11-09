@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct CaloriesConteiner: View {
-    var totalKcal: Int
-    var goalKcal: Int
+    var totalPayment: Int
+    var goalPayment: Int
     
     var body: some View {
         
@@ -13,16 +13,30 @@ struct CaloriesConteiner: View {
                 .frame(height: 100)
             
             VStack{
-                ProgressView(value: Double(totalKcal), total: Double(goalKcal))
+                
+                HStack(spacing: 2) {
+                    Text("\(totalPayment)")
+                        .font(.title2)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
+                    
+                    Text("円")
+                        .font(.headline)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .fontWeight(.bold)
+                        .padding(.top, 4)
+                }
+                
+                ProgressView(value: 0.3)
                     .scaleEffect(x: 1, y: 2, anchor: .center)
                     .tint(.blue)
-                    .padding(.vertical, 10)
+                    .padding(.bottom, 10)
                     .padding(.horizontal, 24)
                 
                 HStack {
                     
                     HStack(spacing: 0) {
-                        Text("\(totalKcal)")
+                        Text("\(0)")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)
@@ -35,7 +49,7 @@ struct CaloriesConteiner: View {
                     Spacer()
                     
                     HStack(spacing: 0) {
-                        Text("\(goalKcal)")
+                        Text("\(goalPayment)")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.gray)

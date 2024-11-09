@@ -3,7 +3,7 @@ import SwiftUI
 
 struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var homePageViewModel: HomePageViewModel
+    @EnvironmentObject var viewModel: HomePageViewModel
     @EnvironmentObject var stepRepository: StepRepository
     @State private var isPickerPresented = false
     @Binding var selectedTab:BottomBarSelectedTab
@@ -15,7 +15,7 @@ struct HomePage: View {
                     
                     // AppBar
                     VStack {
-                        Text("2024年9月")
+                        Text("\(viewModel.selectedYear)年\(viewModel.selectedMonth)月")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.blue)
@@ -23,14 +23,17 @@ struct HomePage: View {
                         ScrollViewReader { proxy in
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
-                                    ForEach(homePageViewModel.thisMonthDays, id: \.self) { day in
-                                        if day == homePageViewModel.selectedDate {
+                                    ForEach(viewModel.thisMonthDays, id: \.self) { day in
+                                        if day == String(viewModel.selectedDay) {
                                             CircleText(number: day)
                                         } else {
                                             DashedCircleText(number: day) {
-                                                homePageViewModel.onTapCircle(day: day, uid: authViewModel.currentUser!.id)
+                                                viewModel.onTapCircle(day: Int(day)!, uid: authViewModel.currentUser!.id)
                                                 withAnimation {
                                                     proxy.scrollTo(day, anchor: .center)
+                                                }
+                                                Task {
+                                                    await viewModel.fetchRecords(userId: authViewModel.currentUser!.id, isInitialize: false)
                                                 }
                                             }
                                         }
@@ -39,7 +42,7 @@ struct HomePage: View {
                                 .padding()
                             }
                             .onAppear {
-                                let todayDate = homePageViewModel.getTodayDate()
+                                let todayDate = viewModel.getTodayDate()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1)  {
                                     proxy.scrollTo(todayDate, anchor: .center)
                                 }
@@ -58,7 +61,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        CaloriesConteiner(totalKcal: homePageViewModel.totalKcal ?? 0, goalKcal: homePageViewModel.goalKcal ?? 0)
+                        CaloriesConteiner(totalPayment: viewModel.totalPayment, goalPayment: 1500)
                     }
                     
                     // 支出
@@ -72,7 +75,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        ForEach(homePageViewModel.paymentRecordList, id: \.id) { record in
+                        ForEach(viewModel.paymentRecordList, id: \.id) { record in
                             RecordContainer(isPaymentRecord: true, record: record)
                         }
                         
@@ -89,7 +92,7 @@ struct HomePage: View {
                         }
                         .padding(.horizontal, 24)
                         
-                        ForEach(homePageViewModel.incomeRecordList, id: \.id) { record in
+                        ForEach(viewModel.incomeRecordList, id: \.id) { record in
                             RecordContainer(isPaymentRecord: false, record: record)
                         }
                     }
@@ -97,11 +100,11 @@ struct HomePage: View {
                 .onAppear {
                     Task {
                         // 初期処理
-                        await homePageViewModel.initialize(uid: authViewModel.currentUser!.id)
+                        await viewModel.initialize(uid: authViewModel.currentUser!.id)
                     }
                 }
                 
-                if homePageViewModel.isLoading {
+                if viewModel.isLoading {
                     ZStack {
                         Color.white.opacity(0.6)
                             .ignoresSafeArea()
