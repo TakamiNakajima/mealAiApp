@@ -5,7 +5,7 @@ import FirebaseStorage
 class StorageRepository: ObservableObject {
     
     // 画像をFirebaseStoregeに保存して画像URLを返却する
-    func uploadImage(image: UIImage, userId: String, recordId: String) async throws -> String {
+    func createImage(image: UIImage, userId: String, recordId: String) async throws -> String {
         let storageRef = Storage.storage().reference()
         
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
@@ -20,4 +20,5 @@ class StorageRepository: ObservableObject {
         
         return url.absoluteString
     }
+    
 }

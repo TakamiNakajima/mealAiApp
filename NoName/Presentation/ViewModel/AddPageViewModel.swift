@@ -16,7 +16,7 @@ class AddPageViewModel: ObservableObject {
         let record = Record(id: recordId, title: title, type: type, date: date, price: price)
         do {
             let recordRepository = RecordRepository()
-            try await recordRepository.saveRecord(record: record, userId: userId)
+            try await recordRepository.createRecord(record: record, userId: userId)
             print("save record successfully!")
         } catch {
             print("Error uploading image: \(error)")

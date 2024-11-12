@@ -3,7 +3,6 @@ import HealthKit
 
 struct BaseView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
     @State var selectedTab:BottomBarSelectedTab = .home
     
     var body: some View {

@@ -4,7 +4,6 @@ import SwiftUI
 struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomePageViewModel
-    @EnvironmentObject var stepRepository: StepRepository
     @State private var isPickerPresented = false
     @Binding var selectedTab:BottomBarSelectedTab
     

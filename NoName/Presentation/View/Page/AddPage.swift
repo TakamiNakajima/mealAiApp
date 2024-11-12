@@ -3,7 +3,6 @@ import SwiftUI
 
 struct AddPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var manager: StepRepository
     @EnvironmentObject var addPageViewModel: AddPageViewModel
     @State private var isPickerPresented = false
     @State private var image: UIImage?

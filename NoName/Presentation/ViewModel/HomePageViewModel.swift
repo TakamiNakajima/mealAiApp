@@ -97,7 +97,7 @@ class HomePageViewModel: ObservableObject {
         if (createDate == nil) { return }
         
         do {
-            records = try await recordRepository.fetchRecords(date: createDate!, userId: userId)
+            records = try await recordRepository.readRecord(date: createDate!, userId: userId)
             records.forEach { record in
                 if (record.type == 0) {
                     paymentRecords.append(record)

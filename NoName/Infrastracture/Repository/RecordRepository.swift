@@ -5,7 +5,7 @@ import FirebaseFirestoreSwift
 class RecordRepository: ObservableObject {
     
     // 記録をDBに保存する
-    func saveRecord(record: Record, userId: String) async throws {
+    func createRecord(record: Record, userId: String) async throws {
         let mealCollectionRef = Firestore.firestore().collection(Collection.users).document(userId).collection("records")
         do {
             try await mealCollectionRef.document("\(record.id)").setData([
@@ -23,29 +23,7 @@ class RecordRepository: ObservableObject {
         }
     }
     
-    // 記録をDBから取得する
-//    func fetchRecord(date: Date, type: Int, userId: String) async throws -> Record? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        let dateString = dateFormatter.string(from: date)
-//        let recordCollectionRef = Firestore.firestore().collection(Collection.users).document(userId).collection("records")
-//        let docData = try await recordCollectionRef.document("\(dateString)_\(type)").getDocument().data()
-//        if let docData = docData {
-//            print("docData \(docData)")
-//            do {
-//                if let recordData = Record.fromJson(docData) {
-//                    return recordData
-//                } else {
-//                    print("Failed to decode meal data.")
-//                }
-//            }
-//        } else {
-//            print("Document does not exist.")
-//        }
-//        return nil
-//    }
-    
-    func fetchRecords(date: Date, userId: String) async throws -> [Record] {
+    func readRecord(date: Date, userId: String) async throws -> [Record] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: date)
