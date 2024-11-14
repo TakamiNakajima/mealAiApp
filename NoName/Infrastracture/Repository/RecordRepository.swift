@@ -48,4 +48,18 @@ class RecordRepository: ObservableObject {
             return records
         }
     }
+    
+    func deleteRecord(recordId: String, userId: String) async throws {
+        let recordCollectionRef = Firestore.firestore()
+            .collection(Collection.users)
+            .document(userId)
+            .collection("records")
+        
+        let querySnapshot = try await recordCollectionRef.whereField("recordId", isEqualTo: recordId).getDocuments()
+        
+        for document in querySnapshot.documents {
+            try await document.reference.delete()
+        }
+        print("Record deleted successfully.")
+    }
 }

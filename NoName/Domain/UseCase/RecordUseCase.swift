@@ -1,6 +1,7 @@
 import Foundation
 
 class RecordUseCase {
+    let recordRepository = RecordRepository()
     // 記録をDBに保存する
     func createRecord(type: Int, title: String, userId: String, date: String, price: Int) async {
         
@@ -17,7 +18,12 @@ class RecordUseCase {
     }
     
     // 記録をDBから削除する
-    func deleteRecord() async {
-        
+    func deleteRecord(recordId: String, userId: String) async -> Bool {
+        do {
+            try await recordRepository.deleteRecord(recordId: recordId, userId: userId)
+        } catch {
+            return false
+        }
+        return true
     }
 }

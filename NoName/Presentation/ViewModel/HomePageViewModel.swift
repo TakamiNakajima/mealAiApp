@@ -12,6 +12,7 @@ class HomePageViewModel: ObservableObject {
     @Published var incomeRecordList: [Record] = []
     @Published var totalPayment: Int = 0
     @Published var goalKcal: Int = 1500
+    let recordUseCase = RecordUseCase()
     
     // 画面表示の初期処理
     func initialize(uid: String) async {
@@ -139,5 +140,15 @@ class HomePageViewModel: ObservableObject {
         components.day = selectedDay
         
         return calendar.date(from: components)
+    }
+    
+    // レコード削除
+    func deleteRecord(recordId: String, userId: String) async {
+        let isSuccess = await recordUseCase.deleteRecord(recordId: recordId, userId: userId)
+        if (isSuccess) {
+            print("成功")
+        } else {
+            print("失敗")
+        }
     }
 }

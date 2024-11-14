@@ -1210,5 +1210,256 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F7E58C8-EB15-41E1-B21E-EC174DFAA153"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75AB4513-26C3-4211-95F6-A45644D86F5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "75AB4513-26C3-4211-95F6-A45644D86F5B - d2c4f108eeaab878"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onSubmit(of: SwiftUI.SubmitTriggers, _: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Text)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Presentation/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "592">
+               </Location>
+               <Location
+                  uuid = "75AB4513-26C3-4211-95F6-A45644D86F5B - 1fd32d59fd582826"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onSubmit(of: SwiftUI.SubmitTriggers, _: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Text)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Presentation/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "75AB4513-26C3-4211-95F6-A45644D86F5B - 8d22af0444447c7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #5 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.environment&lt;&#x3c4;_0_0&gt;(Swift.WritableKeyPath&lt;SwiftUI.EnvironmentValues, &#x3c4;_1_0&gt;, &#x3c4;_1_0) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.onSubmit(of: SwiftUI.SubmitTriggers, _: () -&gt; ()) -&gt; some&gt;&gt;.0, SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Text)&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.frame(width: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, height: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0, NoName.PrimaryButton, SwiftUI.Spacer)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.onTapGesture(count: Swift.Int, perform: () -&gt; ()) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ZStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0)&gt;&gt;&gt;)&gt; in NoName.AddPage.body.getter : some"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Presentation/View/Page/AddPage.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49ADDC86-49FD-4EC0-8667-FB2CAF20189D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B850A00-4B5A-4C35-A4B3-51C8339874EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Domain/UseCase/RecordUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "deleteRecord(recordId:userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9B850A00-4B5A-4C35-A4B3-51C8339874EB - d48ee57c5de2c1f5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for NoName.RecordUseCase.deleteRecord(recordId: Swift.String, userId: Swift.String) async -&gt; Swift.Bool"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Domain/UseCase/RecordUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "9B850A00-4B5A-4C35-A4B3-51C8339874EB - f22cad4c75c267e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for NoName.RecordUseCase.deleteRecord(recordId: Swift.String, userId: Swift.String) async -&gt; Swift.Bool"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Domain/UseCase/RecordUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "9B850A00-4B5A-4C35-A4B3-51C8339874EB - a458f387cdf9bdeb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for NoName.RecordUseCase.deleteRecord(recordId: Swift.String, userId: Swift.String) async -&gt; Swift.Bool"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Domain/UseCase/RecordUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "9B850A00-4B5A-4C35-A4B3-51C8339874EB - 7c4dc70d85f417e8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for NoName.RecordUseCase.deleteRecord(recordId: Swift.String, userId: Swift.String) async -&gt; Swift.Bool"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Domain/UseCase/RecordUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77848762-2901-4894-B605-2D2DAC09F3AB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Infrastracture/Repository/RecordRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "deleteRecord(recordId:userId:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "77848762-2901-4894-B605-2D2DAC09F3AB - ec5c0b2d904fcd4a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for NoName.RecordRepository.deleteRecord(recordId: Swift.String, userId: Swift.String) async throws -&gt; ()"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "496">
+               </Location>
+               <Location
+                  uuid = "77848762-2901-4894-B605-2D2DAC09F3AB - 8a46a644aa6fa9e0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for NoName.RecordRepository.deleteRecord(recordId: Swift.String, userId: Swift.String) async throws -&gt; ()"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "77848762-2901-4894-B605-2D2DAC09F3AB - a40b92c5e626c944"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for NoName.RecordRepository.deleteRecord(recordId: Swift.String, userId: Swift.String) async throws -&gt; ()"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "77848762-2901-4894-B605-2D2DAC09F3AB - b8df8da92ca85341"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for NoName.RecordRepository.deleteRecord(recordId: Swift.String, userId: Swift.String) async throws -&gt; ()"
+                  moduleName = "NoName"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

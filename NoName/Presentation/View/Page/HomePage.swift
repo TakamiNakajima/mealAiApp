@@ -4,11 +4,12 @@ import SwiftUI
 struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomePageViewModel
-    @State private var isPickerPresented = false
+    @State private var showDeleteConfirmation = false
     @Binding var selectedTab:BottomBarSelectedTab
+    @State private var selectedRecordId: String?
     
     var body: some View {
-        if let _ = authViewModel.currentUser {
+        if let user = authViewModel.currentUser {
             ZStack {
                 VStack(spacing: 20) {
                     
@@ -76,23 +77,26 @@ struct HomePage: View {
                         
                         ForEach(viewModel.paymentRecordList, id: \.id) { record in
                             RecordContainer(isPaymentRecord: true, record: record)
-                        }
-                        
-                    }
-                    
-                    // 収入
-                    VStack(spacing: 8) {
-                        HStack {
-                            Text("収入")
-                                .font(.headline)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.gray)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 24)
-                        
-                        ForEach(viewModel.incomeRecordList, id: \.id) { record in
-                            RecordContainer(isPaymentRecord: false, record: record)
+                                .onLongPressGesture {
+                                    selectedRecordId = record.id
+                                    showDeleteConfirmation = true
+                                }
+                                .alert(isPresented: $showDeleteConfirmation) {
+                                    Alert(
+                                        title: Text("削除確認"),
+                                        message: Text("このレコードを削除してもよろしいですか？"),
+                                        primaryButton: .destructive(Text("削除")) {
+                                            Task {
+                                                // 削除処理
+                                                if let recordId = selectedRecordId {
+                                                    await viewModel.deleteRecord(recordId: recordId, userId: user.id)
+                                                }
+                                                
+                                            }
+                                        },
+                                        secondaryButton: .cancel()
+                                    )
+                                }
                         }
                     }
                 }

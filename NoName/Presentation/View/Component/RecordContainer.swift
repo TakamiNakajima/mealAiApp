@@ -9,12 +9,14 @@ struct RecordContainer: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(UIColor.systemGray6))
                 .frame(height: 50)
+                .shadow(color: .gray.opacity(0.3), radius: 2, x: 1, y: 1)
             
                 HStack {
                     Text(record.title)
                         .font(.subheadline)
                         .padding(5)
                         .foregroundColor(.gray)
+                        .fontWeight(.bold)
                     
                     Spacer()
                     
@@ -31,6 +33,7 @@ struct RecordContainer: View {
                             .padding(.top, 2)
                     }
                 }
+        
                 .padding(.horizontal, 12)
                 .padding(.vertical, 4)
         }

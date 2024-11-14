@@ -11,7 +11,8 @@ struct CaloriesConteiner: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(UIColor.systemGray6))
                 .frame(height: 100)
-            
+                .shadow(color: .gray.opacity(0.3), radius: 2, x: 1, y: 1)
+
             VStack{
                 
                 HStack(spacing: 2) {
