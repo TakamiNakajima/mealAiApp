@@ -15,7 +15,7 @@ struct HomePage: View {
                     
                     // AppBar
                     VStack {
-                        Text("\(viewModel.selectedYear)年\(viewModel.selectedMonth)月")
+                        Text("\(String(viewModel.selectedYear))年\(viewModel.selectedMonth)月")
                             .font(.headline)
                             .fontWeight(.bold)
                             .foregroundColor(Color.blue)
