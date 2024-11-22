@@ -4,18 +4,19 @@ import FirebaseFirestoreSwift
 
 class RecordRepository: ObservableObject {
     
+    private let firestoreService = FirestoreService()
+    
     // 記録をDBに保存する
     func createRecord(record: Record, userId: String) async throws {
-        let mealCollectionRef = Firestore.firestore().collection(Collection.users).document(userId).collection("records")
         do {
-            try await mealCollectionRef.document("\(record.id)").setData([
+            try await firestoreService.createInSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", data: [
                 "recordId": record.id,
                 "title": record.title,
                 "type": record.type,
                 "date": record.date,
                 "price": record.price,
                 "timeStamp": FieldValue.serverTimestamp()
-            ], mergeFields: ["recordId","title", "type", "date", "price", "timeStamp"])
+            ])
             print("save record success")
         } catch {
             print("save record error \(error)")
