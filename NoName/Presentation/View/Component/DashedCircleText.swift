@@ -3,9 +3,10 @@ import SwiftUI
 struct DashedCircleText: View {
     let number: String
     var onTap: () -> Void
+    let todayDate: String = String(Calendar.current.component(.day, from: Date()))
     
     var body: some View {
-        Text(number)
+        Text(number == todayDate ? "今日" : number)
             .font(.caption)
             .fontWeight(.semibold)
             .foregroundColor(.gray)

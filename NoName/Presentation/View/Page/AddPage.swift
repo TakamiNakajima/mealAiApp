@@ -8,7 +8,7 @@ struct AddPage: View {
     @State private var image: UIImage?
     @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
-    @State private var inputPrice: Int = 0
+    @State private var inputPrice: Int?
     @State private var recordTitle: String = ""
     @Binding var selectedTab:BottomBarSelectedTab
     
@@ -16,12 +16,6 @@ struct AddPage: View {
         if let _ = authViewModel.currentUser {
             ZStack {
                 VStack(spacing: 16) {
-                    
-                    HStack() {
-                        ToggleButton(selectedType: $selectedType, value: 0)
-                        ToggleButton(selectedType: $selectedType, value: 1)
-                    }
-                    .padding()
                     
                     Spacer()
                         .frame(height: 40)
@@ -79,7 +73,7 @@ struct AddPage: View {
                         .frame(height: 8)
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
-                        print("title: \(recordTitle)")
+                        if (inputPrice == nil) { return }
                         Task {
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -89,7 +83,7 @@ struct AddPage: View {
                                 title: recordTitle,
                                 userId: authViewModel.currentUser!.id,
                                 date: dateString,
-                                price: inputPrice
+                                price: inputPrice!
                             )
                             selectedTab = BottomBarSelectedTab.home
                         }
@@ -112,37 +106,8 @@ struct AddPage: View {
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding()
                     }
-                    
                 }
             }
-        }
-    }
-}
-
-// トグルボタン
-struct ToggleButton: View {
-    @Binding var selectedType: Int
-    var value: Int
-    
-    var body: some View {
-        Button(action: {
-            selectedType = value
-        }) {
-            Text(Texts.title(type: value))
-                .frame(width: 80, height: 40)
-                .font(.subheadline)
-                .background(selectedType == value
-                            ? LinearGradient(
-                                gradient: Gradient(colors: [.mint, .blue]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ) : LinearGradient(
-                                gradient: Gradient(colors: [.gray, .gray]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ))
-                .foregroundColor(.white)
-                .cornerRadius(24)
         }
     }
 }

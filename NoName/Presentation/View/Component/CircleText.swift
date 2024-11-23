@@ -2,7 +2,8 @@ import SwiftUI
 
 struct CircleText: View {
     let number: String
-    
+    let todayDate: String = String(Calendar.current.component(.day, from: Date()))
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 30)
@@ -14,7 +15,7 @@ struct CircleText: View {
                         endPoint: .bottomTrailing
                     )
                 )
-            Text(number)
+            Text(number == todayDate ? "今日" : number)
                 .font(.caption)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
