@@ -91,7 +91,6 @@ struct HomePage: View {
                                                 if let recordId = selectedRecordId {
                                                     await viewModel.deleteRecord(recordId: recordId, userId: user.id)
                                                 }
-                                                
                                             }
                                         },
                                         secondaryButton: .cancel()

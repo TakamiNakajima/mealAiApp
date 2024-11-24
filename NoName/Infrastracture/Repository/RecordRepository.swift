@@ -12,7 +12,6 @@ class RecordRepository: ObservableObject {
             try await firestoreService.createInSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", data: [
                 "recordId": record.id,
                 "title": record.title,
-                "type": record.type,
                 "date": record.date,
                 "price": record.price,
                 "timeStamp": FieldValue.serverTimestamp()

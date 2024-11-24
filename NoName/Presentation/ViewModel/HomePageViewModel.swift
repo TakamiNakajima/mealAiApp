@@ -91,7 +91,6 @@ class HomePageViewModel: ObservableObject {
         let recordRepository = RecordRepository()
         var records: [Record] = []
         var paymentRecords: [Record] = []
-        var incomeRecords: [Record] = []
         self.paymentRecordList = []
         self.incomeRecordList = []
         let createDate = (isInitialize) ? Date() : createDateFromSelected()
@@ -100,16 +99,11 @@ class HomePageViewModel: ObservableObject {
         do {
             records = try await recordRepository.readRecord(date: createDate!, userId: userId)
             records.forEach { record in
-                if (record.type == 0) {
-                    paymentRecords.append(record)
-                } else {
-                    incomeRecords.append(record)
-                }
+                paymentRecords.append(record)
             }
             
             DispatchQueue.main.async {
                 self.paymentRecordList = paymentRecords
-                self.incomeRecordList = incomeRecords
             }
             
         } catch {
@@ -118,17 +112,9 @@ class HomePageViewModel: ObservableObject {
         
         // 収支計算
         var payment = 0
-        var income = 0
         records.forEach { record in
-            if (record.type == 0) {
-                payment += record.price
-            } else {
-                income += record.price
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.totalPayment = income - payment
+            payment += record.price
+            
         }
     }
     

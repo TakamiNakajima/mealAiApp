@@ -4,11 +4,8 @@ import SwiftUI
 struct AddPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var addPageViewModel: AddPageViewModel
-    @State private var isPickerPresented = false
-    @State private var image: UIImage?
-    @State private var selectedType: Int = 0
     @State private var selectedDate = Date()
-    @State private var inputPrice: Int?
+    @State private var inputPrice: Int = 0
     @State private var recordTitle: String = ""
     @Binding var selectedTab:BottomBarSelectedTab
     
@@ -43,7 +40,7 @@ struct AddPage: View {
                         }
                     
                     HStack {
-                        TextField("円", value: $inputPrice, formatter: NumberFormatter())
+                        TextField("", value: $inputPrice, formatter: NumberFormatter())
                             .keyboardType(.numberPad)
                             .frame(width: 100)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -68,29 +65,24 @@ struct AddPage: View {
                         Text("円")
                         
                     }
-                                        
+                    
                     Spacer()
                         .frame(height: 8)
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
-                        if (inputPrice == nil) { return }
                         Task {
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "yyyy-MM-dd"
                             let dateString = dateFormatter.string(from: selectedDate)
                             await addPageViewModel.saveRecord(
-                                type: selectedType,
                                 title: recordTitle,
                                 userId: authViewModel.currentUser!.id,
                                 date: dateString,
-                                price: inputPrice!
+                                price: inputPrice
                             )
                             selectedTab = BottomBarSelectedTab.home
                         }
                     }
-                    
-                    Spacer()
-                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .onTapGesture {

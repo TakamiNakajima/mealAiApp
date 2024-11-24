@@ -322,36 +322,6 @@
             endingLineNumber = "134"
             landmarkName = "createDateFromSelected()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B1EBCD05-5549-40B3-A530-5FC1FB27801C - 6505b6e280507535"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (NoName.Record) -&gt; () in NoName.HomePageViewModel.fetchRecords(userId: Swift.String, isInitialize: Swift.Bool) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "112"
-                  endingLineNumber = "112">
-               </Location>
-               <Location
-                  uuid = "B1EBCD05-5549-40B3-A530-5FC1FB27801C - 7a9131e878901b7b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 (NoName.Record) -&gt; () in NoName.HomePageViewModel.fetchRecords(userId: Swift.String, isInitialize: Swift.Bool) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -368,36 +338,6 @@
             endingLineNumber = "137"
             landmarkName = "createDateFromSelected()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "851A26E8-CAC8-43AD-948D-D9D3B30F0E4C - 6505b6e280507589"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (NoName.Record) -&gt; () in NoName.HomePageViewModel.fetchRecords(userId: Swift.String, isInitialize: Swift.Bool) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "116"
-                  endingLineNumber = "116">
-               </Location>
-               <Location
-                  uuid = "851A26E8-CAC8-43AD-948D-D9D3B30F0E4C - e46e21974dd8b606"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 @Swift.MainActor @Sendable () -&gt; () in closure #1 (NoName.Record) -&gt; () in NoName.HomePageViewModel.fetchRecords(userId: Swift.String, isInitialize: Swift.Bool) async -&gt; ()"
-                  moduleName = "NoName"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/ViewModel/HomePageViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -474,8 +414,8 @@
             filePath = "NoName/Presentation/View/Page/AddPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -490,8 +430,8 @@
             filePath = "NoName/Presentation/View/Page/AddPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -506,8 +446,8 @@
             filePath = "NoName/Presentation/View/Page/AddPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -538,8 +478,8 @@
             filePath = "NoName/Infrastracture/Repository/RecordRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "deleteRecord(recordId:userId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -638,36 +578,134 @@
             endingLineNumber = "10"
             landmarkName = "createRecord(record:userId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "24ED6D23-E494-4FB7-8F14-8D5E4A46AE32 - eea0b5770b79ca40"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "NoName.RecordRepository.createRecord(record: NoName.Record, userId: Swift.String) async throws -&gt; ()"
-                  moduleName = "NoName.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10">
-               </Location>
-               <Location
-                  uuid = "24ED6D23-E494-4FB7-8F14-8D5E4A46AE32 - be6cf93239d89ad6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for NoName.RecordRepository.createRecord(record: NoName.Record, userId: Swift.String) async throws -&gt; ()"
-                  moduleName = "NoName.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nakajimatakami/SwiftProjects/NoName/NoName/Infrastracture/Repository/RecordRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "10"
-                  endingLineNumber = "10">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF1F0137-AD61-46A3-9187-F6275381D7D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C849F5BC-94F7-42AD-A135-99C499A34CD5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D551118D-9EB3-4C7A-A395-E94E048042DB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Infrastracture/Repository/RecordRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "createRecord(record:userId:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03C66634-30C4-4242-BAA1-2CF416671285"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "680D2462-C785-4874-98C4-1C77B3AA8932"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEF8FD9B-F2F1-4347-84E2-D2103408508B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "96DB1F0F-1743-4844-8FA0-6C753378C566"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0CA9E592-BD12-4F86-B023-ED04C4D5914C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NoName/Presentation/View/Page/AddPage.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
