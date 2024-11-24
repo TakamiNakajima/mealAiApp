@@ -114,8 +114,11 @@ class HomePageViewModel: ObservableObject {
         var payment = 0
         records.forEach { record in
             payment += record.price
-            
         }
+        DispatchQueue.main.async {
+            self.totalPayment = payment
+        }
+        
     }
     
     func createDateFromSelected() -> Date? {

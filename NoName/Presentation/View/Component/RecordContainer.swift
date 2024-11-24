@@ -21,7 +21,7 @@ struct RecordContainer: View {
                     Spacer()
                     
                     HStack(spacing: 2) {
-                        Text(title(isPayment: isPaymentRecord, text: record.price))
+                        Text(String(record.price))
                             .font(.headline)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                             .fontWeight(.bold)
@@ -38,14 +38,5 @@ struct RecordContainer: View {
                 .padding(.vertical, 4)
         }
         .padding(.horizontal, 24)
-    }
-    
-    func title(isPayment: Bool, text: Int) -> String {
-        if (isPayment) {
-            return "-\(text)"
-        } else {
-            return "+\(text)"
-
-        }
     }
 }
