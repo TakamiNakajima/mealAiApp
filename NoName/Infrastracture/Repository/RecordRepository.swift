@@ -1,12 +1,9 @@
 import Foundation
-import Firebase
-import FirebaseFirestoreSwift
 
 class RecordRepository: ObservableObject {
-    
     private let firestoreService = FirestoreService()
     
-    // 記録をDBに保存する
+    // レコード作成処理
     func createRecord(record: Record, userId: String) async throws {
         do {
             try await firestoreService.createInSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", data: [
@@ -14,52 +11,56 @@ class RecordRepository: ObservableObject {
                 "title": record.title,
                 "date": record.date,
                 "price": record.price,
-                "timeStamp": FieldValue.serverTimestamp()
-            ])
-            print("save record success")
+                "timeStamp": Date()
+            ], subDocumentId: record.id)
         } catch {
             print("save record error \(error)")
             throw error
         }
     }
     
+    // レコード取得処理
     func readRecord(date: Date, userId: String) async throws -> [Record] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = dateFormatter.string(from: date)
         
-        let recordCollectionRef = Firestore.firestore().collection(Collection.users).document(userId).collection("records")
-        let querySnapshot = try await recordCollectionRef
-            .whereField("date", isEqualTo: dateString)
-            .getDocuments()
-        
-        var records: [Record] = []
-        for document in querySnapshot.documents {
-            if let recordData = Record.fromJson(document.data()) {
-                records.append(recordData)
-            } else {
-                print("Failed to decode meal data for document \(document.documentID).")
+        return try await withCheckedThrowingContinuation { continuation in
+            firestoreService.readInSubCollection(
+                parentCollection: Collection.users,
+                parentDocumentId: userId,
+                subCollection: "records",
+                field: "date",
+                isEqualTo: dateString
+            ) { result in
+                switch result {
+                case .success(let documents):
+                    var records: [Record] = []
+                    for document in documents {
+                        if let recordData = Record.fromJson(document.data()) {
+                            records.append(recordData)
+                        } else {
+                            print("Failed to decode meal data for document \(document.documentID).")
+                        }
+                    }
+                    continuation.resume(returning: records)
+                    
+                case .failure(let error):
+                    continuation.resume(throwing: error)
+                }
             }
-        }
-        
-        if records.isEmpty {
-            return []
-        } else {
-            return records
         }
     }
     
+    // レコード削除処理
     func deleteRecord(recordId: String, userId: String) async throws {
-        let recordCollectionRef = Firestore.firestore()
-            .collection(Collection.users)
-            .document(userId)
-            .collection("records")
-        
-        let querySnapshot = try await recordCollectionRef.whereField("recordId", isEqualTo: recordId).getDocuments()
-        
-        for document in querySnapshot.documents {
-            try await document.reference.delete()
-        }
-        print("Record deleted successfully.")
+        firestoreService.deleteInSubCollection(parentCollection: Collection.users, parentDocumentId: userId, subCollection: "records", subDocumentId: recordId, completion: { result in
+            switch result {
+            case .success():
+                print("ドキュメントが正常に削除されました。")
+            case .failure(let error):
+                print("エラーが発生しました: \(error.localizedDescription)")
+            }
+        })
     }
 }

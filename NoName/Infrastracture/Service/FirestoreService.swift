@@ -3,7 +3,6 @@ import FirebaseFirestore
 import Foundation
 
 struct FirestoreService {
-    
     private let db = Firestore.firestore()
     
     // ドキュメントを新規作成
@@ -17,7 +16,7 @@ struct FirestoreService {
         }
     }
     
-    // 特定のコレクション内のドキュメントを取得
+    // コレクション内のドキュメントを全取得
     func read(collection: String, completion: @escaping (Result<[DocumentSnapshot], Error>) -> Void) {
         db.collection(collection).getDocuments { snapshot, error in
             if let error = error {
@@ -28,7 +27,7 @@ struct FirestoreService {
         }
     }
     
-    // 特定のドキュメントを取得
+    // ドキュメントを取得
     func readDocument(collection: String, documentId: String, completion: @escaping (Result<DocumentSnapshot, Error>) -> Void) {
         db.collection(collection).document(documentId).getDocument { document, error in
             if let error = error {
@@ -63,6 +62,7 @@ struct FirestoreService {
         }
     }
     
+    // サブコレクションにデータを保存
     func createInSubCollection(
         parentCollection: String,
         parentDocumentId: String,
@@ -102,7 +102,7 @@ struct FirestoreService {
         let reference = db.collection(parentCollection)
             .document(parentDocumentId)
             .collection(subCollection)
-            .whereField(field, isEqualTo: value) // クエリ条件を追加
+            .whereField(field, isEqualTo: value)
 
         reference.getDocuments { snapshot, error in
             if let error = error {
