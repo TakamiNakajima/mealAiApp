@@ -6,7 +6,7 @@ class RecordRepository: ObservableObject {
     // レコード作成処理
     func createRecord(record: Record, userId: String) async throws {
         do {
-            try await firestoreService.createInSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", data: [
+            try await firestoreService.createSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", data: [
                 "recordId": record.id,
                 "title": record.title,
                 "date": record.date,
@@ -26,7 +26,7 @@ class RecordRepository: ObservableObject {
         let dateString = dateFormatter.string(from: date)
         
         return try await withCheckedThrowingContinuation { continuation in
-            firestoreService.readInSubCollection(
+            firestoreService.readSubCollection(
                 parentCollection: Collection.users,
                 parentDocumentId: userId,
                 subCollection: "records",
@@ -54,7 +54,7 @@ class RecordRepository: ObservableObject {
     
     // レコード削除処理
     func deleteRecord(recordId: String, userId: String) async throws {
-        firestoreService.deleteInSubCollection(parentCollection: Collection.users, parentDocumentId: userId, subCollection: "records", subDocumentId: recordId, completion: { result in
+        firestoreService.deleteSubCollection(parentCollection: Collection.users, parentDocumentId: userId, subCollection: "records", subDocumentId: recordId, completion: { result in
             switch result {
             case .success():
                 print("ドキュメントが正常に削除されました。")

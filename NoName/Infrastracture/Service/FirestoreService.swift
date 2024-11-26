@@ -63,7 +63,7 @@ struct FirestoreService {
     }
     
     // サブコレクションにデータを保存
-    func createInSubCollection(
+    func createSubCollection(
         parentCollection: String,
         parentDocumentId: String,
         subCollection: String,
@@ -91,7 +91,7 @@ struct FirestoreService {
     }
     
     // サブコレクションのデータを取得
-    func readInSubCollection(
+    func readSubCollection(
         parentCollection: String,
         parentDocumentId: String,
         subCollection: String,
@@ -116,7 +116,7 @@ struct FirestoreService {
     }
     
     // サブコレクション内の特定のドキュメントを更新
-    func updateInSubCollection(
+    func updateSubCollection(
         parentCollection: String,
         parentDocumentId: String,
         subCollection: String,
@@ -139,7 +139,7 @@ struct FirestoreService {
     }
     
     // サブコレクション内の特定のドキュメントを削除
-    func deleteInSubCollection(
+    func deleteSubCollection(
         parentCollection: String,
         parentDocumentId: String,
         subCollection: String,

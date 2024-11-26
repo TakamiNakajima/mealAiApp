@@ -48,7 +48,6 @@ struct AddPage: View {
                             .submitLabel(.done)
                             .onChange(of: inputPrice) { newValue in
                                 inputPrice = newValue
-                                print(inputPrice)
                             }
                             .onSubmit {
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -71,13 +70,10 @@ struct AddPage: View {
                     
                     PrimaryButton(title: "保存", width: 240, height: 48) {
                         Task {
-                            let dateFormatter = DateFormatter()
-                            dateFormatter.dateFormat = "yyyy-MM-dd"
-                            let dateString = dateFormatter.string(from: selectedDate)
                             await addPageViewModel.saveRecord(
                                 title: recordTitle,
                                 userId: authViewModel.currentUser!.id,
-                                date: dateString,
+                                selectedDate: selectedDate,
                                 price: inputPrice
                             )
                             selectedTab = BottomBarSelectedTab.home
