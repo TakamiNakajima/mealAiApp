@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct RecordContainer: View {
-    var isPaymentRecord: Bool
     var record: Record
     var body: some View {
         ZStack {

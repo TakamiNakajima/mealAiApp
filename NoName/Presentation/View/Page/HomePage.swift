@@ -50,7 +50,7 @@ struct HomePage: View {
                         }
                     }
                     
-                    // 総カロリー表示
+                    // 総支出表示
                     VStack(spacing: 8) {
                         HStack {
                             Text("トータル")
@@ -76,7 +76,7 @@ struct HomePage: View {
                         .padding(.horizontal, 24)
                         
                         ForEach(viewModel.paymentRecordList, id: \.id) { record in
-                            RecordContainer(isPaymentRecord: true, record: record)
+                            RecordContainer(record: record)
                                 .onLongPressGesture {
                                     selectedRecordId = record.id
                                     showDeleteConfirmation = true
@@ -91,6 +91,8 @@ struct HomePage: View {
                                                 if let recordId = selectedRecordId {
                                                     await viewModel.deleteRecord(recordId: recordId, userId: user.id)
                                                 }
+                                                // 初期処理
+                                                await viewModel.initialize(uid: authViewModel.currentUser!.id)
                                             }
                                         },
                                         secondaryButton: .cancel()

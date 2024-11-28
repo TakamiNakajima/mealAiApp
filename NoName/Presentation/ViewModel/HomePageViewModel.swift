@@ -118,7 +118,6 @@ class HomePageViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.totalPayment = payment
         }
-        
     }
     
     func createDateFromSelected() -> Date? {
@@ -134,10 +133,5 @@ class HomePageViewModel: ObservableObject {
     // レコード削除
     func deleteRecord(recordId: String, userId: String) async {
         let isSuccess = await recordUseCase.deleteRecord(recordId: recordId, userId: userId)
-        if (isSuccess) {
-            print("成功")
-        } else {
-            print("失敗")
-        }
     }
 }
