@@ -17,6 +17,7 @@ struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var homePageViewModel = HomePageViewModel()
     @StateObject var addPageViewModel = AddPageViewModel()
+    @StateObject var calendarPageViewModel = CalendarPageViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -28,6 +29,7 @@ struct NoNameApp: App {
                 .environmentObject(authViewModel)
                 .environmentObject(homePageViewModel)
                 .environmentObject(addPageViewModel)
+                .environmentObject(calendarPageViewModel)
         }
     }
 }

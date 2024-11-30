@@ -10,7 +10,7 @@ struct BaseView: View {
             if (selectedTab == .home)  {
                 HomePage(selectedTab: $selectedTab)
             } else if (selectedTab == .calendar) {
-                VideoPage()
+                CalendarPage()
             } else if (selectedTab == .add) {
                 AddPage(selectedTab: $selectedTab)
             } else if (selectedTab == .report) {
