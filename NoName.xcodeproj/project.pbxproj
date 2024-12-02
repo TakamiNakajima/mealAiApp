@@ -53,6 +53,7 @@
 		4D54DF592BAFBB2300101545 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 4D54DF582BAFBB2300101545 /* FirebaseStorageCombine-Community */; };
 		4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */; };
 		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
+		4D57CFA72CFDCFFC002877B6 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */; };
 		4D6A94372CD45C46007C68C2 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A94362CD45C46007C68C2 /* SettingViewController.swift */; };
 		4D6A94392CD45C97007C68C2 /* SettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */; };
 		4D6A943B2CD473B8007C68C2 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */; };
@@ -100,6 +101,7 @@
 		4D56C61A2BB8EB4D002ABB9F /* NoName.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NoName.entitlements; sourceTree = "<group>"; };
 		4D56C61B2BB8EB9D002ABB9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		4D6A94362CD45C46007C68C2 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingViewController.storyboard; sourceTree = "<group>"; };
 		4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		4D54DF0C2BADCA7200101545 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */,
 				4D54DF1F2BAFA9BD00101545 /* User.swift */,
 				4D7D39A12CC22437001534E1 /* Record.swift */,
 			);
@@ -462,6 +465,7 @@
 				4DE08D692CAE625200277825 /* DashedCircleText.swift in Sources */,
 				4D73F9E72CC135B7002CBB7A /* ImagePicker.swift in Sources */,
 				4D54DF182BADD47000101545 /* RegistrationView.swift in Sources */,
+				4D57CFA72CFDCFFC002877B6 /* CalendarItem.swift in Sources */,
 				4D6A94372CD45C46007C68C2 /* SettingViewController.swift in Sources */,
 				4DE08D5E2CAE5DCB00277825 /* HomePage.swift in Sources */,
 				4D7613CC2CE365730026C704 /* RecordUseCase.swift in Sources */,

@@ -1,11 +1,14 @@
 import SwiftUI
 
 struct CalendarPage: View {
-    @EnvironmentObject var viewModel: CalendarPageViewModel    
-    // カレンダーに表示する月の日付リストを生成
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var viewModel: CalendarPageViewModel
+    @State var calendarItems: [CalendarItem] = []
+    
     private var daysInMonth: [Date] {
         let calendar = Calendar.current
-        let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: viewModel.selectedDate))!
+        let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: Date()))!
+        
         let range = calendar.range(of: .day, in: .month, for: startOfMonth)!
         return range.compactMap { day -> Date? in
             calendar.date(byAdding: .day, value: day - 1, to: startOfMonth)
@@ -13,56 +16,53 @@ struct CalendarPage: View {
     }
     
     var body: some View {
-        VStack {
-            // 月変更ボタンと現在の月を表示
-            HStack {
-                Button(action: {
-                    viewModel.changeMonth(by: -1)
-                }) {
-                    Image(systemName: "chevron.left")
-                        .font(.title)
-                        .foregroundColor(.blue)
+        if let currentUser = authViewModel.currentUser {
+            VStack {
+                HStack {
+                    Button(action: {
+                        viewModel.changeMonth(by: -1)
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .font(.title)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Spacer()
+                    
+                    Text("\(viewModel.formattedMonth(viewModel.selectedDate))")
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        viewModel.changeMonth(by: 1)
+                    }) {
+                        Image(systemName: "chevron.right")
+                            .font(.title)
+                            .foregroundColor(.blue)
+                    }
                 }
-                
-                Spacer()
-                
-                Text("\(viewModel.formattedMonth(viewModel.selectedDate))")
-                    .font(.headline)
-                
-                Spacer()
-                
-                Button(action: {
-                    viewModel.changeMonth(by: 1)
-                }) {
-                    Image(systemName: "chevron.right")
-                        .font(.title)
-                        .foregroundColor(.blue)
-                }
-            }
-            .padding()
-            
-            // カレンダー上部に選択された日付を表示
-            Text("選択された日付: \(viewModel.formattedDate(viewModel.selectedDate))")
-                .font(.headline)
                 .padding()
-            
-            // カレンダーのグリッド
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
-                ForEach(daysInMonth, id: \.self) { date in
-                    CalendarView(date: date, selectedDate: viewModel.selectedDate)
-                        .onTapGesture {
-                            // 日付をタップしたら選択
-                            DispatchQueue.main.async {
-                                viewModel.selectedDate = date
-                            }
-                        }
+                
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
+                    ForEach(calendarItems, id: \.date) { item in
+                        CalendarView(calendarItem: item, selectedDate: viewModel.selectedDate)
+                    }
+                }
+                .padding()
+                
+                Spacer()
+            }
+            .onAppear {
+                Task {
+                    let items = await viewModel.fetchCalendarItems(daysInMonth: daysInMonth, userId: currentUser.id)
+                    DispatchQueue.main.async {
+                        self.calendarItems = items
+                    }
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding()
-            
-            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
     }
 }

@@ -1,21 +1,33 @@
 import SwiftUI
 
 struct CalendarView: View {
-    let date: Date
+    let calendarItem: CalendarItem
     let selectedDate: Date
 
     var body: some View {
         VStack {
             // 日付を表示
-            Text("\(dayNumber(from: date))")
+            Text("\(dayNumber(from: calendarItem.date))")
                 .font(.body)
-                .foregroundColor(isSameDay(date1: date, date2: selectedDate) ? .white : .primary)
-                .frame(width: 40, height: 40)
-                .background(isSameDay(date1: date, date2: selectedDate) ? Color.blue : Color.clear)
-                .clipShape(Circle())
+                .foregroundColor(isSameDay(date1: calendarItem.date, date2: selectedDate) ? .white : .primary)
+                .frame(width: 36, height: 36)
+                .background(
+                    Group {
+                        if isSameDay(date1: calendarItem.date, date2: selectedDate) {
+                            LinearGradient(
+                                gradient: Gradient(colors: [.mint, .blue]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                            .clipShape(Circle())
+                        } else {
+                            Color.clear
+                        }
+                    }
+                )
             
             // 日付の下に文字を表示
-            Text("イベントあり")
+            Text(String(calendarItem.price))
                 .font(.caption)
                 .foregroundColor(.gray)
         }
