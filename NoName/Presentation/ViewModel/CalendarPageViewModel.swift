@@ -4,17 +4,6 @@ import SwiftUICore
 @MainActor
 class CalendarPageViewModel: ObservableObject {
     private let recordRepository = RecordRepository()
-    @Published var selectedDate = Date()
-    
-    // 月を変更する関数
-    func changeMonth(by value: Int) {
-        let calendar = Calendar.current
-        if let newDate = calendar.date(byAdding: .month, value: value, to: self.selectedDate) {
-            DispatchQueue.main.async {
-                self.selectedDate = newDate
-            }
-        }
-    }
     
     // 日付をフォーマットする関数
     func formattedDate(_ date: Date) -> String {

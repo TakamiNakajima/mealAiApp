@@ -27,7 +27,7 @@ struct CalendarView: View {
                 )
             
             // 日付の下に文字を表示
-            Text(String(calendarItem.price))
+            Text("¥\(String(calendarItem.price))")
                 .font(.caption)
                 .foregroundColor(.gray)
         }
