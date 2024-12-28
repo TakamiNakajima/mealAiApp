@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsRowView: View {
+struct SettingsRow: View {
     
     let imageName: String
     let title: String
