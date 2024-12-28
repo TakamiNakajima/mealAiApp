@@ -15,9 +15,9 @@ extension EnvironmentValues {
 @main
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var homePageViewModel = HomePageViewModel()
+    @StateObject var menuPageViewModel = MenuPageViewModel()
     @StateObject var addPageViewModel = AddPageViewModel()
-    @StateObject var calendarPageViewModel = CalendarPageViewModel()
+    @StateObject var shoppingPageViewModel = ShoppingPageViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -27,9 +27,9 @@ struct NoNameApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(authViewModel)
-                .environmentObject(homePageViewModel)
+                .environmentObject(menuPageViewModel)
                 .environmentObject(addPageViewModel)
-                .environmentObject(calendarPageViewModel)
+                .environmentObject(shoppingPageViewModel)
         }
     }
 }

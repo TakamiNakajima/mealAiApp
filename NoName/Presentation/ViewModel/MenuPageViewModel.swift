@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 @MainActor
-class HomePageViewModel: ObservableObject {
+class MenuPageViewModel: ObservableObject {
     @Published var thisMonthDays: [String] = []
     @Published var selectedYear: Int = 0
     @Published var selectedMonth: Int = 0

@@ -11,7 +11,7 @@ struct LoginView: View {
             VStack {
                 
                 // image
-                Image("firebase")
+                Image("mealaiicon")
                     .resizable()
                     .scaledToFill()
                     .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 120)

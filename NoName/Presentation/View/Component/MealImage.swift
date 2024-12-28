@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MealImage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var homePageViewModel: HomePageViewModel
+    @EnvironmentObject var homePageViewModel: MenuPageViewModel
     @Binding var selectedTab:BottomBarSelectedTab
     var type: Int
     var imageUrl: String?

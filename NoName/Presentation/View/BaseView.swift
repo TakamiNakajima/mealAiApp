@@ -8,14 +8,14 @@ struct BaseView: View {
     var body: some View {
         VStack {
             if (selectedTab == .home)  {
-                HomePage(selectedTab: $selectedTab)
-            } else if (selectedTab == .calendar) {
-                CalendarPage()
+                HomePage()
+            } else if (selectedTab == .shopping) {
+                ShoppingPage()
             } else if (selectedTab == .add) {
                 AddPage(selectedTab: $selectedTab)
-            } else if (selectedTab == .report) {
-                NotificationPage()
-            } else if (selectedTab == .message) {
+            } else if (selectedTab == .menu) {
+                MenuPage(selectedTab: $selectedTab)
+            } else if (selectedTab == .setting) {
                 UIKitSettingView()
             }
             

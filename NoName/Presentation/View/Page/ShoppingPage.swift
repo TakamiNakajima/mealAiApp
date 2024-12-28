@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct CalendarPage: View {
+struct ShoppingPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var viewModel: CalendarPageViewModel
+    @EnvironmentObject var viewModel: ShoppingPageViewModel
     @State var calendarItems: [CalendarItem] = []
     @State var selectedDate = Date()
     @State var isLoading: Bool = false
