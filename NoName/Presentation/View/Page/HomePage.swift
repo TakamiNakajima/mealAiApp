@@ -27,9 +27,7 @@ struct HomePage: View {
                     Text("献立を\n作成する")
                         .foregroundColor(Color.white)
                         .multilineTextAlignment(.center)
-
                 }
-                
             }
             .buttonStyle(PlainButtonStyle())
             Spacer()
