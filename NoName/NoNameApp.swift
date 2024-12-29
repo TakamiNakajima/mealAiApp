@@ -18,6 +18,7 @@ struct NoNameApp: App {
     @StateObject var menuPageViewModel = MenuPageViewModel()
     @StateObject var addPageViewModel = AddPageViewModel()
     @StateObject var shoppingPageViewModel = ShoppingPageViewModel()
+    @StateObject var generateMenuPageViewModel = GenerateMenuViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -25,11 +26,12 @@ struct NoNameApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BaseView()
                 .environmentObject(authViewModel)
                 .environmentObject(menuPageViewModel)
                 .environmentObject(addPageViewModel)
                 .environmentObject(shoppingPageViewModel)
+                .environmentObject(generateMenuPageViewModel)
         }
     }
 }

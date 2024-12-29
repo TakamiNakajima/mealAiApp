@@ -41,6 +41,7 @@ struct BottomBar: View {
             
             // 追加
             Button {
+                generator.impactOccurred()
                 selectedTab = .add
             } label: {
                 VStack {

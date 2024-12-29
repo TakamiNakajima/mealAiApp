@@ -132,6 +132,6 @@ class MenuPageViewModel: ObservableObject {
     
     // レコード削除
     func deleteRecord(recordId: String, userId: String) async {
-        let isSuccess = await recordUseCase.deleteRecord(recordId: recordId, userId: userId)
+        let _ = await recordUseCase.deleteRecord(recordId: recordId, userId: userId)
     }
 }
