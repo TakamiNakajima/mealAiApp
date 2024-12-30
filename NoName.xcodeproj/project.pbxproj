@@ -55,8 +55,8 @@
 		4D56C6232BBAE637002ABB9F /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D56C6222BBAE637002ABB9F /* Collection.swift */; };
 		4D57CFA72CFDCFFC002877B6 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */; };
 		4D59288B2D1FF37D0093A07B /* GenerateMenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D59288A2D1FF37D0093A07B /* GenerateMenuPage.swift */; };
+		4D5BBBC92D22B1CE00E28811 /* SettingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5BBBC82D22B1CE00E28811 /* SettingLabel.swift */; };
 		4D6A94372CD45C46007C68C2 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A94362CD45C46007C68C2 /* SettingViewController.swift */; };
-		4D6A94392CD45C97007C68C2 /* SettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */; };
 		4D6A943B2CD473B8007C68C2 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */; };
 		4D6B294B2D216AA300285826 /* GenerateMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6B294A2D216AA300285826 /* GenerateMenuViewModel.swift */; };
 		4D73F9E52CBBC033002CBB7A /* MenuPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73F9E42CBBC033002CBB7A /* MenuPageViewModel.swift */; };
@@ -105,8 +105,8 @@
 		4D56C6222BBAE637002ABB9F /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		4D59288A2D1FF37D0093A07B /* GenerateMenuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMenuPage.swift; sourceTree = "<group>"; };
+		4D5BBBC82D22B1CE00E28811 /* SettingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabel.swift; sourceTree = "<group>"; };
 		4D6A94362CD45C46007C68C2 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingViewController.storyboard; sourceTree = "<group>"; };
 		4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		4D6B294A2D216AA300285826 /* GenerateMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateMenuViewModel.swift; sourceTree = "<group>"; };
 		4D73F9E42CBBC033002CBB7A /* MenuPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPageViewModel.swift; sourceTree = "<group>"; };
@@ -234,7 +234,6 @@
 				4D54DF5C2BAFBBCF00101545 /* AuthViewModel.swift */,
 				4D73F9E42CBBC033002CBB7A /* MenuPageViewModel.swift */,
 				4D2127D42CC7C7B400C5457E /* AddPageViewModel.swift */,
-				4D6A94362CD45C46007C68C2 /* SettingViewController.swift */,
 				4DF6E9352CFB41BA00B6651B /* ShoppingPageViewModel.swift */,
 				4D6B294A2D216AA300285826 /* GenerateMenuViewModel.swift */,
 			);
@@ -266,6 +265,7 @@
 				4D2127D82CC91D7F00C5457E /* MealImageLarge.swift */,
 				4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */,
 				4DF6E9372CFB429100B6651B /* CalendarView.swift */,
+				4D5BBBC82D22B1CE00E28811 /* SettingLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -334,8 +334,8 @@
 				4DE08D5D2CAE5DCB00277825 /* MenuPage.swift */,
 				4DE08D602CAE5E3E00277825 /* ShoppingPage.swift */,
 				4DE08D622CAE5E5B00277825 /* AddPage.swift */,
+				4D6A94362CD45C46007C68C2 /* SettingViewController.swift */,
 				4DE08D642CAE5E8900277825 /* HomePage.swift */,
-				4D6A94382CD45C97007C68C2 /* SettingViewController.storyboard */,
 				4D59288A2D1FF37D0093A07B /* GenerateMenuPage.swift */,
 			);
 			path = Page;
@@ -431,7 +431,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D6A94392CD45C97007C68C2 /* SettingViewController.storyboard in Resources */,
 				4D54DF052BADCA4900101545 /* Preview Assets.xcassets in Resources */,
 				4D54DF022BADCA4900101545 /* Assets.xcassets in Resources */,
 				4D54DF222BAFBA3C00101545 /* GoogleService-Info.plist in Resources */,
@@ -484,6 +483,7 @@
 				4D59288B2D1FF37D0093A07B /* GenerateMenuPage.swift in Sources */,
 				4D37DBBD2BC56BB10083433E /* SettingRow.swift in Sources */,
 				4DE08D612CAE5E3E00277825 /* ShoppingPage.swift in Sources */,
+				4D5BBBC92D22B1CE00E28811 /* SettingLabel.swift in Sources */,
 				4D54DF5D2BAFBBCF00101545 /* AuthViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
