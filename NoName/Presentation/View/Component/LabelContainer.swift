@@ -5,7 +5,6 @@ class LabelContainer: UIView {
     private let containerView = UIView()
     private var cornersToRound: UIRectCorner = []
 
-    // 初期化
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -26,8 +25,8 @@ class LabelContainer: UIView {
         
         // ラベルの設定
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        titleLabel.textColor = .systemGray
+        titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        titleLabel.textColor = .darkGray
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         // コンテナビューとラベルを追加
@@ -40,7 +39,7 @@ class LabelContainer: UIView {
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 60),
+            containerView.heightAnchor.constraint(equalToConstant: 48),
             
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             titleLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)

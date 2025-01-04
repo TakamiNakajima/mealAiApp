@@ -68,6 +68,7 @@
 		4D7613D02CE368210026C704 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7613CF2CE368210026C704 /* FirestoreService.swift */; };
 		4D7613D22CE369B10026C704 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7613D12CE369B10026C704 /* StorageService.swift */; };
 		4D7D39A22CC22437001534E1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D39A12CC22437001534E1 /* Record.swift */; };
+		4DA1E1E22D29488300F94DC3 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */; };
 		4DDEC62A2CC4E26C00E4EAFA /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */; };
 		4DDEC62C2CC4F06500E4EAFA /* RecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */; };
 		4DE08D5E2CAE5DCB00277825 /* MenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D5D2CAE5DCB00277825 /* MenuPage.swift */; };
@@ -118,6 +119,7 @@
 		4D7613CF2CE368210026C704 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		4D7613D12CE369B10026C704 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		4D7D39A12CC22437001534E1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
 		4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepository.swift; sourceTree = "<group>"; };
 		4DE08D5D2CAE5DCB00277825 /* MenuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPage.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */,
 				4DF6E9372CFB429100B6651B /* CalendarView.swift */,
 				4D5BBBC82D22B1CE00E28811 /* LabelContainer.swift */,
+				4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				4D7D39A22CC22437001534E1 /* Record.swift in Sources */,
 				4DE08D652CAE5E8900277825 /* HomePage.swift in Sources */,
 				4D54DF002BADCA4700101545 /* BaseView.swift in Sources */,
+				4DA1E1E22D29488300F94DC3 /* HeaderLabel.swift in Sources */,
 				4D2127D52CC7C7B400C5457E /* AddPageViewModel.swift in Sources */,
 				4D2127D72CC91BB600C5457E /* Texts.swift in Sources */,
 				4DF6E9382CFB429100B6651B /* CalendarView.swift in Sources */,
