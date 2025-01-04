@@ -49,7 +49,7 @@ class LabelContainer: UIView {
     // Configureメソッドに上下の角丸の設定を追加
     func configure(title: String, topRadius: Bool = true, bottomRadius: Bool = true, parentView: UIView) {
         titleLabel.text = title
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = UIColor(named: "bgColor")
         
         // 上下の角丸をフラグで管理
         var corners: UIRectCorner = []

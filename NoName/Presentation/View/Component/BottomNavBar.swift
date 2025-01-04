@@ -114,10 +114,8 @@ struct BottomBarButtonView: View {
                     Text(text)
                         .font(.caption)
                         .foregroundColor(isActive ? Color("mainColorLight") : .gray)
-                    
                 }
             }
-            
         }
     }
 }
