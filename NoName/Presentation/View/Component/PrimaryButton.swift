@@ -15,9 +15,9 @@ struct PrimaryButton: View {
                 .frame(width: width, height: height)
                 .foregroundColor(.white)
                 .background(LinearGradient(
-                    gradient: Gradient(colors: [.mint, .blue]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+                    gradient: Gradient(colors: [Color("mainColorLight"), Color("mainColorDark")]),
+                    startPoint: .top,
+                    endPoint: .bottom
                 ))
                 .cornerRadius(height / 2)
         }
