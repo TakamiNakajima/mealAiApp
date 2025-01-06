@@ -1,5 +1,5 @@
 
-enum mealType: String, CaseIterable, Identifiable {
+enum MealType: String, CaseIterable, Identifiable {
     case stapleFood = "主食"
     case mainDish = "主菜"
     case sideDish = "副菜"

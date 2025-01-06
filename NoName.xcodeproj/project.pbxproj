@@ -70,6 +70,10 @@
 		4D7D39A22CC22437001534E1 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7D39A12CC22437001534E1 /* Record.swift */; };
 		4DA1E1E22D29488300F94DC3 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */; };
 		4DABA2DD2D2B4CE20045C870 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DABA2DC2D2B4CE20045C870 /* MealType.swift */; };
+		4DABA2DF2D2C92D40045C870 /* AllergyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DABA2DE2D2C92D40045C870 /* AllergyList.swift */; };
+		4DABA2E12D2C938E0045C870 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DABA2E02D2C938E0045C870 /* Ingredient.swift */; };
+		4DABA2E32D2C93E00045C870 /* SaleArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DABA2E22D2C93E00045C870 /* SaleArea.swift */; };
+		4DABA2E52D2C94850045C870 /* UnitType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DABA2E42D2C94850045C870 /* UnitType.swift */; };
 		4DDEC62A2CC4E26C00E4EAFA /* StorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */; };
 		4DDEC62C2CC4F06500E4EAFA /* RecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */; };
 		4DE08D5E2CAE5DCB00277825 /* MenuPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE08D5D2CAE5DCB00277825 /* MenuPage.swift */; };
@@ -122,6 +126,10 @@
 		4D7D39A12CC22437001534E1 /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
 		4DABA2DC2D2B4CE20045C870 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		4DABA2DE2D2C92D40045C870 /* AllergyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergyList.swift; sourceTree = "<group>"; };
+		4DABA2E02D2C938E0045C870 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		4DABA2E22D2C93E00045C870 /* SaleArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleArea.swift; sourceTree = "<group>"; };
+		4DABA2E42D2C94850045C870 /* UnitType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitType.swift; sourceTree = "<group>"; };
 		4DDEC6292CC4E26C00E4EAFA /* StorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageRepository.swift; sourceTree = "<group>"; };
 		4DDEC62B2CC4F06500E4EAFA /* RecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRepository.swift; sourceTree = "<group>"; };
 		4DE08D5D2CAE5DCB00277825 /* MenuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPage.swift; sourceTree = "<group>"; };
@@ -219,6 +227,7 @@
 				4D57CFA62CFDCFF9002877B6 /* CalendarItem.swift */,
 				4D54DF1F2BAFA9BD00101545 /* User.swift */,
 				4D7D39A12CC22437001534E1 /* Record.swift */,
+				4DABA2E02D2C938E0045C870 /* Ingredient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +289,7 @@
 			children = (
 				4DABA2DB2D2B4CCA0045C870 /* enum */,
 				4D56C6222BBAE637002ABB9F /* Collection.swift */,
+				4DABA2DE2D2C92D40045C870 /* AllergyList.swift */,
 				4D1876BD2CA6394F000180DC /* Constants.swift */,
 				4D73F9E62CC135B7002CBB7A /* ImagePicker.swift */,
 				4D2127D62CC91BB600C5457E /* Texts.swift */,
@@ -335,6 +345,8 @@
 			isa = PBXGroup;
 			children = (
 				4DABA2DC2D2B4CE20045C870 /* MealType.swift */,
+				4DABA2E22D2C93E00045C870 /* SaleArea.swift */,
+				4DABA2E42D2C94850045C870 /* UnitType.swift */,
 			);
 			path = enum;
 			sourceTree = "<group>";
@@ -460,19 +472,23 @@
 			files = (
 				4D54DF142BADCBA400101545 /* LoginPage.swift in Sources */,
 				4D54DF162BADCD4300101545 /* InputItem.swift in Sources */,
+				4DABA2E12D2C938E0045C870 /* Ingredient.swift in Sources */,
 				4DE08D6B2CAE667B00277825 /* CircleText.swift in Sources */,
 				4D1876C42CA67352000180DC /* TopTabView.swift in Sources */,
+				4DABA2DF2D2C92D40045C870 /* AllergyList.swift in Sources */,
 				4D7D39A22CC22437001534E1 /* Record.swift in Sources */,
 				4DE08D652CAE5E8900277825 /* HomePage.swift in Sources */,
 				4D54DF002BADCA4700101545 /* BaseView.swift in Sources */,
 				4DA1E1E22D29488300F94DC3 /* HeaderLabel.swift in Sources */,
 				4D2127D52CC7C7B400C5457E /* AddPageViewModel.swift in Sources */,
+				4DABA2E52D2C94850045C870 /* UnitType.swift in Sources */,
 				4D2127D72CC91BB600C5457E /* Texts.swift in Sources */,
 				4DF6E9382CFB429100B6651B /* CalendarView.swift in Sources */,
 				4DDEC62A2CC4E26C00E4EAFA /* StorageRepository.swift in Sources */,
 				4D54DEFE2BADCA4700101545 /* NoNameApp.swift in Sources */,
 				4D54DF202BAFA9BD00101545 /* User.swift in Sources */,
 				4D6A943B2CD473B8007C68C2 /* PrimaryButton.swift in Sources */,
+				4DABA2E32D2C93E00045C870 /* SaleArea.swift in Sources */,
 				4D73F9E92CC13AFA002CBB7A /* MealImage.swift in Sources */,
 				4D73F9ED2CC13B6A002CBB7A /* CaloriesConteiner.swift in Sources */,
 				4DABA2DD2D2B4CE20045C870 /* MealType.swift in Sources */,
