@@ -27,7 +27,7 @@ class RecordRepository: ObservableObject {
         
         return try await withCheckedThrowingContinuation { continuation in
             firestoreService.readSubCollection(
-                parentCollection: Collection.users,
+                parentCollection: "users",
                 parentDocumentId: userId,
                 subCollection: "records",
                 field: "date",
@@ -54,7 +54,7 @@ class RecordRepository: ObservableObject {
     
     // レコード削除処理
     func deleteRecord(recordId: String, userId: String) async throws {
-        firestoreService.deleteSubCollection(parentCollection: Collection.users, parentDocumentId: userId, subCollection: "records", subDocumentId: recordId, completion: { result in
+        firestoreService.deleteSubCollection(parentCollection: "users", parentDocumentId: userId, subCollection: "records", subDocumentId: recordId, completion: { result in
             switch result {
             case .success():
                 print("ドキュメントが正常に削除されました。")
