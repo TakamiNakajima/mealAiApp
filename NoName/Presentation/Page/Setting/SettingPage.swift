@@ -1,15 +1,30 @@
 import UIKit
 
-class SettingViewController: UIViewController {
+class SettingPage: UIViewController {
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    let settingLabel = HeaderLabel(title: "課金")
+    let labelContainerView1 = LabelContainer()
+    let mySettingLabel = HeaderLabel(title: "My設定")
+    let labelContainerView2 = LabelContainer()
+    let labelContainerView3 = LabelContainer()
+    let accountLabel = HeaderLabel(title: "アカウント")
+    let logoutContainer = LabelContainer()
+    let deleteAccountContainer = LabelContainer()
+    let aboutAppLabel = HeaderLabel(title: "アプリについて")
+    let formContainer = LabelContainer()
+    let termContainer = LabelContainer()
+    let privacyContainer = LabelContainer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // スクロールビューとコンテントビューを追加
-        let scrollView = UIScrollView()
+        setupView()
+    }
+    
+    func setupView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
-        let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
         
@@ -28,42 +43,35 @@ class SettingViewController: UIViewController {
         ])
         
         // 各ラベルとコンテナを追加
-        let settingLabel = HeaderLabel(title: "課金")
         contentView.addSubview(settingLabel)
-        
-        let labelContainerView1 = LabelContainer()
-        labelContainerView1.configure(title: "広告を非表示にする", parentView: contentView)
-        
-        let mySettingLabel = HeaderLabel(title: "My設定")
+        labelContainerView1.configure(title: "広告を非表示にする", parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
         contentView.addSubview(mySettingLabel)
-        
-        let labelContainerView2 = LabelContainer()
-        labelContainerView2.configure(title: "アレルギー", bottomRadius: false, parentView: contentView)
-        
-        let labelContainerView3 = LabelContainer()
-        labelContainerView3.configure(title: "嫌いな食べ物", topRadius: false, parentView: contentView)
-        
-        let accountLabel = HeaderLabel(title: "アカウント")
+        labelContainerView2.configure(title: "アレルギー", bottomRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
+        labelContainerView3.configure(title: "嫌いな食べ物", topRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
         contentView.addSubview(accountLabel)
-        
-        let logoutContainer = LabelContainer()
-        logoutContainer.configure(title: "ログアウト", bottomRadius: false, parentView: contentView)
-        
-        let deleteAccountContainer = LabelContainer()
-        deleteAccountContainer.configure(title: "退会", topRadius: false, parentView: contentView)
-        
-        let aboutAppLabel = HeaderLabel(title: "アプリについて")
+        logoutContainer.configure(title: "ログアウト", bottomRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
+        deleteAccountContainer.configure(title: "退会", topRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
         contentView.addSubview(aboutAppLabel)
+        formContainer.configure(title: "お問い合わせ", bottomRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
+        termContainer.configure(title: "利用規約", topRadius: false, bottomRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
+        privacyContainer.configure(title: "プライバシーポリシー", topRadius: false, parentView: contentView, destinationVC: {
+            return BillingPage()
+        })
         
-        let formContainer = LabelContainer()
-        formContainer.configure(title: "お問い合わせ", bottomRadius: false, parentView: contentView)
-        
-        let termContainer = LabelContainer()
-        termContainer.configure(title: "利用規約", topRadius: false, bottomRadius: false, parentView: contentView)
-        
-        let privacyContainer = LabelContainer()
-        privacyContainer.configure(title: "プライバシーポリシー", topRadius: false, parentView: contentView)
-
         // コンテントビュー内の制約を設定
         NSLayoutConstraint.activate([
             settingLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),

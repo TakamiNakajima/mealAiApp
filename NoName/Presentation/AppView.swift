@@ -29,11 +29,13 @@ struct AppPage: View {
 
 // SettingPage(UIKit)
 struct UIKitSettingView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> SettingViewController {
-        return SettingViewController()
+    func makeUIViewController(context: Context) -> UINavigationController {
+        let firstVC = SettingPage()
+        let navigationController = UINavigationController(rootViewController: firstVC)
+        return navigationController
     }
-    
-    func updateUIViewController(_ uiViewController: SettingViewController, context: Context) {
+
+    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
         // 必要な更新ロジックがあればここに記述
     }
 }
