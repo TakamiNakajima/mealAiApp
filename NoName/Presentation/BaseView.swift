@@ -6,7 +6,7 @@ struct BaseView: View {
     var body: some View {
         Group {
             if authViewModel.userSession != nil {
-                AppPage()
+                AppView()
             } else {
                 LoginPage()
                     .modelContainer(for: UserCredentials.self)

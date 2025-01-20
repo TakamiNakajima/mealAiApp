@@ -10,13 +10,23 @@ protocol AuthentiationFormProtocol {
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    private var authStateListener: AuthStateDidChangeListenerHandle?
     
     init() {
         self.userSession = Auth.auth().currentUser
+        authStateListener = Auth.auth().addStateDidChangeListener { [weak self] _, user in
+                    self?.userSession = user
+                }
         Task {
             await fetchUser()
         }
     }
+    
+    deinit {
+            if let authStateListener = authStateListener {
+                Auth.auth().removeStateDidChangeListener(authStateListener)
+            }
+        }
     
     // ログイン処理
     func signIn(withEmail email: String, password: String) async throws {

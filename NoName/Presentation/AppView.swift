@@ -1,7 +1,7 @@
 import SwiftUI
 import HealthKit
 
-struct AppPage: View {
+struct AppView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @State var selectedTab:BottomBarSelectedTab = .home
     

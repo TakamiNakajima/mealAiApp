@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D1701432D3DBB2C00730E81 /* BillingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1701422D3DBB2C00730E81 /* BillingPage.swift */; };
+		4D1701452D3F090800730E81 /* LogoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1701442D3F090800730E81 /* LogoutPage.swift */; };
 		4D1876C02CA6397E000180DC /* BottomNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1876BF2CA6397E000180DC /* BottomNavBar.swift */; };
 		4D1876C22CA639D8000180DC /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1876C12CA639D8000180DC /* AppView.swift */; };
 		4D1876C42CA67352000180DC /* TopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1876C32CA67352000180DC /* TopTabView.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		4D1701422D3DBB2C00730E81 /* BillingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingPage.swift; sourceTree = "<group>"; };
+		4D1701442D3F090800730E81 /* LogoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutPage.swift; sourceTree = "<group>"; };
 		4D1876BF2CA6397E000180DC /* BottomNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavBar.swift; sourceTree = "<group>"; };
 		4D1876C12CA639D8000180DC /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		4D1876C32CA67352000180DC /* TopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			children = (
 				4D6A94362CD45C46007C68C2 /* SettingPage.swift */,
 				4D1701422D3DBB2C00730E81 /* BillingPage.swift */,
+				4D1701442D3F090800730E81 /* LogoutPage.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				4DE08D5E2CAE5DCB00277825 /* MenuListPage.swift in Sources */,
 				4D7613D02CE368210026C704 /* FirestoreService.swift in Sources */,
 				4DF6E9362CFB41BA00B6651B /* ShoppingPageViewModel.swift in Sources */,
+				4D1701452D3F090800730E81 /* LogoutPage.swift in Sources */,
 				4DE08D632CAE5E5B00277825 /* AddPage.swift in Sources */,
 				4D2127D92CC91D7F00C5457E /* MealImageLarge.swift in Sources */,
 				4D59288B2D1FF37D0093A07B /* GenerateMenuPage.swift in Sources */,

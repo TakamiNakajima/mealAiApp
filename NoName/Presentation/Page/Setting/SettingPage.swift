@@ -56,7 +56,7 @@ class SettingPage: UIViewController {
         })
         contentView.addSubview(accountLabel)
         logoutContainer.configure(title: "ログアウト", bottomRadius: false, parentView: contentView, destinationVC: {
-            return BillingPage()
+            return LogoutPage()
         })
         deleteAccountContainer.configure(title: "退会", topRadius: false, parentView: contentView, destinationVC: {
             return BillingPage()

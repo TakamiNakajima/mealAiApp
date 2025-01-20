@@ -10,9 +10,8 @@ struct HomePage: View {
         VStack {
             Spacer()
             Button {
-//                generator.impactOccurred()
-//                isPresented = true
-                authViewModel.signOut()
+                generator.impactOccurred()
+                isPresented = true
             } label: {
                 ZStack(alignment: .center) {
                     Circle()
