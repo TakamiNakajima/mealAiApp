@@ -15,7 +15,7 @@ extension EnvironmentValues {
 @main
 struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
-    @StateObject var menuPageViewModel = MenuListPageViewModel()
+    @StateObject var homePageViewModel = HomePageViewModel()
     @StateObject var addPageViewModel = AddPageViewModel()
     @StateObject var shoppingPageViewModel = ShoppingPageViewModel()
     @StateObject var generateMenuPageViewModel = GenerateMenuViewModel()
@@ -28,7 +28,7 @@ struct NoNameApp: App {
         WindowGroup {
             BaseView()
                 .environmentObject(authViewModel)
-                .environmentObject(menuPageViewModel)
+                .environmentObject(homePageViewModel)
                 .environmentObject(addPageViewModel)
                 .environmentObject(shoppingPageViewModel)
                 .environmentObject(generateMenuPageViewModel)

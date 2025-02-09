@@ -2,7 +2,7 @@
 import FirebaseStorage
 import Foundation
 
-struct StorageService {
+struct StorageDataSource {
     
     func create() {}
     

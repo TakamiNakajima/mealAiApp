@@ -18,19 +18,19 @@ struct CaloriesConteiner: View {
                 HStack(spacing: 2) {
                     Text("\(totalPayment)")
                         .font(.title2)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("mainColorDark"))
                         .fontWeight(.bold)
                     
                     Text("円")
                         .font(.headline)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(Color("mainColorDark"))
                         .fontWeight(.bold)
                         .padding(.top, 4)
                 }
                 
                 ProgressView(value: 0.3)
                     .scaleEffect(x: 1, y: 2, anchor: .center)
-                    .tint(.blue)
+                    .tint(Color("mainColorDark"))
                     .padding(.bottom, 10)
                     .padding(.horizontal, 24)
                 

@@ -10,7 +10,7 @@ struct CircleText: View {
                 .frame(width: 38, height: 38)
                 .foregroundStyle(
                     LinearGradient(
-                        gradient: Gradient(colors: [.mint, .blue]),
+                        gradient: Gradient(colors: [Color("mainColorLight"), Color("mainColorDark")]),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )

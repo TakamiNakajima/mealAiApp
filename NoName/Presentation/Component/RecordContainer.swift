@@ -22,12 +22,12 @@ struct RecordContainer: View {
                     HStack(spacing: 2) {
                         Text(String(record.price))
                             .font(.headline)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(Color("mainColorDark"))
                             .fontWeight(.bold)
                         
                         Text("円")
                             .font(.subheadline)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(Color("mainColorDark"))
                             .fontWeight(.bold)
                             .padding(.top, 2)
                     }

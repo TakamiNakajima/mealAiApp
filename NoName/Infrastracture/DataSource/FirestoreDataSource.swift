@@ -2,7 +2,7 @@ import Firebase
 import FirebaseFirestore
 import Foundation
 
-struct FirestoreService {
+struct FirestoreDataSource {
     private let db = Firestore.firestore()
     
     // ドキュメントを新規作成
@@ -62,7 +62,7 @@ struct FirestoreService {
         }
     }
     
-    // サブコレクションにデータを保存
+    // サブコレクションにデータを作成
     func createSubCollection(
         parentCollection: String,
         parentDocumentId: String,

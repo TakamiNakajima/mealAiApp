@@ -14,7 +14,7 @@ struct AppView: View {
             } else if (selectedTab == .add) {
                 AddPage(selectedTab: $selectedTab)
             } else if (selectedTab == .menu) {
-                MenuListPage(selectedTab: $selectedTab)
+                MenuListPage()
             } else if (selectedTab == .setting) {
                 UIKitSettingView()
             }
