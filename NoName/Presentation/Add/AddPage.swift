@@ -9,6 +9,8 @@ struct AddPage: View {
     @State private var selectedPaymentType: PaymentType = .convinience
     @State private var isLoading: Bool = false
     @Binding var selectedTab: BottomBarSelectedTab
+    @State private var isShowingDialog = false
+    @State private var inputText = ""
     let generator = UIImpactFeedbackGenerator(style: .light)
     let numbers: [[String]] = [
         ["1", "2", "3"],
@@ -16,30 +18,29 @@ struct AddPage: View {
         ["7", "8", "9"],
         ["0", "⌫"]
     ]
-
+    
     var body: some View {
         if let user = authViewModel.currentUser {
             NavigationView {
                 ZStack {
                     ScrollView {
                         VStack(alignment: .center, spacing: 16) {
-
-                            WrapView(selectedMealType: $selectedPaymentType)
+                            
+                            WrapView(selectedMealType: $selectedPaymentType, isShowingDialog: $isShowingDialog)
                             
                             HStack {
-                                
                                 Spacer()
-                                    .frame(width: 80, height: 60)
-
+                                    .frame(width: 40, height: 60)
+                                
                                 Text("\(price)")
                                     .font(.system(size: 32, weight: .bold))
                                     .foregroundColor(Color("mainColorDark"))
-                                    .frame(width: 80, height: 60)
+                                    .frame(width: 120, height: 60)
                                 
                                 Text("円")
                                     .font(.system(size: 20, weight: .regular))
                                     .foregroundColor(Color("mainColorDark"))
-                                    .frame(width: 80, height: 60)
+                                    .frame(width: 40, height: 60)
                             }
                             
                             VStack(spacing: 12) {
@@ -67,7 +68,7 @@ struct AddPage: View {
                                 generator.impactOccurred()
                                 Task {
                                     isLoading = true
-                                    await addPageViewModel.saveRecord(title: selectedPaymentType.displayName, userId: user.id, selectedDate: selectedDate, price: Int(price) ?? 0)
+                                    await addPageViewModel.saveRecord(title: (selectedPaymentType == .selfInput) ? inputText : selectedPaymentType.displayName, userId: user.id, selectedDate: selectedDate, price: Int(price) ?? 0)
                                     isLoading = false
                                     selectedTab = .home
                                 }
@@ -75,7 +76,14 @@ struct AddPage: View {
                         }
                         .padding()
                     }
-
+                    .alert("入力してください", isPresented: $isShowingDialog) {
+                        TextField("テキストを入力", text: $inputText)
+                        Button("キャンセル", role: .cancel) {}
+                        Button("OK") {
+                            print("入力値: \(inputText)")
+                        }
+                    }
+                    
                     if isLoading {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
@@ -85,7 +93,7 @@ struct AddPage: View {
             }
         }
     }
-
+    
     private func handleNumberInput(_ number: String) {
         if number == "⌫" {
             if !price.isEmpty {
@@ -99,6 +107,7 @@ struct AddPage: View {
 
 fileprivate struct WrapView: View {
     @Binding var selectedMealType: PaymentType
+    @Binding var isShowingDialog: Bool
     
     var body: some View {
         let columns = [GridItem(.adaptive(minimum: 100))]
@@ -106,6 +115,9 @@ fileprivate struct WrapView: View {
             ForEach(PaymentType.allCases, id: \.self) { item in
                 ChipView(item: item, isSelected: selectedMealType == item) {
                     selectedMealType = item
+                    if (selectedMealType == .selfInput) {
+                        isShowingDialog = true
+                    }
                 }
             }
         }

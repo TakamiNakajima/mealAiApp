@@ -119,6 +119,17 @@ class HomePageViewModel: ObservableObject {
         }
     }
     
+    // 記録削除処理
+    func deleteRecord(recordId: String, userId: String) async {
+        let recordRepository = RecordRepository()
+        
+        do {
+            try await recordRepository.deleteRecord(recordId: recordId, userId: userId)
+        } catch {
+            print("Error uploading image: \(error)")
+        }
+    }
+    
     func createDateFromSelected() -> Date? {
         let calendar = Calendar.current
         var components = DateComponents()

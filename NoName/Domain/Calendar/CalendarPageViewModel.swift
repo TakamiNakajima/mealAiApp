@@ -4,6 +4,7 @@ import SwiftUICore
 @MainActor
 class CalendarPageViewModel: ObservableObject {
     private let recordRepository = RecordRepository()
+    @Published private var cachedItems: [Date: CalendarItem] = [:]
     
     // 日付をフォーマットする関数
     func formattedDate(_ date: Date) -> String {
@@ -26,11 +27,17 @@ class CalendarPageViewModel: ObservableObject {
             var items: [CalendarItem] = []
             
             for date in daysInMonth {
-                let records = try await recordRepository.readRecord(date: date, userId: userId)
-                let totalPrice = records.reduce(0) { $0 + $1.price }
-                items.append(CalendarItem(date: date, price: totalPrice))
+                if let cachedItem = cachedItems[date] {
+                    items.append(cachedItem)
+                } else {
+                    let records = try await recordRepository.readRecord(date: date, userId: userId)
+                    let totalPrice = records.reduce(0) { $0 + $1.price }
+                    let newItem = CalendarItem(date: date, price: totalPrice)
+                    
+                    cachedItems[date] = newItem
+                    items.append(newItem)
+                }
             }
-            
             return items
         } catch {
             print("Error fetching calendar items: \(error)")

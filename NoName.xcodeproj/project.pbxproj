@@ -183,6 +183,8 @@
 				4D7613CA2CE3651D0026C704 /* Infrastracture */,
 				4D7613C92CE3650C0026C704 /* Domain */,
 				4D7613C82CE364CD0026C704 /* Presentation */,
+				4D54DEFF2BADCA4700101545 /* BaseView.swift */,
+				4D1876C12CA639D8000180DC /* AppView.swift */,
 				4D54DEFD2BADCA4700101545 /* NoNameApp.swift */,
 				4D56C61B2BB8EB9D002ABB9F /* Info.plist */,
 				4D56C61A2BB8EB4D002ABB9F /* NoName.entitlements */,
@@ -221,21 +223,13 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		4D56C61E2BBAD4B3002ABB9F /* Component */ = {
+		4D56C61E2BBAD4B3002ABB9F /* CommonComponent */ = {
 			isa = PBXGroup;
 			children = (
-				4D54DF152BADCD4300101545 /* InputItem.swift */,
 				4D1876BF2CA6397E000180DC /* BottomNavBar.swift */,
-				4DE08D682CAE625200277825 /* DashedCircleText.swift */,
-				4DE08D6A2CAE667B00277825 /* CircleText.swift */,
-				4D73F9EA2CC13B20002CBB7A /* RecordContainer.swift */,
-				4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */,
 				4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */,
-				4DF6E9372CFB429100B6651B /* CalendarComponent.swift */,
-				4D5BBBC82D22B1CE00E28811 /* SettingComponent.swift */,
-				4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */,
 			);
-			path = Component;
+			path = CommonComponent;
 			sourceTree = "<group>";
 		};
 		4D56C6212BBAE61C002ABB9F /* utility */ = {
@@ -249,10 +243,14 @@
 		4D7613C82CE364CD0026C704 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				4D54DEFF2BADCA4700101545 /* BaseView.swift */,
-				4D1876C12CA639D8000180DC /* AppView.swift */,
-				4D56C61E2BBAD4B3002ABB9F /* Component */,
-				4DE08D5F2CAE5DED00277825 /* Page */,
+				4DAF1EC52D35D543008E3797 /* Auth */,
+				4DAF1EC62D35D5DE008E3797 /* MenuList */,
+				4DAF1EC72D35D606008E3797 /* Calendar */,
+				4DAF1EC82D35D616008E3797 /* Add */,
+				4DAF1EC92D35D62D008E3797 /* Setting */,
+				4DAF1ECA2D35D63B008E3797 /* Home */,
+				4DAF1ECB2D35D648008E3797 /* GenerateMenu */,
+				4D56C61E2BBAD4B3002ABB9F /* CommonComponent */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -309,6 +307,7 @@
 			children = (
 				4D54DF172BADD47000101545 /* RegistrationPage.swift */,
 				4D54DF132BADCBA400101545 /* LoginPage.swift */,
+				4D54DF152BADCD4300101545 /* InputItem.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -321,12 +320,13 @@
 			path = MenuList;
 			sourceTree = "<group>";
 		};
-		4DAF1EC72D35D606008E3797 /* Shopping */ = {
+		4DAF1EC72D35D606008E3797 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
 				4DE08D602CAE5E3E00277825 /* CalendarPage.swift */,
+				4DF6E9372CFB429100B6651B /* CalendarComponent.swift */,
 			);
-			path = Shopping;
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		4DAF1EC82D35D616008E3797 /* Add */ = {
@@ -340,9 +340,11 @@
 		4DAF1EC92D35D62D008E3797 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				4DA1E1E12D29488300F94DC3 /* HeaderLabel.swift */,
 				4D6A94362CD45C46007C68C2 /* SettingPage.swift */,
 				4D1701422D3DBB2C00730E81 /* BillingPage.swift */,
 				4D1701442D3F090800730E81 /* LogoutPage.swift */,
+				4D5BBBC82D22B1CE00E28811 /* SettingComponent.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -350,7 +352,11 @@
 		4DAF1ECA2D35D63B008E3797 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4D73F9EC2CC13B6A002CBB7A /* CaloriesConteiner.swift */,
+				4DE08D6A2CAE667B00277825 /* CircleText.swift */,
+				4DE08D682CAE625200277825 /* DashedCircleText.swift */,
 				4DE08D5D2CAE5DCB00277825 /* HomePage.swift */,
+				4D73F9EA2CC13B20002CBB7A /* RecordContainer.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -401,20 +407,6 @@
 				4DD3019B2D58C3CD00ECD027 /* HomePageViewModel.swift */,
 			);
 			path = Home;
-			sourceTree = "<group>";
-		};
-		4DE08D5F2CAE5DED00277825 /* Page */ = {
-			isa = PBXGroup;
-			children = (
-				4DAF1ECB2D35D648008E3797 /* GenerateMenu */,
-				4DAF1ECA2D35D63B008E3797 /* Home */,
-				4DAF1EC92D35D62D008E3797 /* Setting */,
-				4DAF1EC82D35D616008E3797 /* Add */,
-				4DAF1EC72D35D606008E3797 /* Shopping */,
-				4DAF1EC62D35D5DE008E3797 /* MenuList */,
-				4DAF1EC52D35D543008E3797 /* Auth */,
-			);
-			path = Page;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

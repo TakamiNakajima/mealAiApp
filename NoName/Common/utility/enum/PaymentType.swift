@@ -7,6 +7,7 @@ enum PaymentType: String, CaseIterable, Identifiable {
     case goods = "物品"
     case closes = "服"
     case other = "その他"
+    case selfInput = "手入力..."
     
     var id: String { self.rawValue }
     
@@ -26,6 +27,8 @@ enum PaymentType: String, CaseIterable, Identifiable {
             return "服"
         case .other:
             return "その他"
+        case .selfInput:
+            return "手入力..."
         }
     }
 }

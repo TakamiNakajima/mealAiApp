@@ -4,10 +4,11 @@ struct HomePage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: HomePageViewModel
     @State private var showDeleteConfirmation = false
-    @State private var selectedRecordId: String?
+    @State private var selectedRecord: Record?
+    let generator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
-        if let _ = authViewModel.currentUser {
+        if let currentUser = authViewModel.currentUser {
             ZStack {
                 ScrollView {
                     VStack(spacing: 20) {
@@ -31,6 +32,7 @@ struct HomePage: View {
                                                         proxy.scrollTo(day, anchor: .center)
                                                     }
                                                     Task {
+                                                        generator.impactOccurred()
                                                         await viewModel.fetchRecords(userId: authViewModel.currentUser!.id, isInitialize: false)
                                                     }
                                                 }
@@ -62,7 +64,7 @@ struct HomePage: View {
                             CaloriesConteiner(totalPayment: viewModel.totalPayment, goalPayment: 1500)
                         }
                         
-                        // 支出
+                        // 支出一覧
                         VStack(spacing: 8) {
                             HStack {
                                 Text("支出")
@@ -73,13 +75,16 @@ struct HomePage: View {
                             }
                             .padding(.horizontal, 24)
                             
-                            LazyVStack(spacing: 12) { // ← ここを LazyVStack に変更
+                            LazyVStack(spacing: 12) {
                                 ForEach(viewModel.paymentRecordList, id: \.id) { record in
-                                    RecordContainer(record: record)
-                                        .onLongPressGesture {
-                                            selectedRecordId = record.id
-                                            showDeleteConfirmation = true
-                                        }
+                                    Button {
+                                        generator.impactOccurred()
+                                        selectedRecord = record
+                                        showDeleteConfirmation = true
+                                    } label: {
+                                        RecordContainer(record: record)
+                                    }
+                                    
                                 }
                             }
                         }
@@ -89,6 +94,19 @@ struct HomePage: View {
                 .onAppear {
                     Task {
                         await viewModel.initialize(uid: authViewModel.currentUser!.id)
+                    }
+                }
+                .alert("削除しますか？", isPresented: $showDeleteConfirmation) { 
+                    Button("キャンセル", role: .cancel) {}
+                    Button("OK") {
+                        Task {
+                            await viewModel.deleteRecord(recordId: selectedRecord!.id, userId: currentUser.id)
+                            await viewModel.fetchRecords(userId: currentUser.id, isInitialize: true)
+                        }
+                    }
+                } message: {
+                    if (selectedRecord != nil) {
+                        Text("\(selectedRecord!.title) \(selectedRecord!.price)円")
                     }
                 }
                 
