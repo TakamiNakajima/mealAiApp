@@ -23,7 +23,8 @@ struct AddPage: View {
                 ZStack {
                     ScrollView {
                         VStack(alignment: .center, spacing: 16) {
-                            TypePicker(selectedMealType: $selectedPaymentType)
+
+                            WrapView(selectedMealType: $selectedPaymentType)
                             
                             HStack {
                                 
@@ -96,26 +97,39 @@ struct AddPage: View {
     }
 }
 
-fileprivate struct TypePicker: View {
+fileprivate struct WrapView: View {
     @Binding var selectedMealType: PaymentType
-    private let columns = [GridItem(.adaptive(minimum: 80), spacing: 4)]
     
     var body: some View {
+        let columns = [GridItem(.adaptive(minimum: 100))]
         LazyVGrid(columns: columns, spacing: 8) {
-            ForEach(PaymentType.allCases, id: \.self) { type in
-                Text(type.rawValue)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 6)
-                    .foregroundColor(selectedMealType == type ? .white : Color.gray)
-                    .background(selectedMealType == type ? Color("mainColorDark") : Color.gray.opacity(0.2))
-                    .cornerRadius(20)
-                    .frame(minWidth: 80, maxWidth: .infinity, minHeight: 40)
-                    .onTapGesture {
-                        selectedMealType = type
-                    }
+            ForEach(PaymentType.allCases, id: \.self) { item in
+                ChipView(item: item, isSelected: selectedMealType == item) {
+                    selectedMealType = item
+                }
             }
         }
         .padding()
     }
 }
 
+fileprivate struct ChipView: View {
+    let item: PaymentType
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Text(item.displayName)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 6)
+            .foregroundColor(isSelected ? .white : Color("mainColorDark"))
+            .frame(maxWidth: .infinity)
+            .background(isSelected ? Color("mainColorDark") : Color.white)
+            .cornerRadius(16)
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("mainColorDark"), lineWidth: 1)
+            )
+            .onTapGesture(perform: action)
+    }
+}
