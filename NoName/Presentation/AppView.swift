@@ -9,12 +9,12 @@ struct AppView: View {
         VStack {
             if (selectedTab == .home)  {
                 HomePage()
-            } else if (selectedTab == .shopping) {
-                ShoppingPage()
+            } else if (selectedTab == .calendar) {
+                CalendarPage()
             } else if (selectedTab == .add) {
                 AddPage(selectedTab: $selectedTab)
-            } else if (selectedTab == .menu) {
-                MenuListPage()
+            } else if (selectedTab == .report) {
+                ReportPage()
             } else if (selectedTab == .setting) {
                 UIKitSettingView()
             }

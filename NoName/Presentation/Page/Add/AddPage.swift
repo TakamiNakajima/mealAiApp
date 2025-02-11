@@ -6,7 +6,7 @@ struct AddPage: View {
     @EnvironmentObject var addPageViewModel: AddPageViewModel
     @State private var price = ""
     @State private var selectedDate = Date()
-    @State private var selectedPaymentType: PaymentType = .eatingOut
+    @State private var selectedPaymentType: PaymentType = .convinience
     @State private var isLoading: Bool = false
     @Binding var selectedTab: BottomBarSelectedTab
     let generator = UIImpactFeedbackGenerator(style: .light)
@@ -25,10 +25,21 @@ struct AddPage: View {
                         VStack(alignment: .center, spacing: 16) {
                             TypePicker(selectedMealType: $selectedPaymentType)
                             
-                            Text("\(price)")
-                                .font(.system(size: 32, weight: .bold))
-                                .foregroundColor(Color("mainColorDark"))
-                                .frame(height: 120)
+                            HStack {
+                                
+                                Spacer()
+                                    .frame(width: 80, height: 60)
+
+                                Text("\(price)")
+                                    .font(.system(size: 32, weight: .bold))
+                                    .foregroundColor(Color("mainColorDark"))
+                                    .frame(width: 80, height: 60)
+                                
+                                Text("円")
+                                    .font(.system(size: 20, weight: .regular))
+                                    .foregroundColor(Color("mainColorDark"))
+                                    .frame(width: 80, height: 60)
+                            }
                             
                             VStack(spacing: 12) {
                                 ForEach(numbers, id: \.self) { row in
@@ -87,9 +98,10 @@ struct AddPage: View {
 
 fileprivate struct TypePicker: View {
     @Binding var selectedMealType: PaymentType
+    private let columns = [GridItem(.adaptive(minimum: 80), spacing: 4)]
     
     var body: some View {
-        HStack(spacing: 4) {
+        LazyVGrid(columns: columns, spacing: 8) {
             ForEach(PaymentType.allCases, id: \.self) { type in
                 Text(type.rawValue)
                     .padding(.horizontal, 16)
@@ -97,7 +109,7 @@ fileprivate struct TypePicker: View {
                     .foregroundColor(selectedMealType == type ? .white : Color.gray)
                     .background(selectedMealType == type ? Color("mainColorDark") : Color.gray.opacity(0.2))
                     .cornerRadius(20)
-                    .frame(width: 80, height: 40)
+                    .frame(minWidth: 80, maxWidth: .infinity, minHeight: 40)
                     .onTapGesture {
                         selectedMealType = type
                     }
@@ -106,3 +118,4 @@ fileprivate struct TypePicker: View {
         .padding()
     }
 }
+

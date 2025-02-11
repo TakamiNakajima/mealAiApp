@@ -1,6 +1,6 @@
 import UIKit
 
-class LabelContainer: UIView {
+class SettingComponent: UIView {
     private let containerView = UIView()
     private let titleLabel = UILabel()
     private let arrowImageView = UIImageView()

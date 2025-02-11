@@ -1,21 +1,30 @@
 
 enum PaymentType: String, CaseIterable, Identifiable {
-    case alcohol = "お酒"
-    case eatingOut = "外食"
-    case carfare = "交際費"
-    case goods = "その他"
+    case convinience = "コンビニ"
+    case store = "スーパー"
+    case outEating = "外食"
+    case carfare = "交通費"
+    case goods = "物品"
+    case closes = "服"
+    case other = "その他"
     
     var id: String { self.rawValue }
     
     var displayName: String {
         switch self {
-        case .alcohol:
-            return "お酒"
-        case .eatingOut:
+        case .convinience:
+            return "コンビニ"
+        case .store:
+            return "スーパー"
+        case .outEating:
             return "外食"
         case .carfare:
-            return "交際費"
+            return "交通費"
         case .goods:
+            return "物品"
+        case .closes:
+            return "服"
+        case .other:
             return "その他"
         }
     }

@@ -3,9 +3,9 @@ import SwiftUI
 // 現在選択中のボトムナビゲーションタブ
 enum BottomBarSelectedTab: Int {
     case home = 0
-    case shopping = 1
+    case calendar = 1
     case add = 2
-    case menu = 3
+    case report = 3
     case setting = 4
     
     init?(from rawValue: Int) {
@@ -31,12 +31,12 @@ struct BottomBar: View {
                 BottomBarButtonView(image: "house", text: "ホーム", isActive: selectedTab == .home)
             }
             
-            // 買い物
+            // カレンダー
             Button {
                 generator.impactOccurred()
-                selectedTab = .shopping
+                selectedTab = .calendar
             } label: {
-                BottomBarButtonView(image: "cart", text: "買い物", isActive: selectedTab == .shopping)
+                BottomBarButtonView(image: "calendar", text: "カレンダー", isActive: selectedTab == .calendar)
             }
             
             // 追加
@@ -66,12 +66,12 @@ struct BottomBar: View {
                 }
             }
             
-            // 献立表
+            // レポート
             Button {
                 generator.impactOccurred()
-                selectedTab = .menu
+                selectedTab = .report
             } label: {
-                BottomBarButtonView(image: "note.text", text: "献立表", isActive: selectedTab == .menu)
+                BottomBarButtonView(image: "note.text", text: "レポート", isActive: selectedTab == .report)
             }
             
             // 設定
@@ -110,6 +110,7 @@ struct BottomBarButtonView: View {
                     
                     Image(systemName: image)
                         .foregroundColor(isActive ? Color("mainColorLight") : .gray)
+                        .frame(height: 20)
                     
                     Text(text)
                         .font(.caption)

@@ -8,7 +8,7 @@ enum GeneratePageState {
 }
 
 struct GenerateMenuPage: View {
-    @EnvironmentObject var viewModel: GenerateMenuViewModel
+    @EnvironmentObject var viewModel: ReportPageViewModel
     @Binding var isPresented: Bool
     @State private var dates: Set<DateComponents> = []
     @State private var startDate: Date? = nil

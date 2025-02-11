@@ -2,7 +2,7 @@ import Foundation
 import SwiftUICore
 
 @MainActor
-class ShoppingPageViewModel: ObservableObject {
+class CalendarPageViewModel: ObservableObject {
     private let recordRepository = RecordRepository()
     
     // 日付をフォーマットする関数

@@ -3,7 +3,7 @@ import UIKit
 import SwiftUICore
 
 @MainActor
-class GenerateMenuViewModel: ObservableObject {
+class ReportPageViewModel: ObservableObject {
     let generator = UIImpactFeedbackGenerator(style: .light)
     
     func onSelectDate(dates: Set<DateComponents>, startDate: Binding<Date?>, endDate: Binding<Date?>, pageState: Binding<GeneratePageState>) {

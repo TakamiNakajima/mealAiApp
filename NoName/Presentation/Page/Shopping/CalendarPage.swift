@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct ShoppingPage: View {
+struct CalendarPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @EnvironmentObject var viewModel: ShoppingPageViewModel
+    @EnvironmentObject var viewModel: CalendarPageViewModel
     @State var calendarItems: [CalendarItem] = []
     @State var selectedDate = Date()
     @State var isLoading: Bool = false
@@ -23,7 +23,7 @@ struct ShoppingPage: View {
                         }) {
                             Image(systemName: "chevron.left")
                                 .font(.title)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("mainColorDark"))
                         }
                         
                         Spacer()
@@ -44,14 +44,14 @@ struct ShoppingPage: View {
                         }) {
                             Image(systemName: "chevron.right")
                                 .font(.title)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("mainColorDark"))
                         }
                     }
                     .padding()
                     
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7)) {
                         ForEach(calendarItems, id: \.date) { item in
-                            CalendarView(calendarItem: item, selectedDate: selectedDate)
+                            CalendarComponent(calendarItem: item, selectedDate: selectedDate)
                         }
                     }
                     .padding()

@@ -17,8 +17,8 @@ struct NoNameApp: App {
     @StateObject var authViewModel = AuthViewModel()
     @StateObject var homePageViewModel = HomePageViewModel()
     @StateObject var addPageViewModel = AddPageViewModel()
-    @StateObject var shoppingPageViewModel = ShoppingPageViewModel()
-    @StateObject var generateMenuPageViewModel = GenerateMenuViewModel()
+    @StateObject var shoppingPageViewModel = CalendarPageViewModel()
+    @StateObject var generateMenuPageViewModel = ReportPageViewModel()
     
     init() {
         FirebaseApp.configure()

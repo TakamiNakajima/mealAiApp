@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CalendarView: View {
+struct CalendarComponent: View {
     let calendarItem: CalendarItem
     let selectedDate: Date
 
@@ -15,7 +15,7 @@ struct CalendarView: View {
                     Group {
                         if isSameDay(date1: calendarItem.date, date2: selectedDate) {
                             LinearGradient(
-                                gradient: Gradient(colors: [.mint, .blue]),
+                                gradient: Gradient(colors: [Color("mainColorLight"), Color("mainColorDark")]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )

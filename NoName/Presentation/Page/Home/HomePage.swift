@@ -15,7 +15,7 @@ struct HomePage: View {
                         VStack {
                             Text("\(String(viewModel.selectedYear))年\(viewModel.selectedMonth)月")
                                 .font(.headline)
-                                .fontWeight(.bold)
+                                .fontWeight(.regular)
                                 .foregroundColor(Color("mainColorLight"))
                             
                             ScrollViewReader { proxy in

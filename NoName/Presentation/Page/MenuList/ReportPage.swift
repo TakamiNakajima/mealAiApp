@@ -1,7 +1,7 @@
 
 import SwiftUI
 
-struct MenuListPage: View {
+struct ReportPage: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     let generator = UIImpactFeedbackGenerator(style: .light)
     @State private var isPresented: Bool = false
