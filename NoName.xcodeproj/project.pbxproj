@@ -223,13 +223,13 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		4D56C61E2BBAD4B3002ABB9F /* CommonComponent */ = {
+		4D56C61E2BBAD4B3002ABB9F /* Component */ = {
 			isa = PBXGroup;
 			children = (
 				4D1876BF2CA6397E000180DC /* BottomNavBar.swift */,
 				4D6A943A2CD473B8007C68C2 /* PrimaryButton.swift */,
 			);
-			path = CommonComponent;
+			path = Component;
 			sourceTree = "<group>";
 		};
 		4D56C6212BBAE61C002ABB9F /* utility */ = {
@@ -250,7 +250,7 @@
 				4DAF1EC92D35D62D008E3797 /* Setting */,
 				4DAF1ECA2D35D63B008E3797 /* Home */,
 				4DAF1ECB2D35D648008E3797 /* GenerateMenu */,
-				4D56C61E2BBAD4B3002ABB9F /* CommonComponent */,
+				4D56C61E2BBAD4B3002ABB9F /* Component */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

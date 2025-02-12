@@ -108,12 +108,14 @@ struct AddPage: View {
 fileprivate struct WrapView: View {
     @Binding var selectedMealType: PaymentType
     @Binding var isShowingDialog: Bool
+    let generator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
         let columns = [GridItem(.adaptive(minimum: 100))]
         LazyVGrid(columns: columns, spacing: 8) {
             ForEach(PaymentType.allCases, id: \.self) { item in
                 ChipView(item: item, isSelected: selectedMealType == item) {
+                    generator.impactOccurred()
                     selectedMealType = item
                     if (selectedMealType == .selfInput) {
                         isShowingDialog = true
@@ -134,13 +136,13 @@ fileprivate struct ChipView: View {
         Text(item.displayName)
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
-            .foregroundColor(isSelected ? .white : Color("mainColorDark"))
+            .foregroundColor(isSelected ? .white : Color.gray.opacity(0.5))
             .frame(maxWidth: .infinity)
             .background(isSelected ? Color("mainColorDark") : Color.white)
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color("mainColorDark"), lineWidth: 1)
+                    .stroke(isSelected ? Color("mainColorDark") : Color.gray.opacity(0.5), lineWidth: 1)
             )
             .onTapGesture(perform: action)
     }

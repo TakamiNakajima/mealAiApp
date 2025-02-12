@@ -17,7 +17,7 @@ struct HomePage: View {
                             Text("\(String(viewModel.selectedYear))年\(viewModel.selectedMonth)月")
                                 .font(.headline)
                                 .fontWeight(.regular)
-                                .foregroundColor(Color("mainColorLight"))
+                                .foregroundColor(Color("mainColorDark"))
                             
                             ScrollViewReader { proxy in
                                 ScrollView(.horizontal, showsIndicators: false) {

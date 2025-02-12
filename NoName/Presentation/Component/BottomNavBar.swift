@@ -109,12 +109,12 @@ struct BottomBarButtonView: View {
                         .frame(height: 0)
                     
                     Image(systemName: image)
-                        .foregroundColor(isActive ? Color("mainColorLight") : .gray)
+                        .foregroundColor(isActive ? Color("mainColorDark") : .gray)
                         .frame(height: 20)
                     
                     Text(text)
                         .font(.caption)
-                        .foregroundColor(isActive ? Color("mainColorLight") : .gray)
+                        .foregroundColor(isActive ? Color("mainColorDark") : .gray)
                 }
             }
         }
